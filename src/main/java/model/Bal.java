@@ -69,7 +69,7 @@ public class Bal {
     }
     
     public void setMaxX() {
-        if (x > peddel.getBreedte() - getStraal()) {
+        if (x > paneel.getBreedte() - getStraal()) {
             vx = vx * -1;
         }
     }
@@ -81,7 +81,7 @@ public class Bal {
     }
 
     public void setMaxY() {
-        if (y > peddel.getHoogte() - getStraal()) {
+        if (y > paneel.getHoogte() - getStraal()) {
             vx = 0;
             vy = 0;
         }
