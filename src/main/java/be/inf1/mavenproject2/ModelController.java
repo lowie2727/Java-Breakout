@@ -68,10 +68,10 @@ public class ModelController {
 
     private void reset(ActionEvent e) {
         bal.reset();
+        peddel.reset();
     }
 
     private void beweeg(MouseEvent m) {
-
         peddel.setX(m.getX() - (peddel.getBreedte()) / 2);
         peddel.setMin();
         peddel.setMax();
