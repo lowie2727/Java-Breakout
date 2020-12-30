@@ -37,6 +37,7 @@ public class ModelController {
 
     private BalView balView;
     private PeddelView peddelView;
+    private PaneelView paneelView;
 
     @FXML
     void initialize() {
@@ -48,6 +49,7 @@ public class ModelController {
 
         peddelView = new PeddelView(peddel);
         balView = new BalView(bal);
+        paneelView = new PaneelView(paneel);
 
         paneel.getChildren().addAll(peddelView, balView);
         update();
