@@ -14,8 +14,8 @@ public class Bal {
     private Paneel paneel;
     private Peddel peddel;
     private double straal;
-    private double vx;
-    private double vy;
+    public double vx;
+    public double vy;
     public double x;
     public double y;
 
@@ -49,15 +49,15 @@ public class Bal {
     public double getY() {
         return y;
     }
-    
-    public double getVx(){
+
+    public double getVx() {
         return vx;
     }
-    
-    public double getVy(){
+
+    public double getVy() {
         return vy;
     }
-    
+
     public double verticaal() {
         y = y + vy;
         return y;
@@ -67,7 +67,7 @@ public class Bal {
         x = x + vx;
         return x;
     }
-    
+
     public void setMaxX() {
         if (x > paneel.getBreedte() - getStraal()) {
             vx = vx * -1;
@@ -92,14 +92,14 @@ public class Bal {
             vy = vy * -1;
         }
     }
-    
+
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - getStraal();
         vx = 1;
         vy = -1;
     }
-    
+
     public void tick() {
         horizontaal();
         verticaal();

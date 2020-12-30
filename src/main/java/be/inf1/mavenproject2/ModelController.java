@@ -5,9 +5,12 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import model.Bal;
 import model.Paneel;
 import model.Peddel;
@@ -35,7 +38,7 @@ public class ModelController {
     private BalView balView;
     private PeddelView peddelView;
 
-    private @FXML
+    @FXML
     void initialize() {
         venster = new Paneel();
         paneel.setPrefSize(venster.getBreedte(), venster.getHoogte());
@@ -62,8 +65,19 @@ public class ModelController {
     }
 
     public void update() {
+        Rectangle r = peddelView.getRechthoek();
+        Bounds boundsR = r.localToScene(r.getBoundsInLocal());
+        Circle c = balView.getBal();
+        Bounds boundsC = c.localToScene(c.getBoundsInLocal());
+        if(boundsC.intersects(boundsR)){
+            if(bal.getVy()>0){
+                bal.vy = bal.vy*-1;
+            }
+        }
         peddelView.update();
         balView.update();
+        
+        
     }
 
     private void reset(ActionEvent e) {
