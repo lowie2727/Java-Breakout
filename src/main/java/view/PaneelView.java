@@ -26,6 +26,9 @@ public class PaneelView extends Region {
     
     public void createBorder(){
         r = new Rectangle(paneel.getBreedte(),paneel.getHoogte(),Color.BLACK);
+        r.setFill(null);
+        r.setStroke(Color.BLACK);
+        r.setStrokeWidth(2);
         
     }
     

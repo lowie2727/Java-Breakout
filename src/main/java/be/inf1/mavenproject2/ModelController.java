@@ -15,6 +15,7 @@ import model.Bal;
 import model.Paneel;
 import model.Peddel;
 import view.BalView;
+import view.PaneelView;
 import view.PeddelView;
 
 public class ModelController {
@@ -49,9 +50,9 @@ public class ModelController {
 
         peddelView = new PeddelView(peddel);
         balView = new BalView(bal);
-        paneelView = new PaneelView(paneel);
+        paneelView = new PaneelView(venster);
 
-        paneel.getChildren().addAll(peddelView, balView);
+        paneel.getChildren().addAll(peddelView, balView,paneelView);
         update();
 
         peddelView.setFocusTraversable(true);
