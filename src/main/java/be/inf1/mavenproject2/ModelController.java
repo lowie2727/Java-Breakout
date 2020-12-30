@@ -14,9 +14,11 @@ import javafx.scene.shape.Rectangle;
 import model.Bal;
 import model.Paneel;
 import model.Peddel;
+import model.Steen;
 import view.BalView;
 import view.PaneelView;
 import view.PeddelView;
+import view.SteenView;
 
 public class ModelController {
 
@@ -39,6 +41,13 @@ public class ModelController {
     private BalView balView;
     private PeddelView peddelView;
     private PaneelView paneelView;
+    
+    
+    
+    private Steen steen;
+    private SteenView steenView;
+    
+    
 
     @FXML
     void initialize() {
@@ -47,12 +56,14 @@ public class ModelController {
 
         peddel = new Peddel(venster);
         bal = new Bal(venster, peddel);
+        steen = new Steen();
 
         peddelView = new PeddelView(peddel);
         balView = new BalView(bal);
         paneelView = new PaneelView(venster);
+        steenView = new SteenView(steen);
 
-        paneel.getChildren().addAll(peddelView, balView,paneelView);
+        paneel.getChildren().addAll(peddelView, balView,paneelView,steenView);
         update();
 
         peddelView.setFocusTraversable(true);

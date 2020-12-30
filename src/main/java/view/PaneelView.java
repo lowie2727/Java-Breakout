@@ -8,6 +8,7 @@ package view;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import model.Paneel;
 
 /**
@@ -15,6 +16,7 @@ import model.Paneel;
  * @author lowie
  */
 public class PaneelView extends Region {
+
     private Paneel paneel;
     private Rectangle r;
 
@@ -23,15 +25,14 @@ public class PaneelView extends Region {
         createBorder();
         getChildren().add(r);
     }
-    
-    public void createBorder(){
-        r = new Rectangle(paneel.getBreedte(),paneel.getHoogte(),Color.BLACK);
+
+    public void createBorder() {
+        r = new Rectangle(paneel.getBreedte(), paneel.getHoogte(), Color.BLACK);
         r.setFill(null);
         r.setStroke(Color.BLACK);
+        r.setStrokeType(StrokeType.OUTSIDE);
         r.setStrokeWidth(2);
-        
+
     }
-    
-    
 
 }

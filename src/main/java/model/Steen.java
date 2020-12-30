@@ -15,7 +15,7 @@ public class Steen {
     public double hoogte;
 
     public Steen() {
-        hoogte = 10;
+        hoogte = 20;
         breedte = 60;
     }
 
