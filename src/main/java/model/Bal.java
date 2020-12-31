@@ -14,10 +14,10 @@ public class Bal {
     private Paneel paneel;
     private Peddel peddel;
     private double straal;
-    public double vx;
-    public double vy;
-    public double x;
-    public double y;
+    private double vx;
+    private double vy;
+    private double x;
+    private double y;
 
     public Bal(Paneel paneel, Peddel peddel) {
         this.paneel = paneel;
@@ -99,12 +99,12 @@ public class Bal {
         vx = 1;
         vy = -1;
     }
-    
-    public void setVx(double vx){
+
+    public void setVx(double vx) {
         this.vx = vx;
     }
-    
-    public void setVy(double vy){
+
+    public void setVy(double vy) {
         this.vy = vy;
     }
 

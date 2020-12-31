@@ -11,11 +11,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import model.Bal;
 import model.Paneel;
 import model.Peddel;
+import model.Steen;
 import model.Stenen;
 import view.BalView;
 import view.PaneelView;
@@ -37,6 +36,7 @@ public class ModelController {
     private Button button;
 
     private Peddel peddelModel;
+    private Steen steenModel;
     private Bal balModel;
     private Paneel vensterModel;
     private Stenen stenenModel;
@@ -50,10 +50,11 @@ public class ModelController {
     void initialize() {
         vensterModel = new Paneel();
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
-
+        
+        steenModel = new Steen();
         peddelModel = new Peddel(vensterModel);
         balModel = new Bal(vensterModel, peddelModel);
-        stenenModel = new Stenen();
+        stenenModel = new Stenen(vensterModel,steenModel);
 
         peddelView = new PeddelView(peddelModel);
 
@@ -72,7 +73,7 @@ public class ModelController {
 
         UpdateBal b = new UpdateBal(balModel, this);
         Timer t = new Timer(true);
-        t.scheduleAtFixedRate(b, 0, 4);
+        t.scheduleAtFixedRate(b, 0, 2);
 
     }
 

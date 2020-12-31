@@ -32,7 +32,5 @@ public class PaneelView extends Region {
         r.setStroke(Color.BLACK);
         r.setStrokeType(StrokeType.OUTSIDE);
         r.setStrokeWidth(2);
-
     }
-
 }

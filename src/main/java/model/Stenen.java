@@ -14,10 +14,23 @@ public class Stenen {
     private Steen stenen[][];
     private int rijen;
     private int kolommen;
+    private double offsetBreedte;
+    private double offsetHoogte;
+    private double offsetBreedtePaneel;
+    private double offsetHoogtePaneel;
+    private Paneel paneel;
+    private Steen steen;
 
-    public Stenen() {
+    public Stenen(Paneel paneel,Steen steen) {
+        this.paneel = paneel;
+        this.steen = steen;
         rijen = 6;
-        kolommen = 5;
+        kolommen = 14;
+        setMaxKolommen(kolommen);
+        offsetBreedte = 5;
+        offsetHoogte = 5;
+        setOffsetBreedtePaneel(kolommen);
+        offsetHoogtePaneel = 20;
         createMatrix();
     }
 
@@ -40,6 +53,34 @@ public class Stenen {
 
     public int getKolommen() {
         return kolommen;
+    }
+    
+    public double getOffsetBreedte(){
+        return offsetBreedte;
+    }
+    
+    public double getOffsetHoogte(){
+        return offsetHoogte;
+    }
+    
+    private void setMaxKolommen(int kolommen){
+        if(kolommen*(steen.getBreedte()+offsetBreedte)>=paneel.getBreedte()){
+            this.kolommen = 15;
+            
+        }
+    }
+    
+    public void setOffsetBreedtePaneel(int kolommen){
+        offsetBreedtePaneel = (paneel.getBreedte() - kolommen*(steen.getBreedte()+offsetBreedte)-offsetBreedte)/2;
+        
+    }
+    
+    public double getOffsetHoogtePaneel(){
+        return offsetHoogtePaneel;
+    }
+    
+    public double getOffsetBreedtePaneel(){
+        return offsetBreedtePaneel;
     }
 
 }

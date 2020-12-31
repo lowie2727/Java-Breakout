@@ -30,15 +30,9 @@ public class BalView extends Region {
         c.setTranslateX(bal.getX());
         c.setTranslateY(bal.getY());
         getChildren().add(c);
-
     }
 
     public void createBal() {
         c = new Circle(bal.getStraal(), Color.BLUE);
     }
-
-    public Circle getBal() {
-        return c;
-    }
-
 }

@@ -35,8 +35,4 @@ public class PeddelView extends Region {
     private void createPeddel() {
         p = new Rectangle(peddel.getBreedte(), peddel.getHoogte(), Color.BLACK);
     }
-
-    public Rectangle getRechthoek() {
-        return p;
-    }
 }

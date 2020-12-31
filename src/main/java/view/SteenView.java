@@ -33,10 +33,4 @@ public class SteenView extends Region {
         r.setStrokeWidth(2);
         getChildren().add(r);
     }
-
-    public Rectangle getRechthoek() {
-        return r;
-    }
-//void update nodig
-
 }

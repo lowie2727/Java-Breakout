@@ -29,11 +29,11 @@ public class StenenView extends Region {
         Steen s[][] = stenen.getStenen();
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
-                double breedte = s[j][i].getBreedte() + 10;
-                double hoogte = s[j][i].getHoogte() + 10;
+                double breedte = s[j][i].getBreedte() + stenen.getOffsetBreedte();
+                double hoogte = s[j][i].getHoogte() + stenen.getOffsetHoogte();
                 SteenView sv = new SteenView(s[j][i]);
-                sv.setTranslateX(breedte * n);
-                sv.setTranslateY(hoogte * m);
+                sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel()); //offset variabele
+                sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());    //offsetvariabele
                 n++;
                 if (n == stenen.getKolommen()) {
                     n = 0;
