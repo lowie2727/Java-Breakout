@@ -1,11 +1,14 @@
 package be.inf1.mavenproject2;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Timer;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -57,15 +60,16 @@ public class ModelController {
         peddel = new Peddel(venster);
         bal = new Bal(venster, peddel);
         stenen = new Stenen();
+        //System.out.println(Arrays.deepToString(stenen.getStenen()));
         //steen = new Steen();
 
         peddelView = new PeddelView(peddel);
         balView = new BalView(bal);
         paneelView = new PaneelView(venster);
         //steenView = new SteenView(steen);
-        stenenView = new StenenView(stenen);
+        stenenView = new StenenView(stenen, balView);
 
-        paneel.getChildren().addAll(peddelView, balView, paneelView, steenView);
+        paneel.getChildren().addAll(peddelView, balView, paneelView, stenenView);
         update();
 
         peddelView.setFocusTraversable(true);
@@ -90,8 +94,22 @@ public class ModelController {
                 bal.vy = bal.vy * -1;
             }
         }
+
+        ObservableList<Node> nodes = stenenView.getChildrenUnmodifiable();
+        for (Node s : nodes) {
+            Circle cv = balView.getBal();
+            Bounds boundsCv = cv.localToScene(c.getBoundsInLocal());
+            Bounds bound = s.localToScene(s.getBoundsInLocal());
+            if (boundsCv.intersects(bound)) {
+                if (bal.getVy() < 0) {
+                    bal.vy = 1;
+                }
+            }
+
+        }
         peddelView.update();
         balView.update();
+        stenenView.update();
 
     }
 

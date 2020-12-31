@@ -16,8 +16,8 @@ public class Stenen {
     private int kolommen;
 
     public Stenen() {
-        rijen = 4;
-        kolommen = 15;
+        rijen = 1;
+        kolommen = 5;
         createMatrix();
     }
 
@@ -25,7 +25,7 @@ public class Stenen {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
-                stenen[i][j] = new Steen();
+                stenen[j][i] = new Steen();
             }
         }
     }

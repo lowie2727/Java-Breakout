@@ -23,7 +23,7 @@ public class SteenView extends Region {
     public SteenView(Steen steen) {
         this.steen = steen;
         createSteen();
-        update();
+        //update();
     }
 
     public void createSteen() {
@@ -33,9 +33,10 @@ public class SteenView extends Region {
         r.setStrokeWidth(2);
         getChildren().add(r);
     }
-
-    public void update() {
-        
+    
+    public Rectangle getRechthoek(){
+        return r;
     }
+//void update nodig
 
 }
