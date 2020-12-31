@@ -1,7 +1,6 @@
 package be.inf1.mavenproject2;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import javafx.collections.ObservableList;
@@ -17,12 +16,10 @@ import javafx.scene.shape.Rectangle;
 import model.Bal;
 import model.Paneel;
 import model.Peddel;
-import model.Steen;
 import model.Stenen;
 import view.BalView;
 import view.PaneelView;
 import view.PeddelView;
-import view.SteenView;
 import view.StenenView;
 
 public class ModelController {
@@ -39,35 +36,30 @@ public class ModelController {
     @FXML
     private Button button;
 
-    private Peddel peddel;
-    private Bal bal;
-    private Paneel venster;
-    private Stenen stenen;
+    private Peddel peddelModel;
+    private Bal balModel;
+    private Paneel vensterModel;
+    private Stenen stenenModel;
 
     private BalView balView;
     private PeddelView peddelView;
     private PaneelView paneelView;
     private StenenView stenenView;
 
-    private Steen steen;
-    private SteenView steenView;
-
     @FXML
     void initialize() {
-        venster = new Paneel();
-        paneel.setPrefSize(venster.getBreedte(), venster.getHoogte());
+        vensterModel = new Paneel();
+        paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
-        peddel = new Peddel(venster);
-        bal = new Bal(venster, peddel);
-        stenen = new Stenen();
-        //System.out.println(Arrays.deepToString(stenen.getStenen()));
-        //steen = new Steen();
+        peddelModel = new Peddel(vensterModel);
+        balModel = new Bal(vensterModel, peddelModel);
+        stenenModel = new Stenen();
 
-        peddelView = new PeddelView(peddel);
-        balView = new BalView(bal);
-        paneelView = new PaneelView(venster);
-        //steenView = new SteenView(steen);
-        stenenView = new StenenView(stenen, balView);
+        peddelView = new PeddelView(peddelModel);
+        
+        balView = new BalView(balModel);
+        paneelView = new PaneelView(vensterModel);
+        stenenView = new StenenView(stenenModel);
 
         paneel.getChildren().addAll(peddelView, balView, paneelView, stenenView);
         update();
@@ -78,63 +70,60 @@ public class ModelController {
         button.setOnAction(this::reset);
         paneel.setOnMouseMoved(this::beweeg);
 
-        UpdateBal b = new UpdateBal(bal, this);
+        UpdateBal b = new UpdateBal(balModel, this);
         Timer t = new Timer(true);
         t.scheduleAtFixedRate(b, 0, 4);
 
     }
 
     public void update() {
+        ObservableList<Node> peddel = peddelView.getChildrenUnmodifiable();
+        ObservableList<Node> bal = balView.getChildrenUnmodifiable();
+        //for(Node p : peddel){
+            //p.getB
+        //}
+        
+        peddel.get(0);
         Rectangle r = peddelView.getRechthoek();
         Bounds boundsR = r.localToScene(r.getBoundsInLocal());
         Circle c = balView.getBal();
         Bounds boundsC = c.localToScene(c.getBoundsInLocal());
-        //System.out.println(boundsC);
-        //System.out.println(boundsR);
         if (boundsC.intersects(boundsR)) {
-            if (bal.getVy() > 0) {
-                bal.vy = bal.vy * -1;
+            if (balModel.getVy() > 0) {
+                balModel.setVy(-1);
             }
         }
 
-        ObservableList<Node> nodes = stenenView.getChildrenUnmodifiable();
-        for (Node s : nodes) {
-            //Circle cv = balView.getBal();
-            //Bounds boundsCv = cv.localToScene(c.getBoundsInLocal());
+        ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
+        for (Node s : stenen) {
             Bounds bound = s.localToScene(s.getBoundsInLocal());
             if (boundsC.intersects(bound)) {
-                if(boundsC.getMaxX()==bound.getMinX()){
-                    bal.vx = -1;
+                if (boundsC.getMaxX() == bound.getMinX()) {
+                     balModel.setVx(-1);
+                } else if (boundsC.getMinX() == bound.getMaxX()) {
+                    balModel.setVx(1);
+                } else if (boundsC.getMinY() == bound.getMaxY()) {
+                    balModel.setVy(1);
+                } else if (boundsC.getMaxY() == bound.getMinY()) {
+                    balModel.setVy(-1);
                 }
-                else if(boundsC.getMinX()==bound.getMaxX()){
-                    bal.vx = 1;
-                }
-                else if(boundsC.getMinY()==bound.getMaxY()){
-                    bal.vy = 1;
-                }
-                else if(boundsC.getMaxY()==bound.getMinY()){
-                    bal.vy = -1;
-                }
-                //if (bal.getVy() < 0) {
-                    //bal.vy = 1;
-                //}
             }
 
         }
+
         peddelView.update();
         balView.update();
-        stenenView.update();
 
     }
 
     private void reset(ActionEvent e) {
-        bal.reset();
-        peddel.reset();
+        balModel.reset();
+        peddelModel.reset();
     }
 
     private void beweeg(MouseEvent m) {
-        peddel.setX(m.getX() - (peddel.getBreedte()) / 2);
-        peddel.setMin();
-        peddel.setMax();
+        peddelModel.setX(m.getX() - (peddelModel.getBreedte()) / 2);
+        peddelModel.setMin();
+        peddelModel.setMax();
     }
 }

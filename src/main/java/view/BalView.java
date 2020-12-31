@@ -5,7 +5,6 @@
  */
 package view;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -19,7 +18,6 @@ public class BalView extends Region {
 
     private Bal bal;
     private Circle c;
-    private Pane paneel;
 
     public BalView(Bal bal) {
         this.bal = bal;

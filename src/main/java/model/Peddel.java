@@ -61,12 +61,12 @@ public class Peddel {
     public double getOffset() {
         return offset;
     }
-    
+
     public void reset() {
         x = (paneel.getBreedte() - getBreedte()) / 2;
         y = paneel.getHoogte() - 20;
     }
-    
+
     public double setMax() {
         if (x > paneel.getBreedte() - getBreedte()) {
             x = paneel.getBreedte() - getBreedte();
@@ -74,7 +74,7 @@ public class Peddel {
         }
         return x;
     }
-    
+
     public double setMin() {
         if (x < 0) {
             x = 0;
@@ -82,7 +82,7 @@ public class Peddel {
         }
         return x;
     }
-    
+
     public void setX(double x) {
         this.x = x;
     }

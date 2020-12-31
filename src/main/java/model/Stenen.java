@@ -21,7 +21,7 @@ public class Stenen {
         createMatrix();
     }
 
-    public void createMatrix() {
+    private void createMatrix() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
