@@ -8,7 +8,6 @@ package be.inf1.mavenproject2;
 import java.util.TimerTask;
 import javafx.application.Platform;
 import model.Bal;
-import model.Peddel;
 
 /**
  *

@@ -96,8 +96,8 @@ public class Bal {
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - getStraal();
-        vx = 0.5;
-        vy = -0.5;
+        vx = 0.2;
+        vy = -0.2;
     }
 
     public void setVx(double vx) {

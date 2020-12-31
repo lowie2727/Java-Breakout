@@ -97,9 +97,11 @@ public class ModelController {
     }
 
     private void botsingBal() {
+
         ObservableList<Node> peddel = peddelView.getChildrenUnmodifiable();
         ObservableList<Node> bal = balView.getChildrenUnmodifiable();
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
+
         /*
         for (Node b : bal) {
             Bounds boundBal = b.localToScene(b.getBoundsInLocal());
@@ -133,11 +135,12 @@ public class ModelController {
             }
         }
          */
-        for (Node s : stenen) {
+ /*for (Node s : stenen) {
             Bounds boundSteen = s.localToScene(s.getBoundsInLocal());
             for (Node b : bal) {
                 Bounds boundPeddel = peddel.get(0).localToScene(peddel.get(0).getBoundsInLocal());
                 Bounds boundBal = b.localToScene(b.getBoundsInLocal());
+
                 if (boundBal.intersects(boundSteen)) {
                     if (boundBal.getMaxX() == boundSteen.getMinX()) {
                         balModel.setVx(-0.5);
@@ -150,7 +153,7 @@ public class ModelController {
                     }
                 }
                 boundPeddel = peddel.get(0).localToScene(peddel.get(0).getBoundsInLocal());
-                //boundBal = b.localToScene(b.getBoundsInLocal());
+                boundBal = b.localToScene(b.getBoundsInLocal());
                 if (boundBal.intersects(boundPeddel)) {
                     if (boundBal.getMinY() == boundPeddel.getMaxY()) {
                         balModel.setVy(0.5);
@@ -164,5 +167,24 @@ public class ModelController {
                 }
             }
         }
+
+         */
+        peddelView.update();
+        balView.update();
+        for (Node b : bal) {
+            Bounds boundPeddel = peddel.get(0).localToScene(peddel.get(0).getBoundsInParent());
+            Bounds boundBal = b.localToScene(b.getBoundsInParent());
+
+            if (boundBal.intersects(boundPeddel) && boundBal.getMinY() == boundPeddel.getMaxY()) {
+                balModel.setVy(0.5);
+            } else if (boundBal.intersects(boundPeddel) && boundBal.getMaxX() == boundPeddel.getMinX()) {
+                balModel.setVx(-0.5);
+            } else if (boundBal.intersects(boundPeddel) && boundBal.getMinX() == boundPeddel.getMaxX()) {
+                balModel.setVx(0.5);
+            } else if (boundBal.intersects(boundPeddel) && boundBal.getMaxY() == boundPeddel.getMinY()) {
+                balModel.setVy(-0.5);
+            }
+        }
     }
+
 }
