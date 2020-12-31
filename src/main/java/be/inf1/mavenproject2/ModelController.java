@@ -89,6 +89,8 @@ public class ModelController {
         Bounds boundsR = r.localToScene(r.getBoundsInLocal());
         Circle c = balView.getBal();
         Bounds boundsC = c.localToScene(c.getBoundsInLocal());
+        //System.out.println(boundsC);
+        //System.out.println(boundsR);
         if (boundsC.intersects(boundsR)) {
             if (bal.getVy() > 0) {
                 bal.vy = bal.vy * -1;
@@ -97,13 +99,25 @@ public class ModelController {
 
         ObservableList<Node> nodes = stenenView.getChildrenUnmodifiable();
         for (Node s : nodes) {
-            Circle cv = balView.getBal();
-            Bounds boundsCv = cv.localToScene(c.getBoundsInLocal());
+            //Circle cv = balView.getBal();
+            //Bounds boundsCv = cv.localToScene(c.getBoundsInLocal());
             Bounds bound = s.localToScene(s.getBoundsInLocal());
-            if (boundsCv.intersects(bound)) {
-                if (bal.getVy() < 0) {
+            if (boundsC.intersects(bound)) {
+                if(boundsC.getMaxX()==bound.getMinX()){
+                    bal.vx = -1;
+                }
+                else if(boundsC.getMinX()==bound.getMaxX()){
+                    bal.vx = 1;
+                }
+                else if(boundsC.getMinY()==bound.getMaxY()){
                     bal.vy = 1;
                 }
+                else if(boundsC.getMaxY()==bound.getMinY()){
+                    bal.vy = -1;
+                }
+                //if (bal.getVy() < 0) {
+                    //bal.vy = 1;
+                //}
             }
 
         }

@@ -16,7 +16,7 @@ public class Stenen {
     private int kolommen;
 
     public Stenen() {
-        rijen = 1;
+        rijen = 6;
         kolommen = 5;
         createMatrix();
     }
