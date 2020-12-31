@@ -56,7 +56,7 @@ public class ModelController {
         stenenModel = new Stenen();
 
         peddelView = new PeddelView(peddelModel);
-        
+
         balView = new BalView(balModel);
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
@@ -77,43 +77,9 @@ public class ModelController {
     }
 
     public void update() {
-        ObservableList<Node> peddel = peddelView.getChildrenUnmodifiable();
-        ObservableList<Node> bal = balView.getChildrenUnmodifiable();
-        //for(Node p : peddel){
-            //p.getB
-        //}
-        
-        peddel.get(0);
-        Rectangle r = peddelView.getRechthoek();
-        Bounds boundsR = r.localToScene(r.getBoundsInLocal());
-        Circle c = balView.getBal();
-        Bounds boundsC = c.localToScene(c.getBoundsInLocal());
-        if (boundsC.intersects(boundsR)) {
-            if (balModel.getVy() > 0) {
-                balModel.setVy(-1);
-            }
-        }
-
-        ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
-        for (Node s : stenen) {
-            Bounds bound = s.localToScene(s.getBoundsInLocal());
-            if (boundsC.intersects(bound)) {
-                if (boundsC.getMaxX() == bound.getMinX()) {
-                     balModel.setVx(-1);
-                } else if (boundsC.getMinX() == bound.getMaxX()) {
-                    balModel.setVx(1);
-                } else if (boundsC.getMinY() == bound.getMaxY()) {
-                    balModel.setVy(1);
-                } else if (boundsC.getMaxY() == bound.getMinY()) {
-                    balModel.setVy(-1);
-                }
-            }
-
-        }
-
+        botsingBal();
         peddelView.update();
         balView.update();
-
     }
 
     private void reset(ActionEvent e) {
@@ -125,5 +91,43 @@ public class ModelController {
         peddelModel.setX(m.getX() - (peddelModel.getBreedte()) / 2);
         peddelModel.setMin();
         peddelModel.setMax();
+    }
+
+    private void botsingBal() {
+        ObservableList<Node> peddel = peddelView.getChildrenUnmodifiable();
+        ObservableList<Node> bal = balView.getChildrenUnmodifiable();
+        ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
+
+        for (Node b : bal) {
+            Bounds boundBal = b.localToScene(b.getBoundsInLocal());
+            for (Node s : stenen) {
+                Bounds boundSteen = s.localToScene(s.getBoundsInLocal());
+                if (boundBal.intersects(boundSteen)) {
+                    if (boundBal.getMaxX() == boundSteen.getMinX()) {
+                        balModel.setVx(-1);
+                    } else if (boundBal.getMinX() == boundSteen.getMaxX()) {
+                        balModel.setVx(1);
+                    } else if (boundBal.getMinY() == boundSteen.getMaxY()) {
+                        balModel.setVy(1);
+                    } else if (boundBal.getMaxY() == boundSteen.getMinY()) {
+                        balModel.setVy(-1);
+                    }
+                }
+            }
+            for (Node p : peddel) {
+                Bounds boundPeddel = p.localToScene(p.getBoundsInLocal());
+                if (boundBal.intersects(boundPeddel)) {
+                    if (boundBal.getMaxX() == boundPeddel.getMinX()) {
+                        balModel.setVx(-1);
+                    } else if (boundBal.getMinX() == boundPeddel.getMaxX()) {
+                        balModel.setVx(1);
+                    } else if (boundBal.getMinY() == boundPeddel.getMaxY()) {
+                        balModel.setVy(1);
+                    } else if (boundBal.getMaxY() == boundPeddel.getMinY()) {
+                        balModel.setVy(-1);
+                    }
+                }
+            }
+        }
     }
 }
