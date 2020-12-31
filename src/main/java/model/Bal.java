@@ -13,7 +13,7 @@ public class Bal {
 
     private Paneel paneel;
     private Peddel peddel;
-    private double straal;
+    private final double straal;
     private double vx;
     private double vy;
     private double x;
@@ -96,8 +96,8 @@ public class Bal {
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - getStraal();
-        vx = 1;
-        vy = -1;
+        vx = 0.5;
+        vy = -0.5;
     }
 
     public void setVx(double vx) {

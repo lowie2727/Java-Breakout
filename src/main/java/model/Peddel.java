@@ -12,15 +12,15 @@ package model;
 public class Peddel {
 
     private Paneel paneel;
-    private double hoogte;
-    private double breedte;
-    private double offset;
+    private final double hoogte;
+    private final double breedte;
+    private final double offset;
     private double x;
     private double y;
 
     public Peddel(Paneel paneel) {
         this.paneel = paneel;
-        offset = 50;
+        offset = 20;
         hoogte = 10;
         breedte = 120;
         x = (paneel.getBreedte() - breedte) / 2;
@@ -64,7 +64,7 @@ public class Peddel {
 
     public void reset() {
         x = (paneel.getBreedte() - getBreedte()) / 2;
-        y = paneel.getHoogte() - 20;
+        y = paneel.getHoogte() - offset;
     }
 
     public double setMax() {

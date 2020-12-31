@@ -11,8 +11,8 @@ package model;
  */
 public class Paneel {
 
-    private double breedte;
-    private double hoogte;
+    private final double breedte;
+    private final double hoogte;
 
     public Paneel() {
         breedte = 1000;

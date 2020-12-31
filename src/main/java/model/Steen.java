@@ -11,8 +11,8 @@ package model;
  */
 public class Steen {
 
-    private double breedte;
-    private double hoogte;
+    private final double breedte;
+    private final double hoogte;
 
     public Steen() {
         hoogte = 20;
