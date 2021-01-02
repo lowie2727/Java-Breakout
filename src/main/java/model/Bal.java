@@ -22,8 +22,8 @@ public class Bal {
     public Bal(Paneel paneel, Peddel peddel) {
         this.paneel = paneel;
         this.peddel = peddel;
-        vx = 1;
-        vy = -1;
+        vx = 0.5;
+        vy = -0.5;
         straal = 8;
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - straal;
@@ -69,26 +69,26 @@ public class Bal {
     }
 
     public void setMaxX() {
-        if (x > paneel.getBreedte() - getStraal()) {
+        if (x >= paneel.getBreedte() - getStraal()) {
             vx = vx * -1;
         }
     }
 
     public void setMinX() {
-        if (x < getStraal()) {
+        if (x <= getStraal()) {
             vx = vx * -1;
         }
     }
 
     public void setMaxY() {
-        if (y > paneel.getHoogte() - getStraal()) {
+        if (y >= paneel.getHoogte() - getStraal()) {
             vx = 0;
             vy = 0;
         }
     }
 
     public void setMinY() {
-        if (y < getStraal()) {
+        if (y <= getStraal()) {
             vy = vy * -1;
         }
     }
@@ -96,8 +96,8 @@ public class Bal {
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - getStraal();
-        vx = 0.2;
-        vy = -0.2;
+        vx = 0.5;
+        vy = -0.5;
     }
 
     public void setVx(double vx) {

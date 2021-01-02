@@ -5,6 +5,7 @@
  */
 package view;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import model.Steen;
 import model.Stenen;
@@ -16,14 +17,16 @@ import model.Stenen;
 public class StenenView extends Region {
 
     private Stenen stenen;
+    private Pane paneelStenen;
 
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
-        createStenen();
-        //update();
+        //createStenen();
+        update();
     }
 
-    private void createStenen() {
+    public void update() {
+        getChildren().clear();
         int n = 0;
         int m = 0;
         Steen s[][] = stenen.getStenen();
@@ -32,8 +35,8 @@ public class StenenView extends Region {
                 double breedte = s[j][i].getBreedte() + stenen.getOffsetBreedte();
                 double hoogte = s[j][i].getHoogte() + stenen.getOffsetHoogte();
                 SteenView sv = new SteenView(s[j][i]);
-                sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel()); //offset variabele
-                sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());    //offsetvariabele
+                sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel());
+                sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());
                 n++;
                 if (n == stenen.getKolommen()) {
                     n = 0;
@@ -43,5 +46,4 @@ public class StenenView extends Region {
             m++;
         }
     }
-
 }
