@@ -7,7 +7,6 @@ package view;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import model.Steen;
 import model.Stenen;
@@ -19,7 +18,6 @@ import model.Stenen;
 public class StenenView extends Region {
 
     private Stenen stenen;
-    private Pane paneelStenen;
 
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
@@ -28,11 +26,13 @@ public class StenenView extends Region {
     }
 
     public void update() {
-        getChildren().clear();
-        maakStenen();
+        //getChildren().clear();
+        checkView();
+
     }
 
     public void maakStenen() {
+        getChildren().clear();
         int n = 0;
         int m = 0;
         Steen s[][] = stenen.getStenen();
@@ -41,6 +41,8 @@ public class StenenView extends Region {
                 double breedte = s[j][i].getBreedte() + stenen.getOffsetBreedte();
                 double hoogte = s[j][i].getHoogte() + stenen.getOffsetHoogte();
                 SteenView sv = new SteenView(s[j][i]);
+
+                sv.setId("nietGeraakt");
                 sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel());
                 sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());
                 n++;
@@ -53,7 +55,27 @@ public class StenenView extends Region {
         }
     }
 
-    public ObservableList<Node> getKinderen() {
-        return getChildren();
+    public void checkView() {
+        int n = 0;
+        Steen s[][] = stenen.getStenen();
+        for (int j = 0; j < stenen.getRijen(); j++) {
+            for (int i = 0; i < stenen.getKolommen(); i++) {
+                if (getChildren().isEmpty()) {
+                    break;
+                }
+                if (n >= getChildren().size()) {
+                    n = getChildren().size() - 1;
+                }
+                getChildren().get(n);
+                if (getChildren().get(n).getId().equals("geraakt")) {
+                    getChildren().remove(n);
+                }
+                n++;
+            }
+        }
+    }
+
+    public int aantalStenen() {
+        return getChildren().size();
     }
 }

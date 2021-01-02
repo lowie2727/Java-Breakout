@@ -70,7 +70,7 @@ public class ModelController {
 
         peddelView.setFocusTraversable(true);
         resetButton.setFocusTraversable(false);
-        
+
         resetButton.setOnAction(this::reset);
         paneel.setOnMouseMoved(this::beweeg);
 
@@ -83,13 +83,15 @@ public class ModelController {
     public void update() {
         botsingBal();
         peddelView.update();
+        stenenView.update();
         balView.update();
-        textBox.setText(stenenModel.getRijen() * stenenModel.getKolommen() + "");
+        textBox.setText(stenenView.aantalStenen() + "");
     }
 
     private void reset(ActionEvent e) {
         balModel.reset();
         peddelModel.reset();
+        stenenView.maakStenen();
     }
 
     private void beweeg(MouseEvent m) {
@@ -101,43 +103,41 @@ public class ModelController {
 
     private void botsingBal() {
 
-        ObservableList<Node> peddel = peddelView.getChildrenUnmodifiable();
-        ObservableList<Node> bal = balView.getChildrenUnmodifiable();
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
-        ObservableList<Node> stenen2 = stenenView.getKinderen();
 
         if (balModel.getY() + balModel.getStraal() >= peddelModel.getY() - 3
-                && balModel.getY() + balModel.getStraal() <= peddelModel.getY() + 3 
-              /*&& balModel.getX() + balModel.getStraal() > peddelModel.getX()
-                && balModel.getX() + balModel.getStraal() < peddelModel.getX() + peddelModel.getBreedte()*/) {
+                && balModel.getY() + balModel.getStraal() <= peddelModel.getY() + 3
+                && balModel.getX() + balModel.getStraal() > peddelModel.getX()
+                && balModel.getX() + balModel.getStraal() < peddelModel.getX() + peddelModel.getBreedte()) {
             balModel.setVy(-0.5);
         }
 
-        for (Node s : stenen2) {
+        for (Node s : stenen) {
             Bounds boundSteen = s.localToParent(s.getBoundsInLocal());
-            if (balModel.getY() + balModel.getStraal() >= boundSteen.getMinY() - 3
+            if (balModel.getY() + balModel.getStraal() >= boundSteen.getMinY() - 3 //onderkant bal
                     && balModel.getY() + balModel.getStraal() <= boundSteen.getMinY() + 3
-                    && balModel.getX() > boundSteen.getMinX()
-                    && balModel.getX() < boundSteen.getMinX() + boundSteen.getWidth()) {
+                    && balModel.getX() >= boundSteen.getMinX()
+                    && balModel.getX() <= boundSteen.getMinX() + boundSteen.getWidth()) {
                 balModel.setVy(-0.5);
-            }
-            if (balModel.getY() - balModel.getStraal() >= boundSteen.getMaxY() - 3
+                s.setId("geraakt");
+            } else if (balModel.getY() - balModel.getStraal() >= boundSteen.getMaxY() - 3 //bovenkant bal
                     && balModel.getY() - balModel.getStraal() <= boundSteen.getMaxY() + 3
-                    && balModel.getX() > boundSteen.getMinX()
-                    && balModel.getX() < boundSteen.getMinX() + boundSteen.getWidth()) {
+                    && balModel.getX() >= boundSteen.getMinX()
+                    && balModel.getX() <= boundSteen.getMinX() + boundSteen.getWidth()) {
                 balModel.setVy(0.5);
-            }
-            if (balModel.getX() + balModel.getStraal() >= boundSteen.getMinX() - 3
+                s.setId("geraakt");
+            } else if (balModel.getX() + balModel.getStraal() >= boundSteen.getMinX() - 3 //rechterkant bal
                     && balModel.getX() + balModel.getStraal() <= boundSteen.getMinX() + 3
-                    && balModel.getY() > boundSteen.getMinY()
-                    && balModel.getY() < boundSteen.getMinY() + boundSteen.getHeight()) {;
+                    && balModel.getY() >= boundSteen.getMinY()
+                    && balModel.getY() <= boundSteen.getMinY() + boundSteen.getHeight()) {
                 balModel.setVx(-0.5);
-            }
-            if (balModel.getX() - balModel.getStraal() >= boundSteen.getMaxX() - 3
+                s.setId("geraakt");
+            } else if (balModel.getX() - balModel.getStraal() >= boundSteen.getMaxX() - 3 //linkerkant bal
                     && balModel.getX() - balModel.getStraal() <= boundSteen.getMaxX() + 3
-                    && balModel.getY() > boundSteen.getMinY()
-                    && balModel.getY() < boundSteen.getMinY() + boundSteen.getHeight()) {
+                    && balModel.getY() >= boundSteen.getMinY()
+                    && balModel.getY() <= boundSteen.getMinY() + boundSteen.getHeight()) {
                 balModel.setVx(0.5);
+                s.setId("geraakt");
             }
         }
     }

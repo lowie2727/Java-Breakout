@@ -24,7 +24,7 @@ public class Stenen {
     public Stenen(Paneel paneel, Steen steen) {
         this.paneel = paneel;
         this.steen = steen;
-        rijen = 1;
+        rijen = 10;
         kolommen = 50;
         setMaxKolommen(kolommen);
         offsetBreedte = 5;
