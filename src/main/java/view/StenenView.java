@@ -5,6 +5,8 @@
  */
 package view;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import model.Steen;
@@ -21,12 +23,16 @@ public class StenenView extends Region {
 
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
-        //createStenen();
+        maakStenen();
         update();
     }
 
     public void update() {
         getChildren().clear();
+        maakStenen();
+    }
+
+    public void maakStenen() {
         int n = 0;
         int m = 0;
         Steen s[][] = stenen.getStenen();
@@ -45,5 +51,9 @@ public class StenenView extends Region {
             }
             m++;
         }
+    }
+
+    public ObservableList<Node> getKinderen() {
+        return getChildren();
     }
 }
