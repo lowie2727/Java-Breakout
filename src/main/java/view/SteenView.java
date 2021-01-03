@@ -5,7 +5,6 @@
  */
 package view;
 
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -20,7 +19,6 @@ public class SteenView extends Region {
 
     private Steen steen;
     private Rectangle r;
-    private Pane paneel;
 
     public SteenView(Steen steen) {
         this.steen = steen;

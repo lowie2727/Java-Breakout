@@ -23,8 +23,8 @@ public class Bal {
     public Bal(Paneel paneel, Peddel peddel) {
         this.paneel = paneel;
         this.peddel = peddel;
-        vx = 0.5;
-        vy = -0.5;
+        vx = 0;
+        vy = 0;
         straal = 8;
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - straal;
@@ -111,6 +111,11 @@ public class Bal {
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - getStraal();
+        vx = 0;
+        vy = 0;
+    }
+    
+    public void start(){
         vx = 0.5;
         vy = -0.5;
     }
