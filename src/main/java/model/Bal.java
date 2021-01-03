@@ -29,10 +29,10 @@ public class Bal {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - straal;
 
-        cos = 2*Math.cos(Math.toRadians(45));
+        cos = 2 * Math.cos(Math.toRadians(45));
     }
-    
-    public Bal(){
+
+    public Bal() {
         vx = 0;
         vy = 0;
     }
@@ -119,8 +119,8 @@ public class Bal {
         vx = 0;
         vy = 0;
     }
-    
-    public void start(){
+
+    public void start() {
         vx = 0.5;
         vy = -0.5;
     }
@@ -142,63 +142,7 @@ public class Bal {
         setMinY();
     }
 
-    /**
-     * @return
-     */
-    public double getLBorder() {
-        return getX() - getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getRBorder() {
-        return getX() + getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getBBorder() {
-        return getY() - getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getOBorder() {
-        return getY() + getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getLOBBorderX() {
-        return getX() - cos * getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getROBBorderX() {
-        return getX() + cos * getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getORLBorderY() {
-        return getY() + cos * getStraal();
-    }
-
-    /**
-     * @return
-     */
-    public double getBRLBorderY() {
-        return getY() - cos * getStraal();
-    }
-    
-    public double getCos(){
+    public double getCos() {
         return cos;
     }
 }

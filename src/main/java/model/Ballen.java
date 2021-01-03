@@ -17,6 +17,7 @@ public class Ballen {
     private int aantalExtraBallen;
 
     public Ballen() {
+        aantalExtraBallen = 5;
         createBallen();
     }
 

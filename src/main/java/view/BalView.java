@@ -8,7 +8,6 @@ package view;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 import model.Bal;
 
 /**

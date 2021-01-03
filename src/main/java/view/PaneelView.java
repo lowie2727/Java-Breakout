@@ -5,8 +5,10 @@
  */
 package view;
 
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import model.Paneel;
@@ -32,5 +34,7 @@ public class PaneelView extends Region {
         r.setStroke(Color.BLACK);
         r.setStrokeType(StrokeType.OUTSIDE);
         r.setStrokeWidth(2);
+        //Image img = new Image("https://i.ytimg.com/vi/1iIXx55Orwg/maxresdefault.jpg");
+        //r.setFill(new ImagePattern(img));
     }
 }

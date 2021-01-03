@@ -28,10 +28,15 @@ public class BallenView extends Region{
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for(int i=0; i<ballen.getAantalExtraBallen();i++){
+            
             BalView bv = new BalView(b.get(i));
-            bv.setTranslateX(10);
-            bv.setTranslateY(10);
+            
+            
+            bv.setTranslateX(b.get(i).getX());
+            bv.setTranslateY(b.get(i).getX());
+            getChildren().add(bv);
         }
+        System.out.println(getChildren());
     }
 
     public void update() {
