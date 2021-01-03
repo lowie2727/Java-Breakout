@@ -28,35 +28,35 @@ public class Peddel {
     }
 
     /**
-     * @return the hoogte
+     * @return
      */
     public double getHoogte() {
         return hoogte;
     }
 
     /**
-     * @return the breedte
+     * @return
      */
     public double getBreedte() {
         return breedte;
     }
 
     /**
-     * @return the x
+     * @return
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return the y
+     * @return
      */
     public double getY() {
         return y;
     }
 
     /**
-     * @return the offset
+     * @return
      */
     public double getOffset() {
         return offset;
@@ -67,20 +67,16 @@ public class Peddel {
         y = paneel.getHoogte() - offset;
     }
 
-    public double setMax() {
+    public void setMax() {
         if (x > paneel.getBreedte() - getBreedte()) {
             x = paneel.getBreedte() - getBreedte();
-            return x;
         }
-        return x;
     }
 
-    public double setMin() {
+    public void setMin() {
         if (x < 0) {
             x = 0;
-            return x;
         }
-        return x;
     }
 
     public void setX(double x) {

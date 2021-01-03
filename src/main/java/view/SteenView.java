@@ -25,9 +25,7 @@ public class SteenView extends Region {
     public SteenView(Steen steen) {
         this.steen = steen;
         createSteen();
-        //update();
     }
-    
 
     private void createSteen() {
         r = new Rectangle(steen.getBreedte(), steen.getHoogte(), Color.RED);

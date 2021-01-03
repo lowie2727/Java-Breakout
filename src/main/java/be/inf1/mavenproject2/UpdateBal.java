@@ -28,5 +28,4 @@ public class UpdateBal extends TimerTask {
         bal.tick();
         Platform.runLater(controller::update);
     }
-
 }

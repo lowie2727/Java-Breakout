@@ -5,8 +5,6 @@
  */
 package view;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import model.Steen;
 import model.Stenen;
@@ -26,9 +24,7 @@ public class StenenView extends Region {
     }
 
     public void update() {
-        //getChildren().clear();
         checkView();
-
     }
 
     public void maakStenen() {
@@ -41,7 +37,6 @@ public class StenenView extends Region {
                 double breedte = s[j][i].getBreedte() + stenen.getOffsetBreedte();
                 double hoogte = s[j][i].getHoogte() + stenen.getOffsetHoogte();
                 SteenView sv = new SteenView(s[j][i]);
-
                 sv.setId("nietGeraakt");
                 sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel());
                 sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());
@@ -57,7 +52,6 @@ public class StenenView extends Region {
 
     public void checkView() {
         int n = 0;
-        Steen s[][] = stenen.getStenen();
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
                 if (getChildren().isEmpty()) {

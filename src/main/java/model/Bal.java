@@ -18,6 +18,7 @@ public class Bal {
     private double vy;
     private double x;
     private double y;
+    private double cos;
 
     public Bal(Paneel paneel, Peddel peddel) {
         this.paneel = paneel;
@@ -27,42 +28,56 @@ public class Bal {
         straal = 8;
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - straal;
+
+        cos = Math.cos(Math.toRadians(45));
     }
 
     /**
-     * @return the straal
+     * @return
      */
     public double getStraal() {
         return straal;
     }
 
     /**
-     * @return the x
+     * @return
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return the y
+     * @return
      */
     public double getY() {
         return y;
     }
 
+    /**
+     * @return
+     */
     public double getVx() {
         return vx;
     }
 
+    /**
+     * @return
+     */
     public double getVy() {
         return vy;
     }
 
+    /**
+     * @return
+     */
     public double verticaal() {
         y = y + vy;
         return y;
     }
 
+    /**
+     * @return
+     */
     public double horizontaal() {
         x = x + vx;
         return x;
@@ -115,7 +130,61 @@ public class Bal {
         setMaxY();
         setMinX();
         setMinY();
-
     }
 
+    /**
+     * @return
+     */
+    public double getLBorder() {
+        return getX() - getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getRBorder() {
+        return getX() + getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getBBorder() {
+        return getY() - getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getOBorder() {
+        return getY() + getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getLOBBorderX() {
+        return getX() - cos * getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getROBBorderX() {
+        return getX() + cos * getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getORLBorderY() {
+        return getY() + cos * getStraal();
+    }
+
+    /**
+     * @return
+     */
+    public double getBRLBorderY() {
+        return getY() - cos * getStraal();
+    }
 }

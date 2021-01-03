@@ -102,7 +102,6 @@ public class ModelController {
     }
 
     private void botsingBal() {
-
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
 
         if (balModel.getY() + balModel.getStraal() >= peddelModel.getY() - 3
@@ -114,29 +113,58 @@ public class ModelController {
 
         for (Node s : stenen) {
             Bounds boundSteen = s.localToParent(s.getBoundsInLocal());
-            if (balModel.getY() + balModel.getStraal() >= boundSteen.getMinY() - 3 //onderkant bal
-                    && balModel.getY() + balModel.getStraal() <= boundSteen.getMinY() + 3
+            if (balModel.getOBorder() >= boundSteen.getMinY() - 3 //onderkant bal
+                    && balModel.getOBorder() <= boundSteen.getMinY() + 3
                     && balModel.getX() >= boundSteen.getMinX()
                     && balModel.getX() <= boundSteen.getMinX() + boundSteen.getWidth()) {
                 balModel.setVy(-0.5);
                 s.setId("geraakt");
-            } else if (balModel.getY() - balModel.getStraal() >= boundSteen.getMaxY() - 3 //bovenkant bal
-                    && balModel.getY() - balModel.getStraal() <= boundSteen.getMaxY() + 3
+            } else if (balModel.getBBorder() >= boundSteen.getMaxY() - 3 //bovenkant bal
+                    && balModel.getBBorder() <= boundSteen.getMaxY() + 3
                     && balModel.getX() >= boundSteen.getMinX()
                     && balModel.getX() <= boundSteen.getMinX() + boundSteen.getWidth()) {
                 balModel.setVy(0.5);
                 s.setId("geraakt");
-            } else if (balModel.getX() + balModel.getStraal() >= boundSteen.getMinX() - 3 //rechterkant bal
-                    && balModel.getX() + balModel.getStraal() <= boundSteen.getMinX() + 3
+            } else if (balModel.getRBorder() >= boundSteen.getMinX() - 3 //rechterkant bal
+                    && balModel.getRBorder() <= boundSteen.getMinX() + 3
                     && balModel.getY() >= boundSteen.getMinY()
                     && balModel.getY() <= boundSteen.getMinY() + boundSteen.getHeight()) {
                 balModel.setVx(-0.5);
                 s.setId("geraakt");
-            } else if (balModel.getX() - balModel.getStraal() >= boundSteen.getMaxX() - 3 //linkerkant bal
-                    && balModel.getX() - balModel.getStraal() <= boundSteen.getMaxX() + 3
+            } else if (balModel.getLBorder() >= boundSteen.getMaxX() - 3 //linkerkant bal
+                    && balModel.getLBorder() <= boundSteen.getMaxX() + 3
                     && balModel.getY() >= boundSteen.getMinY()
                     && balModel.getY() <= boundSteen.getMinY() + boundSteen.getHeight()) {
                 balModel.setVx(0.5);
+                s.setId("geraakt");
+            } else if (balModel.getBRLBorderY() >= boundSteen.getMaxY() - 5 //linksboven bal
+                    && balModel.getBRLBorderY() <= boundSteen.getMaxY()
+                    && balModel.getLOBBorderX() >= boundSteen.getMaxX() - 5
+                    && balModel.getLOBBorderX() <= boundSteen.getMaxX()) {
+                balModel.setVy(0.5);
+                balModel.setVx(0.5);
+                s.setId("geraakt");
+            } else if (balModel.getROBBorderX() >= boundSteen.getMinX() //rechtsonder bal
+                    && balModel.getROBBorderX() <= boundSteen.getMinX() + 5
+                    && balModel.getORLBorderY() >= boundSteen.getMinY()
+                    && balModel.getORLBorderY() <= boundSteen.getMinY() + 5) {
+                balModel.setVx(-0.5);
+                balModel.setVy(-0.5);
+                s.setId("geraakt");
+            } else if (balModel.getROBBorderX() >= boundSteen.getMinX() //rechtsboven bal
+                    && balModel.getROBBorderX() <= boundSteen.getMinX() + 5
+                    && balModel.getBRLBorderY() >= boundSteen.getMaxY() - 5
+                    && balModel.getBRLBorderY() <= boundSteen.getMaxY()) {
+                balModel.setVx(-0.5);
+                balModel.setVy(0.5);
+                s.setId("geraakt");
+
+            } else if (balModel.getLOBBorderX() >= boundSteen.getMaxX() - 5 //linksonder bal
+                    && balModel.getLOBBorderX() <= boundSteen.getMaxX()
+                    && balModel.getORLBorderY() >= boundSteen.getMinY()
+                    && balModel.getORLBorderY() <= boundSteen.getMinY() + 5) {
+                balModel.setVx(0.5);
+                balModel.setVy(-0.5);
                 s.setId("geraakt");
             }
         }

@@ -20,14 +20,14 @@ public class Steen {
     }
 
     /**
-     * @return the breedte
+     * @return
      */
     public double getBreedte() {
         return breedte;
     }
 
     /**
-     * @return the hoogte
+     * @return
      */
     public double getHoogte() {
         return hoogte;
