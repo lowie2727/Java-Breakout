@@ -13,7 +13,7 @@ public class Bal {
 
     private Paneel paneel;
     private Peddel peddel;
-    private final double straal;
+    private double straal;
     private double vx;
     private double vy;
     private double x;
@@ -29,7 +29,12 @@ public class Bal {
         x = paneel.getBreedte() / 2;
         y = peddel.getY() - straal;
 
-        cos = Math.cos(Math.toRadians(45));
+        cos = 2*Math.cos(Math.toRadians(45));
+    }
+    
+    public Bal(){
+        vx = 0;
+        vy = 0;
     }
 
     /**
@@ -191,5 +196,9 @@ public class Bal {
      */
     public double getBRLBorderY() {
         return getY() - cos * getStraal();
+    }
+    
+    public double getCos(){
+        return cos;
     }
 }
