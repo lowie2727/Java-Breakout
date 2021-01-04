@@ -17,14 +17,15 @@ public class Ballen {
     private int aantalExtraBallen;
 
     public Ballen() {
-        aantalExtraBallen = 5;
+        aantalExtraBallen = 1;
         createBallen();
     }
 
     public void createBallen() {
         ballen = new ArrayList<>(aantalExtraBallen);
         for (int i = 0; i < aantalExtraBallen; i++) {
-            ballen.add(new Bal());
+
+            ballen.add(new Bal(new Paneel()));
         }
     }
     

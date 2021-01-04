@@ -3,11 +3,8 @@ package be.inf1.mavenproject2;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -61,28 +58,27 @@ public class ModelController {
     private int n;
 
     private BallenView ballenView;
-    private Ballen ballen;
+    private Ballen ballenModel;
 
     @FXML
     void initialize() {
+
         vensterModel = new Paneel();
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
+        ballenModel = new Ballen();
         steenModel = new Steen();
         peddelModel = new Peddel(vensterModel);
         balModel = new Bal(vensterModel, peddelModel);
         stenenModel = new Stenen(vensterModel, steenModel);
 
-        ballen = new Ballen();
-        ballenView = new BallenView(ballen);
-
+        ballenView = new BallenView(ballenModel);
         paneelView = new PaneelView(vensterModel);
         peddelView = new PeddelView(peddelModel);
-        balView = new BalView(balModel);
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
 
-        paneel.getChildren().addAll(peddelView, balView, paneelView, stenenView, ballenView);
+        paneel.getChildren().addAll(ballenView, peddelView, paneelView, stenenView);
         //update();
 
         peddelView.setFocusTraversable(true);
@@ -92,31 +88,36 @@ public class ModelController {
         startButton.setOnAction(this::start);
         paneel.setOnMouseMoved(this::beweeg);
 
-        UpdateBal b = new UpdateBal(balModel, this);
-        Timer t = new Timer(true);
-        t.scheduleAtFixedRate(b, 0, 1);
+        for (Bal bal : ballenModel.getBallen()) {
+            UpdateBal b = new UpdateBal(bal, this);
+            Timer t = new Timer(true);
+            t.scheduleAtFixedRate(b, 0, 1);
+        }
     }
 
     public void update() {
         if (n == 1) {
-            veldView = new VeldView(stenenView, peddelModel, balView, balModel);
-            veldView.botsingBal();
-            peddelView.update();
-            stenenView.update();
-            balView.update();
+            veldView = new VeldView(stenenView, peddelModel, balModel, ballenView);
+            //veldView.botsingBal();
+            //peddelView.update();
+            //stenenView.update();
+            //balView.update();
+            ballenView.update();
         }
         textBox.setText(stenenView.aantalStenen() + "");
     }
 
     private void start(ActionEvent e) {
         n = 1;
-        balModel.setVx(0.5);
-        balModel.setVy(-0.5);
+        for(Node b : ballenView.getChildrenUnmodifiable()){
+            b.setId("8");
+        }
+
     }
 
     private void reset(ActionEvent e) {
         peddelModel.reset();
-        balModel.reset();
+        //balModel.reset();
         balView.update();
         peddelView.update();
         stenenView.maakStenen();

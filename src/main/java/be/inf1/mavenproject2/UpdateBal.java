@@ -15,17 +15,17 @@ import model.Bal;
  */
 public class UpdateBal extends TimerTask {
 
-    private Bal bal;
+    private Bal balModel;
     private ModelController controller;
 
     public UpdateBal(Bal balModel, ModelController controller) {
-        this.bal = balModel;
+        this.balModel = balModel;
         this.controller = controller;
     }
 
     @Override
     public void run() {
-        bal.tick();
+        balModel.tick();
         Platform.runLater(controller::update);
     }
 }

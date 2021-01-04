@@ -32,9 +32,13 @@ public class Bal {
         cos = 2 * Math.cos(Math.toRadians(45));
     }
 
-    public Bal() {
+    public Bal(Paneel paneel) {
+        this.paneel = paneel;
+        x = 20;
+        y = 20;
         vx = 0;
         vy = 0;
+        straal = 8;
     }
 
     /**
@@ -90,26 +94,25 @@ public class Bal {
 
     public void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
-            vx = vx * -1;
+            vx = -0.3;
         }
     }
 
     public void setMinX() {
         if (x <= getStraal()) {
-            vx = vx * -1;
+            vx = 0.3;
         }
     }
 
     public void setMaxY() {
         if (y >= paneel.getHoogte() - getStraal()) {
-            vx = 0;
-            vy = 0;
+            vy = -0.3;
         }
     }
 
     public void setMinY() {
         if (y <= getStraal()) {
-            vy = vy * -1;
+            vy = 0.3;
         }
     }
 
@@ -121,8 +124,8 @@ public class Bal {
     }
 
     public void start() {
-        vx = 0.5;
-        vy = -0.5;
+        vx = 0.3;
+        vy = -0.3;
     }
 
     public void setVx(double vx) {
@@ -134,12 +137,13 @@ public class Bal {
     }
 
     public void tick() {
+        //setMaxX();
+        //setMaxY();
+        //setMinX();
+        //setMinY();
         horizontaal();
         verticaal();
-        setMaxX();
-        setMaxY();
-        setMinX();
-        setMinY();
+
     }
 
     public double getCos() {
