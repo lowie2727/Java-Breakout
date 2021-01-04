@@ -23,7 +23,7 @@ public class VeldView {
     private Bal balModel;
     private BallenView ballenView;
 
-    public VeldView(StenenView stenenView, Peddel peddelModel, Bal balModel,BallenView ballenview) {
+    public VeldView(StenenView stenenView, Peddel peddelModel, Bal balModel, BallenView ballenview) {
         this.balModel = balModel;
         this.ballenView = ballenview;
         this.peddelModel = peddelModel;
@@ -73,29 +73,28 @@ public class VeldView {
                         && middelPunt.getY() <= boundSteen.getMinY() + boundSteen.getHeight()) {
                     b.setId("4");
                     s.setId("geraakt");
-                } else if (boundsBal.getMinY() >= boundSteen.getMaxY() - 5 //linksboven bal
+                } else if (boundsBal.getMinY() >= boundSteen.getMaxY() - 7 //linksboven bal
                         && boundsBal.getMinY() <= boundSteen.getMaxY()
-                        && boundsBal.getMinX() >= boundSteen.getMaxX() - 5
+                        && boundsBal.getMinX() >= boundSteen.getMaxX() - 7
                         && boundsBal.getMinX() <= boundSteen.getMaxX()) {
                     b.setId("5");
                     s.setId("geraakt");
                 } else if (boundsBal.getMaxX() >= boundSteen.getMinX() //rechtsonder bal
-                        && boundsBal.getMaxX() <= boundSteen.getMinX() + 5
+                        && boundsBal.getMaxX() <= boundSteen.getMinX() + 7
                         && boundsBal.getMaxY() >= boundSteen.getMinY()
-                        && boundsBal.getMaxY() <= boundSteen.getMinY() + 5) {
+                        && boundsBal.getMaxY() <= boundSteen.getMinY() + 7) {
                     b.setId("6");
                     s.setId("geraakt");
                 } else if (boundsBal.getCenterX() + balModel.getCos() >= boundSteen.getMinX() //rechtsboven bal
-                        && boundsBal.getCenterX() + balModel.getCos() <= boundSteen.getMinX() + 5
-                        && boundsBal.getCenterY() - balModel.getCos() >= boundSteen.getMaxY() - 5
+                        && boundsBal.getCenterX() + balModel.getCos() <= boundSteen.getMinX() + 7
+                        && boundsBal.getCenterY() - balModel.getCos() >= boundSteen.getMaxY() - 7
                         && boundsBal.getCenterY() - balModel.getCos() <= boundSteen.getMaxY()) {
                     b.setId("7");
                     s.setId("geraakt");
-
-                } else if (boundsBal.getCenterX() - balModel.getCos() >= boundSteen.getMaxX() - 5 //linksonder bal
+                } else if (boundsBal.getCenterX() - balModel.getCos() >= boundSteen.getMaxX() - 7 //linksonder bal
                         && boundsBal.getCenterX() - balModel.getCos() <= boundSteen.getMaxX()
                         && boundsBal.getCenterY() + balModel.getCos() >= boundSteen.getMinY()
-                        && boundsBal.getCenterY() + balModel.getCos() <= boundSteen.getMinY() + 5) {
+                        && boundsBal.getCenterY() + balModel.getCos() <= boundSteen.getMinY() + 7) {
                     b.setId("8");
                     s.setId("geraakt");
                 }

@@ -22,14 +22,6 @@ public class BalView extends Region {
     public BalView(Bal bal) {
         this.bal = bal;
         createBal();
-        update();
-    }
-
-    public void update() {
-        getChildren().clear();
-        c.setTranslateX(bal.getX());
-        c.setTranslateY(bal.getY());
-        getChildren().add(c);
     }
 
     public void createBal() {

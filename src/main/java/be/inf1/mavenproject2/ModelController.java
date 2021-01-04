@@ -78,8 +78,8 @@ public class ModelController {
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
 
-        paneel.getChildren().addAll(ballenView, peddelView, paneelView, stenenView);
-        //update();
+        paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
+        update();
 
         peddelView.setFocusTraversable(true);
         resetButton.setFocusTraversable(false);
@@ -98,18 +98,17 @@ public class ModelController {
     public void update() {
         if (n == 1) {
             veldView = new VeldView(stenenView, peddelModel, balModel, ballenView);
-            //veldView.botsingBal();
-            //peddelView.update();
-            //stenenView.update();
-            //balView.update();
             ballenView.update();
+            veldView.botsingBal();
+            peddelView.update();
+            stenenView.update();
         }
         textBox.setText(stenenView.aantalStenen() + "");
     }
 
     private void start(ActionEvent e) {
         n = 1;
-        for(Node b : ballenView.getChildrenUnmodifiable()){
+        for (Node b : ballenView.getChildrenUnmodifiable()) {
             b.setId("8");
         }
 
@@ -117,10 +116,10 @@ public class ModelController {
 
     private void reset(ActionEvent e) {
         peddelModel.reset();
-        //balModel.reset();
-        balView.update();
         peddelView.update();
         stenenView.maakStenen();
+        ballenView.reset();
+        ballenView.update();
         n = 0;
     }
 

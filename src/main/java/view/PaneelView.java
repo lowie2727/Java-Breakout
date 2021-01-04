@@ -25,7 +25,6 @@ public class PaneelView extends Region {
     public PaneelView(Paneel paneel) {
         this.paneel = paneel;
         createBorder();
-        getChildren().add(r);
     }
 
     private void createBorder() {
@@ -34,6 +33,7 @@ public class PaneelView extends Region {
         r.setStroke(Color.BLACK);
         r.setStrokeType(StrokeType.OUTSIDE);
         r.setStrokeWidth(2);
+        getChildren().add(r);
         //Image img = new Image("https://i.ytimg.com/vi/1iIXx55Orwg/maxresdefault.jpg");
         //r.setFill(new ImagePattern(img));
     }

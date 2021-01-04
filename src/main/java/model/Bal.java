@@ -34,8 +34,8 @@ public class Bal {
 
     public Bal(Paneel paneel) {
         this.paneel = paneel;
-        x = 20;
-        y = 20;
+        x = 500;
+        y = 472;
         vx = 0;
         vy = 0;
         straal = 8;
@@ -94,38 +94,41 @@ public class Bal {
 
     public void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
-            vx = -0.3;
+            vx = -0.5;
         }
     }
 
     public void setMinX() {
         if (x <= getStraal()) {
-            vx = 0.3;
+            vx = 0.5;
         }
     }
 
     public void setMaxY() {
         if (y >= paneel.getHoogte() - getStraal()) {
-            vy = -0.3;
+            vy = 0;
+            vx = 0;
         }
     }
 
     public void setMinY() {
         if (y <= getStraal()) {
-            vy = 0.3;
+            vy = 0.5;
         }
     }
 
     public void reset() {
-        x = paneel.getBreedte() / 2;
-        y = peddel.getY() - getStraal();
+        //x = paneel.getBreedte() / 2;
+        x = 500;
+        //y = peddel.getY() - getStraal();
+        y = 472;
         vx = 0;
         vy = 0;
     }
 
     public void start() {
-        vx = 0.3;
-        vy = -0.3;
+        vx = 0.5;
+        vy = -0.5;
     }
 
     public void setVx(double vx) {
@@ -137,10 +140,10 @@ public class Bal {
     }
 
     public void tick() {
-        //setMaxX();
-        //setMaxY();
-        //setMinX();
-        //setMinY();
+        setMaxX();
+        setMaxY();
+        setMinX();
+        setMinY();
         horizontaal();
         verticaal();
 
