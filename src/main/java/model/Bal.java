@@ -94,13 +94,13 @@ public class Bal {
 
     public void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
-            vx = -0.5;
+            vx = -1;
         }
     }
 
     public void setMinX() {
         if (x <= getStraal()) {
-            vx = 0.5;
+            vx = 1;
         }
     }
 
@@ -113,7 +113,7 @@ public class Bal {
 
     public void setMinY() {
         if (y <= getStraal()) {
-            vy = 0.5;
+            vy = 1;
         }
     }
 
@@ -127,8 +127,8 @@ public class Bal {
     }
 
     public void start() {
-        vx = 0.5;
-        vy = -0.5;
+        vx = 1;
+        vy = -1;
     }
 
     public void setVx(double vx) {
@@ -147,6 +147,8 @@ public class Bal {
         horizontaal();
         verticaal();
 
+        //horizontaal();
+        //verticaal();
     }
 
     public double getCos() {

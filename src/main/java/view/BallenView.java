@@ -19,12 +19,12 @@ import model.Ballen;
 public class BallenView extends Region {
 
     private Ballen ballen;
+    private static final double SNELHEID = 1;
 
     public BallenView(Ballen ballen) {
         this.ballen = ballen;
         maakBallen();
         update();
-
     }
 
     private void maakBallen() {
@@ -46,32 +46,32 @@ public class BallenView extends Region {
             if (null != getChildren().get(i).getId()) {
                 switch (getChildren().get(i).getId()) {
                     case "1":
-                        b.get(i).setVy(-0.5);
+                        b.get(i).setVy(-SNELHEID);
                         break;
                     case "2":
-                        b.get(i).setVy(0.5);
+                        b.get(i).setVy(SNELHEID);
                         break;
                     case "3":
-                        b.get(i).setVx(-0.5);
+                        b.get(i).setVx(-SNELHEID);
                         break;
                     case "4":
-                        b.get(i).setVx(0.5);
+                        b.get(i).setVx(SNELHEID);
                         break;
                     case "5":
-                        b.get(i).setVy(0.5);
-                        b.get(i).setVx(0.5);
+                        b.get(i).setVy(SNELHEID);
+                        b.get(i).setVx(SNELHEID);
                         break;
                     case "6":
-                        b.get(i).setVx(-0.5);
-                        b.get(i).setVy(-0.5);
+                        b.get(i).setVx(-SNELHEID);
+                        b.get(i).setVy(-SNELHEID);
                         break;
                     case "7":
-                        b.get(i).setVx(-0.5);
-                        b.get(i).setVy(0.5);
+                        b.get(i).setVx(-SNELHEID);
+                        b.get(i).setVy(SNELHEID);
                         break;
                     case "8":
-                        b.get(i).setVx(0.5);
-                        b.get(i).setVy(-0.5);
+                        b.get(i).setVx(SNELHEID);
+                        b.get(i).setVy(-SNELHEID);
                         break;
                     default:
                         break;
@@ -87,12 +87,12 @@ public class BallenView extends Region {
         int n = 0;
         for (Node b : children) {
             if (!getChildren().isEmpty()) {
-                if (n == 0) {
-                    bal.get(n).reset();
-                } else {
+                if (n != 0) {
                     bal.remove(n);
                     getChildren().remove(n);
 
+                } else {
+                    bal.get(n).reset();
                 }
                 n++;
             } else {

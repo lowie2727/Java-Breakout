@@ -16,7 +16,6 @@ import model.Paneel;
 import model.Peddel;
 import model.Steen;
 import model.Stenen;
-import view.BalView;
 import view.BallenView;
 import view.PaneelView;
 import view.PeddelView;
@@ -48,17 +47,14 @@ public class ModelController {
     private Bal balModel;
     private Paneel vensterModel;
     private Stenen stenenModel;
+    private Ballen ballenModel;
 
-    private BalView balView;
     private PeddelView peddelView;
     private PaneelView paneelView;
     private StenenView stenenView;
     private VeldView veldView;
-
-    private int n;
-
     private BallenView ballenView;
-    private Ballen ballenModel;
+    private int n;
 
     @FXML
     void initialize() {
@@ -66,8 +62,8 @@ public class ModelController {
         vensterModel = new Paneel();
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
-        ballenModel = new Ballen();
         steenModel = new Steen();
+        ballenModel = new Ballen();
         peddelModel = new Peddel(vensterModel);
         balModel = new Bal(vensterModel, peddelModel);
         stenenModel = new Stenen(vensterModel, steenModel);
@@ -79,10 +75,9 @@ public class ModelController {
         stenenView = new StenenView(stenenModel);
 
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
-        update();
+        //update();
 
-        peddelView.setFocusTraversable(true);
-        resetButton.setFocusTraversable(false);
+        startButton.setFocusTraversable(true);
 
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
@@ -91,12 +86,17 @@ public class ModelController {
         for (Bal bal : ballenModel.getBallen()) {
             UpdateBal b = new UpdateBal(bal, this);
             Timer t = new Timer(true);
-            t.scheduleAtFixedRate(b, 0, 1);
+            t.scheduleAtFixedRate(b, 2000, 1);
         }
     }
 
     public void update() {
-        if (n == 1) {
+        if (n == 0) {
+            for (Node b : ballenView.getChildrenUnmodifiable()) {
+                b.setId("8");
+            }
+        }
+        if (n != 0) {
             veldView = new VeldView(stenenView, peddelModel, balModel, ballenView);
             ballenView.update();
             veldView.botsingBal();
@@ -107,14 +107,14 @@ public class ModelController {
     }
 
     private void start(ActionEvent e) {
-        n = 1;
-        for (Node b : ballenView.getChildrenUnmodifiable()) {
+        n++;
+        /*for (Node b : ballenView.getChildrenUnmodifiable()) {
             b.setId("8");
-        }
+        }*/
 
     }
 
-    private void reset(ActionEvent e) {
+    public void reset(ActionEvent e) {
         peddelModel.reset();
         peddelView.update();
         stenenView.maakStenen();

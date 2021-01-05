@@ -85,16 +85,16 @@ public class VeldView {
                         && boundsBal.getMaxY() <= boundSteen.getMinY() + 7) {
                     b.setId("6");
                     s.setId("geraakt");
-                } else if (boundsBal.getCenterX() + balModel.getCos() >= boundSteen.getMinX() //rechtsboven bal
-                        && boundsBal.getCenterX() + balModel.getCos() <= boundSteen.getMinX() + 7
-                        && boundsBal.getCenterY() - balModel.getCos() >= boundSteen.getMaxY() - 7
-                        && boundsBal.getCenterY() - balModel.getCos() <= boundSteen.getMaxY()) {
+                } else if (middelPunt.getX() + balModel.getCos() >= boundSteen.getMinX() //rechtsboven bal
+                        && middelPunt.getX() + balModel.getCos() <= boundSteen.getMinX() + 7
+                        && middelPunt.getY() - balModel.getCos() >= boundSteen.getMaxY() - 7
+                        && middelPunt.getY() - balModel.getCos() <= boundSteen.getMaxY()) {
                     b.setId("7");
                     s.setId("geraakt");
-                } else if (boundsBal.getCenterX() - balModel.getCos() >= boundSteen.getMaxX() - 7 //linksonder bal
-                        && boundsBal.getCenterX() - balModel.getCos() <= boundSteen.getMaxX()
-                        && boundsBal.getCenterY() + balModel.getCos() >= boundSteen.getMinY()
-                        && boundsBal.getCenterY() + balModel.getCos() <= boundSteen.getMinY() + 7) {
+                } else if (middelPunt.getX() - balModel.getCos() >= boundSteen.getMaxX() - 7 //linksonder bal
+                        && middelPunt.getX() - balModel.getCos() <= boundSteen.getMaxX()
+                        && middelPunt.getY() + balModel.getCos() >= boundSteen.getMinY()
+                        && middelPunt.getY() + balModel.getCos() <= boundSteen.getMinY() + 7) {
                     b.setId("8");
                     s.setId("geraakt");
                 }
