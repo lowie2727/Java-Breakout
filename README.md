@@ -1,7 +1,6 @@
 # JavaGame
 To-do list
 
-- Er moet gewerkt worden aan power-ups
-- botsing bal moet uit de modelController gehaald worden
-- botsingen werken alleen nog maar voor 1 bal
+- power-ups maken
+- peddel moet bal kunnen richten
 - Javadoc schrijven (lage prioriteit)
