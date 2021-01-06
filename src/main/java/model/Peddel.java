@@ -11,7 +11,7 @@ package model;
  */
 public class Peddel {
 
-    private Paneel paneel;
+    private final Paneel paneel;
     private final double hoogte;
     private final double breedte;
     private final double offset;

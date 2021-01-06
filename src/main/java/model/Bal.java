@@ -17,10 +17,12 @@ public class Bal {
     private double vy;
     private double x;
     private double y;
-    private final double SNELHEID;
+    private final double SNELHEIDX;
+    private final double SNELHEIDY;
 
     public Bal(Paneel paneel) {
-        SNELHEID = 1;
+        SNELHEIDX = 0.5;
+        SNELHEIDY = -0.5;
         this.paneel = paneel;
         x = 500;
         y = 472;
@@ -64,8 +66,12 @@ public class Bal {
         return straal;
     }
 
-    public double getSnelheid() {
-        return SNELHEID;
+    public double getSnelheidX() {
+        return SNELHEIDX;
+    }
+
+    public double getSnelheidY() {
+        return SNELHEIDY;
     }
 
     /**
@@ -84,11 +90,6 @@ public class Bal {
         return x;
     }
 
-    public void start() {
-        vx = SNELHEID;
-        vy = -SNELHEID;
-    }
-
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = paneel.getHoogte() - getStraal() - 20;
@@ -104,6 +105,14 @@ public class Bal {
         this.vy = vy;
     }
 
+    public void setVx() {
+        vx = -vx;
+    }
+
+    public void setVy() {
+        vy = -vy;
+    }
+
     public void setX(double x) {
         this.x = x;
     }
@@ -114,13 +123,17 @@ public class Bal {
 
     public void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
-            vx = -SNELHEID;
+            if (vx > 0) {
+                vx = -vx;
+            }
         }
     }
 
     public void setMinX() {
         if (x <= getStraal()) {
-            vx = SNELHEID;
+            if (vx < 0) {
+                vx = -vx;
+            }
         }
     }
 
@@ -133,7 +146,9 @@ public class Bal {
 
     public void setMinY() {
         if (y <= getStraal()) {
-            vy = SNELHEID;
+            if (vy < 0) {
+                vy = -vy;
+            }
         }
     }
 

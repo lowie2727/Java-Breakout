@@ -45,32 +45,52 @@ public class BallenView extends Region {
             if (null != getChildren().get(i).getId()) {
                 switch (getChildren().get(i).getId()) {
                     case "1":
-                        b.get(i).setVy(-balModel.getSnelheid());
+                        if (b.get(i).getVy() > 0) {
+                            b.get(i).setVy();
+                        }
                         break;
                     case "2":
-                        b.get(i).setVy(balModel.getSnelheid());
+                        if (b.get(i).getVy() < 0) {
+                            b.get(i).setVy();
+                        }
                         break;
                     case "3":
-                        b.get(i).setVx(-balModel.getSnelheid());
+                        if (b.get(i).getVx() > 0) {
+                            b.get(i).setVx();
+                        }
                         break;
                     case "4":
-                        b.get(i).setVx(balModel.getSnelheid());
+                        if (b.get(i).getVx() < 0) {
+                            b.get(i).setVx();
+                        }
                         break;
                     case "5":
-                        b.get(i).setVy(balModel.getSnelheid());
-                        b.get(i).setVx(balModel.getSnelheid());
+                        if (b.get(i).getVx() < 0 && b.get(i).getVy() < 0) {
+                            b.get(i).setVy();
+                            b.get(i).setVx();
+                        }
                         break;
                     case "6":
-                        b.get(i).setVx(-balModel.getSnelheid());
-                        b.get(i).setVy(-balModel.getSnelheid());
+                        if (b.get(i).getVx() > 0 && b.get(i).getVy() > 0) {
+                            b.get(i).setVx();
+                            b.get(i).setVy();
+                        }
                         break;
                     case "7":
-                        b.get(i).setVx(-balModel.getSnelheid());
-                        b.get(i).setVy(balModel.getSnelheid());
+                        if (b.get(i).getVx() > 0 && b.get(i).getVy() < 0) {
+                            b.get(i).setVx();
+                            b.get(i).setVy();
+                        }
                         break;
                     case "8":
-                        b.get(i).setVx(balModel.getSnelheid());
-                        b.get(i).setVy(-balModel.getSnelheid());
+                        if (b.get(i).getVx() < 0 && b.get(i).getVy() > 0) {
+                            b.get(i).setVx();
+                            b.get(i).setVy();
+                        }
+                        break;
+                    case "9":
+                        b.get(i).setVx(balModel.getSnelheidX());
+                        b.get(i).setVy(balModel.getSnelheidY());
                         break;
                     default:
                         break;

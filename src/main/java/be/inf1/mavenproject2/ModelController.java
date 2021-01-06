@@ -83,14 +83,14 @@ public class ModelController {
         for (Bal bal : ballenModel.getBallen()) {
             UpdateBal b = new UpdateBal(bal, this);
             Timer t = new Timer(true);
-            t.scheduleAtFixedRate(b, 2000, 1);
+            t.scheduleAtFixedRate(b, 0, 1);
         }
     }
 
     public void update() {
         if (n == 0) {
             for (Node b : ballenView.getChildrenUnmodifiable()) {
-                b.setId("8");
+                b.setId("9");
             }
         }
 

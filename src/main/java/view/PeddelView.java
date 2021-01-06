@@ -16,7 +16,7 @@ import model.Peddel;
  */
 public class PeddelView extends Region {
 
-    private Peddel peddel;
+    private final Peddel peddel;
     private Rectangle p;
 
     public PeddelView(Peddel peddel) {

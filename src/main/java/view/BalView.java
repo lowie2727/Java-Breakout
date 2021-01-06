@@ -16,7 +16,7 @@ import model.Bal;
  */
 public class BalView extends Region {
 
-    private Bal bal;
+    private final Bal bal;
     private Circle c;
 
     public BalView(Bal bal) {

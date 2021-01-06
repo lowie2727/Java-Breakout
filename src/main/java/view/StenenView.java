@@ -15,7 +15,7 @@ import model.Stenen;
  */
 public class StenenView extends Region {
 
-    private Stenen stenen;
+    private final Stenen stenen;
 
     public StenenView(Stenen stenen) {
         this.stenen = stenen;

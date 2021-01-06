@@ -15,8 +15,8 @@ import model.Bal;
  */
 public class UpdateBal extends TimerTask {
 
-    private Bal balModel;
-    private ModelController controller;
+    private final Bal balModel;
+    private final ModelController controller;
 
     public UpdateBal(Bal balModel, ModelController controller) {
         this.balModel = balModel;

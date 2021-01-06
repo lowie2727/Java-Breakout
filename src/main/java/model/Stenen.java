@@ -12,20 +12,20 @@ package model;
 public class Stenen {
 
     private Steen stenen[][];
-    private int rijen;
+    private final int rijen;
     private int kolommen;
     private final double offsetBreedte;
     private final double offsetHoogte;
     private double offsetBreedtePaneel;
     private final double offsetHoogtePaneel;
-    private Paneel paneel;
-    private Steen steen;
+    private final Paneel paneel;
+    private final Steen steen;
 
     public Stenen(Paneel paneel, Steen steen) {
         this.paneel = paneel;
         this.steen = steen;
         rijen = 15;
-        kolommen = 9000;
+        kolommen = 20;
         setMaxKolommen(kolommen);
         offsetBreedte = 5;
         offsetHoogte = 5;
