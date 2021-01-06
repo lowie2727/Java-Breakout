@@ -11,41 +11,22 @@ package model;
  */
 public class Bal {
 
-    private Paneel paneel;
-    private Peddel peddel;
-    private double straal;
+    private final Paneel paneel;
+    private final double straal;
     private double vx;
     private double vy;
     private double x;
     private double y;
-    private double cos;
-
-    public Bal(Paneel paneel, Peddel peddel) {
-        this.paneel = paneel;
-        this.peddel = peddel;
-        vx = 0;
-        vy = 0;
-        straal = 8;
-        x = paneel.getBreedte() / 2;
-        y = peddel.getY() - straal;
-
-        cos = 2 * Math.cos(Math.toRadians(45));
-    }
+    private final double SNELHEID;
 
     public Bal(Paneel paneel) {
+        SNELHEID = 1;
         this.paneel = paneel;
         x = 500;
         y = 472;
         vx = 0;
         vy = 0;
         straal = 8;
-    }
-
-    /**
-     * @return
-     */
-    public double getStraal() {
-        return straal;
     }
 
     /**
@@ -79,6 +60,17 @@ public class Bal {
     /**
      * @return
      */
+    public double getStraal() {
+        return straal;
+    }
+
+    public double getSnelheid() {
+        return SNELHEID;
+    }
+
+    /**
+     * @return
+     */
     public double verticaal() {
         y = y + vy;
         return y;
@@ -92,43 +84,16 @@ public class Bal {
         return x;
     }
 
-    public void setMaxX() {
-        if (x >= paneel.getBreedte() - getStraal()) {
-            vx = -1;
-        }
-    }
-
-    public void setMinX() {
-        if (x <= getStraal()) {
-            vx = 1;
-        }
-    }
-
-    public void setMaxY() {
-        if (y >= paneel.getHoogte() - getStraal()) {
-            vy = 0;
-            vx = 0;
-        }
-    }
-
-    public void setMinY() {
-        if (y <= getStraal()) {
-            vy = 1;
-        }
+    public void start() {
+        vx = SNELHEID;
+        vy = -SNELHEID;
     }
 
     public void reset() {
-        //x = paneel.getBreedte() / 2;
-        x = 500;
-        //y = peddel.getY() - getStraal();
-        y = 472;
+        x = paneel.getBreedte() / 2;
+        y = paneel.getHoogte() - getStraal() - 20;
         vx = 0;
         vy = 0;
-    }
-
-    public void start() {
-        vx = 1;
-        vy = -1;
     }
 
     public void setVx(double vx) {
@@ -147,6 +112,31 @@ public class Bal {
         this.y = y;
     }
 
+    public void setMaxX() {
+        if (x >= paneel.getBreedte() - getStraal()) {
+            vx = -SNELHEID;
+        }
+    }
+
+    public void setMinX() {
+        if (x <= getStraal()) {
+            vx = SNELHEID;
+        }
+    }
+
+    public void setMaxY() {
+        if (y >= paneel.getHoogte() - getStraal()) {
+            vy = 0;
+            vx = 0;
+        }
+    }
+
+    public void setMinY() {
+        if (y <= getStraal()) {
+            vy = SNELHEID;
+        }
+    }
+
     public void tick() {
         setMaxX();
         setMaxY();
@@ -154,12 +144,5 @@ public class Bal {
         setMinY();
         horizontaal();
         verticaal();
-
-        //horizontaal();
-        //verticaal();
-    }
-
-    public double getCos() {
-        return cos;
     }
 }

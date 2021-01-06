@@ -22,7 +22,7 @@ public class Peddel {
         this.paneel = paneel;
         offset = 20;
         hoogte = 10;
-        breedte = 1200;
+        breedte = 1000;
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
     }

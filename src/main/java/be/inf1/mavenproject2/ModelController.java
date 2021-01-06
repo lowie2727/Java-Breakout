@@ -44,7 +44,6 @@ public class ModelController {
 
     private Peddel peddelModel;
     private Steen steenModel;
-    private Bal balModel;
     private Paneel vensterModel;
     private Stenen stenenModel;
     private Ballen ballenModel;
@@ -65,7 +64,6 @@ public class ModelController {
         steenModel = new Steen();
         ballenModel = new Ballen();
         peddelModel = new Peddel(vensterModel);
-        balModel = new Bal(vensterModel, peddelModel);
         stenenModel = new Stenen(vensterModel, steenModel);
 
         ballenView = new BallenView(ballenModel);
@@ -97,7 +95,7 @@ public class ModelController {
         }
 
         if (n != 0) {
-            veldView = new VeldView(stenenView, peddelModel, balModel, ballenView);
+            veldView = new VeldView(stenenView, peddelModel, ballenView);
             ballenView.update();
             veldView.botsingBal();
             peddelView.update();

@@ -17,9 +17,10 @@ import model.Ballen;
 public class BallenView extends Region {
 
     private Ballen ballen;
-    private static final double SNELHEID = 1;
+    private Bal balModel;
 
     public BallenView(Ballen ballen) {
+        this.balModel = new Bal(null);
         this.ballen = ballen;
         maakBallen();
         update();
@@ -28,7 +29,7 @@ public class BallenView extends Region {
     public void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
-        for (int i = 0; i < ballen.getAantalExtraBallen(); i++) {
+        for (int i = 0; i < ballen.getaantalBallen(); i++) {
             BalView bv = new BalView(b.get(i));
             bv.setTranslateX(b.get(i).getX());
             bv.setTranslateY(b.get(i).getY());
@@ -44,32 +45,32 @@ public class BallenView extends Region {
             if (null != getChildren().get(i).getId()) {
                 switch (getChildren().get(i).getId()) {
                     case "1":
-                        b.get(i).setVy(-SNELHEID);
+                        b.get(i).setVy(-balModel.getSnelheid());
                         break;
                     case "2":
-                        b.get(i).setVy(SNELHEID);
+                        b.get(i).setVy(balModel.getSnelheid());
                         break;
                     case "3":
-                        b.get(i).setVx(-SNELHEID);
+                        b.get(i).setVx(-balModel.getSnelheid());
                         break;
                     case "4":
-                        b.get(i).setVx(SNELHEID);
+                        b.get(i).setVx(balModel.getSnelheid());
                         break;
                     case "5":
-                        b.get(i).setVy(SNELHEID);
-                        b.get(i).setVx(SNELHEID);
+                        b.get(i).setVy(balModel.getSnelheid());
+                        b.get(i).setVx(balModel.getSnelheid());
                         break;
                     case "6":
-                        b.get(i).setVx(-SNELHEID);
-                        b.get(i).setVy(-SNELHEID);
+                        b.get(i).setVx(-balModel.getSnelheid());
+                        b.get(i).setVy(-balModel.getSnelheid());
                         break;
                     case "7":
-                        b.get(i).setVx(-SNELHEID);
-                        b.get(i).setVy(SNELHEID);
+                        b.get(i).setVx(-balModel.getSnelheid());
+                        b.get(i).setVy(balModel.getSnelheid());
                         break;
                     case "8":
-                        b.get(i).setVx(SNELHEID);
-                        b.get(i).setVy(-SNELHEID);
+                        b.get(i).setVx(balModel.getSnelheid());
+                        b.get(i).setVy(-balModel.getSnelheid());
                         break;
                     default:
                         break;

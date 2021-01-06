@@ -17,7 +17,7 @@ public class Ballen {
     private int aantalBallen;
 
     public Ballen() {
-        aantalBallen = 4;
+        aantalBallen = 1;
         createBallen();
     }
 
@@ -32,7 +32,7 @@ public class Ballen {
         return ballen;
     }
 
-    public int getAantalExtraBallen() {
+    public int getaantalBallen() {
         return aantalBallen;
     }
 }
