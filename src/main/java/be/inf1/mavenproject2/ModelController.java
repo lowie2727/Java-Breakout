@@ -75,7 +75,6 @@ public class ModelController {
         stenenView = new StenenView(stenenModel);
 
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
-        //update();
 
         startButton.setFocusTraversable(true);
 
@@ -96,6 +95,7 @@ public class ModelController {
                 b.setId("8");
             }
         }
+
         if (n != 0) {
             veldView = new VeldView(stenenView, peddelModel, balModel, ballenView);
             ballenView.update();
@@ -108,10 +108,6 @@ public class ModelController {
 
     private void start(ActionEvent e) {
         n++;
-        /*for (Node b : ballenView.getChildrenUnmodifiable()) {
-            b.setId("8");
-        }*/
-
     }
 
     public void reset(ActionEvent e) {
@@ -119,7 +115,6 @@ public class ModelController {
         peddelView.update();
         stenenView.maakStenen();
         ballenView.reset();
-        ballenView.update();
         n = 0;
     }
 

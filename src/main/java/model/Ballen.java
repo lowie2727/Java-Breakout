@@ -14,26 +14,25 @@ import java.util.ArrayList;
 public class Ballen {
 
     private ArrayList<Bal> ballen;
-    private int aantalExtraBallen;
+    private int aantalBallen;
 
     public Ballen() {
-        aantalExtraBallen = 1;
+        aantalBallen = 4;
         createBallen();
     }
 
     public void createBallen() {
-        ballen = new ArrayList<>(aantalExtraBallen);
-        for (int i = 0; i < aantalExtraBallen; i++) {
-
+        ballen = new ArrayList<>(aantalBallen);
+        for (int i = 0; i < aantalBallen; i++) {
             ballen.add(new Bal(new Paneel()));
         }
     }
-    
-    public ArrayList<Bal> getBallen(){
+
+    public ArrayList<Bal> getBallen() {
         return ballen;
     }
-    
-    public int getAantalExtraBallen(){
-        return aantalExtraBallen;
+
+    public int getAantalExtraBallen() {
+        return aantalBallen;
     }
 }

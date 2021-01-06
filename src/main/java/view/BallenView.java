@@ -6,8 +6,6 @@
 package view;
 
 import java.util.ArrayList;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
@@ -27,7 +25,7 @@ public class BallenView extends Region {
         update();
     }
 
-    private void maakBallen() {
+    public void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i < ballen.getAantalExtraBallen(); i++) {
@@ -40,7 +38,7 @@ public class BallenView extends Region {
 
     public void update() {
         ArrayList<Bal> b = ballen.getBallen();
-        for (int i = 0; i < ballen.getAantalExtraBallen(); i++) {
+        for (int i = 0; i <= b.size() - 1; i++) {
             getChildren().get(i).setTranslateX(b.get(i).getX());
             getChildren().get(i).setTranslateY(b.get(i).getY());
             if (null != getChildren().get(i).getId()) {
@@ -82,23 +80,23 @@ public class BallenView extends Region {
     }
 
     public void reset() {
-        ArrayList<Bal> bal = ballen.getBallen();
-        ObservableList<Node> children = getChildren();
-        int n = 0;
-        for (Node b : children) {
-            if (!getChildren().isEmpty()) {
-                if (n != 0) {
-                    bal.remove(n);
-                    getChildren().remove(n);
-
-                } else {
-                    bal.get(n).reset();
-                }
-                n++;
-            } else {
-                break;
+        ArrayList<Bal> ballenLijst = this.ballen.getBallen();
+        for (int i = 50; i > 1; i--) {
+            if (getChildren().size() + 1 > i && !getChildren().isEmpty()) {
+                getChildren().remove(i - 1);
+            }
+            if (!ballenLijst.isEmpty() && ballenLijst.size() + 1 > i) {
+                ballenLijst.remove(i - 1);
             }
         }
+        update();
+        ArrayList<Bal> b = ballen.getBallen();
+        b.get(0).setVx(0);
+        b.get(0).setVy(0);
+        b.get(0).setX(500);
+        b.get(0).setY(472);
+        getChildren().get(0).setTranslateX(b.get(0).getX());
+        getChildren().get(0).setTranslateY(b.get(0).getY());
 
     }
 }
