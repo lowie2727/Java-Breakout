@@ -53,7 +53,7 @@ public class ModelController {
     private StenenView stenenView;
     private VeldView veldView;
     private BallenView ballenView;
-    private int n;
+    private int n = 0;
 
     @FXML
     void initialize() {
@@ -73,6 +73,7 @@ public class ModelController {
         stenenView = new StenenView(stenenModel);
 
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
+        update();
 
         startButton.setFocusTraversable(true);
 
@@ -80,11 +81,6 @@ public class ModelController {
         startButton.setOnAction(this::start);
         paneel.setOnMouseMoved(this::beweeg);
 
-        for (Bal bal : ballenModel.getBallen()) {
-            UpdateBal b = new UpdateBal(bal, this);
-            Timer t = new Timer(true);
-            t.scheduleAtFixedRate(b, 0, 1);
-        }
     }
 
     public void update() {
@@ -106,6 +102,13 @@ public class ModelController {
 
     private void start(ActionEvent e) {
         n++;
+        if (n == 1) {
+            for (Bal bal : ballenModel.getBallen()) {
+                UpdateBal b = new UpdateBal(bal, this);
+                Timer t = new Timer(true);
+                t.scheduleAtFixedRate(b, 0, 1);
+            }
+        }
     }
 
     public void reset(ActionEvent e) {

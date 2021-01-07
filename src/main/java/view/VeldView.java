@@ -50,54 +50,55 @@ public class VeldView {
         int n = 0;
         for (Node s : stenen) {
             for (Node b : ballen) {
+                Bounds array = this.s.get(n);
                 Point2D middelPunt = b.localToParent(Point2D.ZERO);
                 Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-                if (middelPunt.getY() + straal >= this.s.get(n).getMinY() - 3 //onderkant bal
-                        && middelPunt.getY() + straal <= this.s.get(n).getMinY() + 3
-                        && middelPunt.getX() >= this.s.get(n).getMinX()
-                        && middelPunt.getX() <= this.s.get(n).getMinX() + this.s.get(n).getWidth()) {
+                if (middelPunt.getY() + straal >= array.getMinY() - 3 //onderkant bal
+                        && middelPunt.getY() + straal <= array.getMinY() + 3
+                        && middelPunt.getX() >= array.getMinX()
+                        && middelPunt.getX() <= array.getMinX() + array.getWidth()) {
                     b.setId("1");
                     s.setId("geraakt");
-                } else if (middelPunt.getY() - straal >= this.s.get(n).getMaxY() - 3 //bovenkant bal
-                        && middelPunt.getY() - straal <= this.s.get(n).getMaxY() + 3
-                        && middelPunt.getX() >= this.s.get(n).getMinX()
-                        && middelPunt.getX() <= this.s.get(n).getMinX() + this.s.get(n).getWidth()) {
+                } else if (middelPunt.getY() - straal >= array.getMaxY() - 3 //bovenkant bal
+                        && middelPunt.getY() - straal <= array.getMaxY() + 3
+                        && middelPunt.getX() >= array.getMinX()
+                        && middelPunt.getX() <= array.getMinX() + array.getWidth()) {
                     b.setId("2");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() + straal >= this.s.get(n).getMinX() - 3 //rechterkant bal
-                        && middelPunt.getX() + straal <= this.s.get(n).getMinX() + 3
-                        && middelPunt.getY() >= this.s.get(n).getMinY()
-                        && middelPunt.getY() <= this.s.get(n).getMinY() + this.s.get(n).getHeight()) {
+                } else if (middelPunt.getX() + straal >= array.getMinX() - 3 //rechterkant bal
+                        && middelPunt.getX() + straal <= array.getMinX() + 3
+                        && middelPunt.getY() >= array.getMinY()
+                        && middelPunt.getY() <= array.getMinY() + array.getHeight()) {
                     b.setId("3");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() - straal >= this.s.get(n).getMaxX() - 3 //linkerkant bal
-                        && middelPunt.getX() - straal <= this.s.get(n).getMaxX() + 3
-                        && middelPunt.getY() >= this.s.get(n).getMinY()
-                        && middelPunt.getY() <= this.s.get(n).getMinY() + this.s.get(n).getHeight()) {
+                } else if (middelPunt.getX() - straal >= array.getMaxX() - 3 //linkerkant bal
+                        && middelPunt.getX() - straal <= array.getMaxX() + 3
+                        && middelPunt.getY() >= array.getMinY()
+                        && middelPunt.getY() <= array.getMinY() + array.getHeight()) {
                     b.setId("4");
                     s.setId("geraakt");
-                } else if (boundsBal.getMinY() >= this.s.get(n).getMaxY() - 7 //linksboven bal
-                        && boundsBal.getMinY() <= this.s.get(n).getMaxY()
-                        && boundsBal.getMinX() >= this.s.get(n).getMaxX() - 7
-                        && boundsBal.getMinX() <= this.s.get(n).getMaxX()) {
+                } else if (boundsBal.getMinY() >= array.getMaxY() - 7 //linksboven bal
+                        && boundsBal.getMinY() <= array.getMaxY()
+                        && boundsBal.getMinX() >= array.getMaxX() - 7
+                        && boundsBal.getMinX() <= array.getMaxX()) {
                     b.setId("5");
                     s.setId("geraakt");
-                } else if (boundsBal.getMaxX() >= this.s.get(n).getMinX() //rechtsonder bal
-                        && boundsBal.getMaxX() <= this.s.get(n).getMinX() + 7
-                        && boundsBal.getMaxY() >= this.s.get(n).getMinY()
-                        && boundsBal.getMaxY() <= this.s.get(n).getMinY() + 7) {
+                } else if (boundsBal.getMaxX() >= array.getMinX() //rechtsonder bal
+                        && boundsBal.getMaxX() <= array.getMinX() + 7
+                        && boundsBal.getMaxY() >= array.getMinY()
+                        && boundsBal.getMaxY() <= array.getMinY() + 7) {
                     b.setId("6");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() + straal * cos >= this.s.get(n).getMinX() //rechtsboven bal
-                        && middelPunt.getX() + straal * cos <= this.s.get(n).getMinX() + 7
-                        && middelPunt.getY() - straal * cos >= this.s.get(n).getMaxY() - 7
-                        && middelPunt.getY() - straal * cos <= this.s.get(n).getMaxY()) {
+                } else if (middelPunt.getX() + straal * cos >= array.getMinX() //rechtsboven bal
+                        && middelPunt.getX() + straal * cos <= array.getMinX() + 7
+                        && middelPunt.getY() - straal * cos >= array.getMaxY() - 7
+                        && middelPunt.getY() - straal * cos <= array.getMaxY()) {
                     b.setId("7");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() - straal * cos >= this.s.get(n).getMaxX() - 7 //linksonder bal
-                        && middelPunt.getX() - straal * cos <= this.s.get(n).getMaxX()
-                        && middelPunt.getY() + straal * cos >= this.s.get(n).getMinY()
-                        && middelPunt.getY() + straal * cos <= this.s.get(n).getMinY() + 7) {
+                } else if (middelPunt.getX() - straal * cos >= array.getMaxX() - 7 //linksonder bal
+                        && middelPunt.getX() - straal * cos <= array.getMaxX()
+                        && middelPunt.getY() + straal * cos >= array.getMinY()
+                        && middelPunt.getY() + straal * cos <= array.getMinY() + 7) {
                     b.setId("8");
                     s.setId("geraakt");
                 }

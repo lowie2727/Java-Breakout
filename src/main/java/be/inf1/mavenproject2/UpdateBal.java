@@ -17,6 +17,7 @@ public class UpdateBal extends TimerTask {
 
     private final Bal balModel;
     private final ModelController controller;
+    private int n;
 
     public UpdateBal(Bal balModel, ModelController controller) {
         this.balModel = balModel;
@@ -25,6 +26,10 @@ public class UpdateBal extends TimerTask {
 
     @Override
     public void run() {
+        n++;
+        if (n > 50000) {
+            n = 0;
+        }
         balModel.tick();
         Platform.runLater(controller::update);
     }

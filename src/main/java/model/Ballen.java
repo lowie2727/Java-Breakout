@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class Ballen {
 
     private ArrayList<Bal> ballen;
-    private int aantalBallen;
+    private final int aantalBallen;
 
     public Ballen() {
-        aantalBallen = 2;
+        aantalBallen = 5;
         createBallen();
     }
 

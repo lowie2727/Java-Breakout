@@ -21,8 +21,8 @@ public class Bal {
     private final double SNELHEIDY;
 
     public Bal(Paneel paneel) {
-        SNELHEIDX = 0.5;
-        SNELHEIDY = -0.5;
+        SNELHEIDX = 1;
+        SNELHEIDY = -1;
         this.paneel = paneel;
         x = 500;
         y = 472;

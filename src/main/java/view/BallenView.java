@@ -6,6 +6,7 @@
 package view;
 
 import java.util.ArrayList;
+import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
@@ -40,63 +41,65 @@ public class BallenView extends Region {
     public void update() {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
-            getChildren().get(i).setTranslateX(b.get(i).getX());
-            getChildren().get(i).setTranslateY(b.get(i).getY());
-            if (null != getChildren().get(i).getId()) {
-                switch (getChildren().get(i).getId()) {
+            Bal bal = b.get(i);
+            Node balNode = getChildren().get(i);
+            balNode.setTranslateX(bal.getX());
+            balNode.setTranslateY(bal.getY());
+            if (null != balNode.getId()) {
+                switch (balNode.getId()) {
                     case "1":
-                        if (b.get(i).getVy() > 0) {
-                            b.get(i).setVy();
+                        if (bal.getVy() > 0) {
+                            bal.setVy();
                         }
                         break;
                     case "2":
-                        if (b.get(i).getVy() < 0) {
-                            b.get(i).setVy();
+                        if (bal.getVy() < 0) {
+                            bal.setVy();
                         }
                         break;
                     case "3":
-                        if (b.get(i).getVx() > 0) {
-                            b.get(i).setVx();
+                        if (bal.getVx() > 0) {
+                            bal.setVx();
                         }
                         break;
                     case "4":
-                        if (b.get(i).getVx() < 0) {
-                            b.get(i).setVx();
+                        if (bal.getVx() < 0) {
+                            bal.setVx();
                         }
                         break;
                     case "5":
-                        if (b.get(i).getVx() < 0 && b.get(i).getVy() < 0) {
-                            b.get(i).setVy();
-                            b.get(i).setVx();
+                        if (bal.getVx() < 0 && bal.getVy() < 0) {
+                            bal.setVy();
+                            bal.setVx();
                         }
                         break;
                     case "6":
-                        if (b.get(i).getVx() > 0 && b.get(i).getVy() > 0) {
-                            b.get(i).setVx();
-                            b.get(i).setVy();
+                        if (bal.getVx() > 0 && bal.getVy() > 0) {
+                            bal.setVx();
+                            bal.setVy();
                         }
                         break;
                     case "7":
-                        if (b.get(i).getVx() > 0 && b.get(i).getVy() < 0) {
-                            b.get(i).setVx();
-                            b.get(i).setVy();
+                        if (bal.getVx() > 0 && bal.getVy() < 0) {
+                            bal.setVx();
+                            bal.setVy();
                         }
                         break;
                     case "8":
-                        if (b.get(i).getVx() < 0 && b.get(i).getVy() > 0) {
-                            b.get(i).setVx();
-                            b.get(i).setVy();
+                        if (bal.getVx() < 0 && bal.getVy() > 0) {
+                            bal.setVx();
+                            bal.setVy();
                         }
                         break;
                     case "9":
-                        b.get(i).setVx(balModel.getSnelheidX());
-                        b.get(i).setVy(balModel.getSnelheidY());
+                        bal.setVx(balModel.getSnelheidX());
+                        bal.setVy(balModel.getSnelheidY());
                         break;
                     default:
                         break;
                 }
             }
-            getChildren().get(i).setId(null);
+            balNode.setId(null);
         }
     }
 
