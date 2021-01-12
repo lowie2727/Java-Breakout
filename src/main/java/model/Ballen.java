@@ -19,7 +19,7 @@ public class Ballen {
 
     public Ballen(Bal bal) {
         this.bal = bal;
-        aantalBallen = 4;
+        aantalBallen = 1;
         createBallen();
     }
 

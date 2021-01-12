@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
+import model.Peddel;
 
 /**
  *
@@ -19,10 +20,12 @@ public class BallenView extends Region {
 
     private final Ballen ballen;
     private final Bal balModel;
+    private Peddel peddel;
 
-    public BallenView(Ballen ballen, Bal bal) {
+    public BallenView(Ballen ballen, Bal bal, Peddel peddel) {
         this.balModel = bal;
         this.ballen = ballen;
+        this.peddel = peddel;
         maakBallen();
         update();
     }
@@ -50,6 +53,7 @@ public class BallenView extends Region {
                     case "1":
                         if (bal.getVy() > 0) {
                             bal.setVy();
+                           balModel.setHy(((peddel.getBreedte()-(bal.getX()-peddel.getX()))/peddel.getBreedte()));
                         }
                         break;
                     case "2":

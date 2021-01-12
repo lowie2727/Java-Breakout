@@ -19,6 +19,7 @@ public class Bal {
     private double y;
     private final double SnelheidX;
     private final double SnelheidY;
+    private double hy;
 
     public Bal(Paneel paneel, double straal) {
         SnelheidX = 0.2;
@@ -28,6 +29,7 @@ public class Bal {
         y = 472;
         vx = 0;
         vy = 0;
+        hy = 1;
         this.straal = straal;
     }
 
@@ -110,7 +112,10 @@ public class Bal {
     }
 
     public void setVy() {
-        vy = -vy;
+        vy = -vy * hy;
+    }
+    public void setHy(double hy) {
+        this.hy = hy;
     }
 
     public void setX(double x) {
