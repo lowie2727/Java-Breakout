@@ -17,17 +17,17 @@ import model.Ballen;
  */
 public class BallenView extends Region {
 
-    private Ballen ballen;
-    private Bal balModel;
+    private final Ballen ballen;
+    private final Bal balModel;
 
-    public BallenView(Ballen ballen) {
-        this.balModel = new Bal(null);
+    public BallenView(Ballen ballen, Bal bal) {
+        this.balModel = bal;
         this.ballen = ballen;
         maakBallen();
         update();
     }
 
-    public void maakBallen() {
+    public final void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i < ballen.getaantalBallen(); i++) {
@@ -38,7 +38,7 @@ public class BallenView extends Region {
         }
     }
 
-    public void update() {
+    public final void update() {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
@@ -96,10 +96,12 @@ public class BallenView extends Region {
                         bal.setVy(balModel.getSnelheidY());
                         break;
                     default:
+                        
                         break;
                 }
+                balNode.setId(null);
             }
-            balNode.setId(null);
+            
         }
     }
 

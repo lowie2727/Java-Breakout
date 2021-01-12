@@ -14,9 +14,9 @@ public class Paneel {
     private final double breedte;
     private final double hoogte;
 
-    public Paneel() {
-        breedte = 1000;
-        hoogte = 500;
+    public Paneel(double breedte, double hoogte) {
+        this.breedte = breedte;
+        this.hoogte = hoogte;
     }
 
     /**

@@ -25,7 +25,7 @@ public class PeddelView extends Region {
         update();
     }
 
-    public void update() {
+    public final void update() {
         getChildren().clear();
         p.setTranslateX(peddel.getX());
         p.setTranslateY(peddel.getY());

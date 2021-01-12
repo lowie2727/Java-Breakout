@@ -14,9 +14,9 @@ public class Steen {
     private final double breedte;
     private final double hoogte;
 
-    public Steen() {
-        hoogte = 20;
-        breedte = 60;
+    public Steen(double breedte, double hoogte) {
+        this.hoogte = hoogte;
+        this.breedte = breedte;
     }
 
     /**

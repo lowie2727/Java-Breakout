@@ -19,7 +19,7 @@ import model.Paneel;
  */
 public class PaneelView extends Region {
 
-    private Paneel paneel;
+    private final Paneel paneel;
     private Rectangle r;
 
     public PaneelView(Paneel paneel) {

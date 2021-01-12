@@ -15,16 +15,18 @@ public class Ballen {
 
     private ArrayList<Bal> ballen;
     private final int aantalBallen;
+    private final Bal bal;
 
-    public Ballen() {
-        aantalBallen = 5;
+    public Ballen(Bal bal) {
+        this.bal = bal;
+        aantalBallen = 4;
         createBallen();
     }
 
-    public void createBallen() {
+    public final void createBallen() {
         ballen = new ArrayList<>(aantalBallen);
         for (int i = 0; i < aantalBallen; i++) {
-            ballen.add(new Bal(new Paneel()));
+            ballen.add(bal);
         }
     }
 

@@ -24,11 +24,11 @@ public class Stenen {
     public Stenen(Paneel paneel, Steen steen) {
         this.paneel = paneel;
         this.steen = steen;
-        rijen = 15;
-        kolommen = 20;
-        setMaxKolommen(kolommen);
+        rijen = 5;
+        kolommen = 600;
         offsetBreedte = 5;
         offsetHoogte = 5;
+        setMaxKolommen(kolommen);
         setOffsetBreedtePaneel(kolommen);
         offsetHoogtePaneel = 50;
         createMatrix();
@@ -38,7 +38,7 @@ public class Stenen {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
-                stenen[j][i] = new Steen();
+                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte());
             }
         }
     }
@@ -79,8 +79,9 @@ public class Stenen {
     }
 
     private void setMaxKolommen(int kolommen) {
+        System.out.println(offsetBreedte);
         if (kolommen * (steen.getBreedte() + offsetBreedte) >= paneel.getBreedte()) {
-            this.kolommen = 15;
+            this.kolommen = (int) ((paneel.getBreedte() / (steen.getBreedte() + offsetBreedte))) - 1;
         }
     }
 

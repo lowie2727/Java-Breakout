@@ -17,7 +17,7 @@ import model.Steen;
  */
 public class SteenView extends Region {
 
-    private Steen steen;
+    private final Steen steen;
     private Rectangle r;
 
     public SteenView(Steen steen) {

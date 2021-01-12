@@ -20,15 +20,15 @@ public class Bal {
     private final double SNELHEIDX;
     private final double SNELHEIDY;
 
-    public Bal(Paneel paneel) {
-        SNELHEIDX = 1;
-        SNELHEIDY = -1;
+    public Bal(Paneel paneel, double straal) {
+        SNELHEIDX = 0.2;
+        SNELHEIDY = -0.2;
         this.paneel = paneel;
         x = 500;
         y = 472;
         vx = 0;
         vy = 0;
-        straal = 8;
+        this.straal = straal;
     }
 
     /**

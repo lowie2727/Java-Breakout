@@ -43,6 +43,7 @@ public class ModelController {
     private TextField textBox;
 
     private Peddel peddelModel;
+    private Bal balModel;
     private Steen steenModel;
     private Paneel vensterModel;
     private Stenen stenenModel;
@@ -58,15 +59,16 @@ public class ModelController {
     @FXML
     void initialize() {
 
-        vensterModel = new Paneel();
+        vensterModel = new Paneel(1000, 500);    //breedte, hoogte
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
-        steenModel = new Steen();
-        ballenModel = new Ballen();
+        steenModel = new Steen(60, 20);  //breedte, hoogte
+        balModel = new Bal(vensterModel, 8); //paneel, straal
+        ballenModel = new Ballen(balModel);
         peddelModel = new Peddel(vensterModel);
         stenenModel = new Stenen(vensterModel, steenModel);
 
-        ballenView = new BallenView(ballenModel);
+        ballenView = new BallenView(ballenModel, balModel);
         paneelView = new PaneelView(vensterModel);
         peddelView = new PeddelView(peddelModel);
         paneelView = new PaneelView(vensterModel);

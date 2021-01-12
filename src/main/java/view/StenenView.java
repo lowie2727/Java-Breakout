@@ -23,11 +23,11 @@ public class StenenView extends Region {
         update();
     }
 
-    public void update() {
+    public final void update() {
         checkView();
     }
 
-    public void maakStenen() {
+    public final void maakStenen() {
         getChildren().clear();
         int n = 0;
         int m = 0;

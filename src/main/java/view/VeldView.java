@@ -23,7 +23,7 @@ public class VeldView {
     private final BallenView ballenView;
     private final double cos;
     private final double straal;
-    private ArrayList<Bounds> s;
+    private final ArrayList<Bounds> s;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview) {
         this.ballenView = ballenview;
