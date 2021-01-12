@@ -54,7 +54,9 @@ public class ModelController {
     private StenenView stenenView;
     private VeldView veldView;
     private BallenView ballenView;
+
     private int n = 0;
+    private Timer timer;
 
     @FXML
     void initialize() {
@@ -65,8 +67,8 @@ public class ModelController {
         steenModel = new Steen(60, 20);  //breedte, hoogte
         balModel = new Bal(vensterModel, 8); //paneel, straal
         ballenModel = new Ballen(balModel);
-        peddelModel = new Peddel(vensterModel);
-        stenenModel = new Stenen(vensterModel, steenModel);
+        peddelModel = new Peddel(500, 10, vensterModel);  //breedte, hoogte
+        stenenModel = new Stenen(vensterModel, steenModel, 10, 500);  //rijen, kolommen
 
         ballenView = new BallenView(ballenModel, balModel);
         paneelView = new PaneelView(vensterModel);
@@ -107,8 +109,8 @@ public class ModelController {
         if (n == 1) {
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
-                Timer t = new Timer(true);
-                t.scheduleAtFixedRate(b, 0, 1);
+                timer = new Timer(true);
+                timer.scheduleAtFixedRate(b, 0, 1);
             }
         }
     }
@@ -118,6 +120,7 @@ public class ModelController {
         peddelView.update();
         stenenView.maakStenen();
         ballenView.reset();
+        timer.cancel();
         n = 0;
     }
 

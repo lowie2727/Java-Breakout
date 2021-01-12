@@ -17,12 +17,12 @@ public class Bal {
     private double vy;
     private double x;
     private double y;
-    private final double SNELHEIDX;
-    private final double SNELHEIDY;
+    private final double SnelheidX;
+    private final double SnelheidY;
 
     public Bal(Paneel paneel, double straal) {
-        SNELHEIDX = 0.2;
-        SNELHEIDY = -0.2;
+        SnelheidX = 0.2;
+        SnelheidY = -0.2;
         this.paneel = paneel;
         x = 500;
         y = 472;
@@ -67,11 +67,11 @@ public class Bal {
     }
 
     public double getSnelheidX() {
-        return SNELHEIDX;
+        return SnelheidX;
     }
 
     public double getSnelheidY() {
-        return SNELHEIDY;
+        return SnelheidY;
     }
 
     /**

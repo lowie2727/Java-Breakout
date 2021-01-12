@@ -18,11 +18,11 @@ public class Peddel {
     private double x;
     private double y;
 
-    public Peddel(Paneel paneel) {
+    public Peddel(double breedte, double hoogte, Paneel paneel) {
         this.paneel = paneel;
         offset = 20;
-        hoogte = 10;
-        breedte = 1000;
+        this.hoogte = hoogte;
+        this.breedte = breedte;
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
     }
