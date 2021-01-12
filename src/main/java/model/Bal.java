@@ -22,8 +22,8 @@ public class Bal {
     private double hy;
 
     public Bal(Paneel paneel, double straal) {
-        SnelheidX = 0.2;
-        SnelheidY = -0.2;
+        SnelheidX = 0.3;
+        SnelheidY = -0.3;
         this.paneel = paneel;
         x = 500;
         y = 472;
@@ -77,6 +77,13 @@ public class Bal {
     }
 
     /**
+     * @return the hy
+     */
+    public double getHy() {
+        return hy;
+    }
+
+    /**
      * @return
      */
     public double verticaal() {
@@ -112,8 +119,9 @@ public class Bal {
     }
 
     public void setVy() {
-        vy = -vy * hy;
+        vy = -vy;
     }
+
     public void setHy(double hy) {
         this.hy = hy;
     }
@@ -165,4 +173,5 @@ public class Bal {
         horizontaal();
         verticaal();
     }
+
 }
