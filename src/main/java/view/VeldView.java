@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import model.Peddel;
 
 /**
@@ -44,7 +45,7 @@ public class VeldView {
                     && middelPunt.getY() + straal <= peddelModel.getY() + 4
                     && middelPunt.getX() > peddelModel.getX()
                     && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
-                b.setId("1");
+                b.setId("10");
             }
         }
         int n = 0;
@@ -101,7 +102,8 @@ public class VeldView {
                         && middelPunt.getY() + straal * cos <= array.getMinY() + 7) {
                     b.setId("8");
                     s.setId("geraakt");
-                }
+                } 
+                
             }
             n++;
         }
@@ -127,4 +129,10 @@ public class VeldView {
         }
         return s;
     }
+        private void gameOver() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("game over");
+        alert.setContentText("Je bent zo dood als ne ... \nDruk op spatiebalk om opnieuw te beginnen!");
+        alert.showAndWait();
+        }
 }
