@@ -101,26 +101,22 @@ public class BallenView extends Region {
                         break;
                     case "10":
                         if (bal.getVy() > 0) {
-
-                            if ((bal.getX() - peddel.getX()) > peddel.getBreedte() / 2) {
-                                //balModel.setHy((peddel.getBreedte() - bal.getX() + peddel.getX()) / 0.5 * peddel.getBreedte());
+                            double midden = peddel.getX() + peddel.getBreedte() / 2;
+                            if ((bal.getX() - midden) > 0) {
                                 if (bal.getVx() < 0) {
                                     bal.setVx();
-                                    //balModel.setHy((((peddel.getBreedte() - (bal.getX() - peddel.getX())) / peddel.getBreedte()) * 1.4) + 0.3);
-                                    //balModel.setHy(((peddel.getX()+(peddel.getBreedte()/2))-(bal.getX()-(peddel.getX()+(peddel.getBreedte()/2))))
-                                    //       /(peddel.getBreedte()/2));
-                                    //System.out.println(balModel.getHy());
-
                                 }
+                                double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
+                                bal.setHy((temp1*0.7)+0.3);
                             } else {
-                                //balModel.setHy((bal.getX() - peddel.getX()) / 0.5 * peddel.getBreedte());
                                 if (bal.getVx() > 0) {
                                     bal.setVx();
-                                    //balModel.setHy((((peddel.getBreedte() - (bal.getX() * 2 - peddel.getX())) / peddel.getBreedte()) * 0.7) + 0.3);
-
                                 }
+                                double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
+                                bal.setHy((temp2*0.7)+0.3);
                             }
                             bal.setVy(bal.getSnelheidY() * bal.getHy());
+                            bal.setHy(1);
                         }
 
                     default:
@@ -131,7 +127,7 @@ public class BallenView extends Region {
             }
 
         }
-        if (b.get(0).getY() > 490 && b.get(0).getVy()!= 0) {
+        if (b.get(0).getY() > 490 && b.get(0).getVy() != 0) {
             gameOver();
         }
     }

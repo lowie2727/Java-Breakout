@@ -122,6 +122,7 @@ public class Bal {
 
     public void setVy() {
         vy = -vy * hy;
+        vx = Math.sqrt((Math.pow(0.5, 2))-Math.pow(vy, 2));
     }
 
     public void setHy(double hy) {
