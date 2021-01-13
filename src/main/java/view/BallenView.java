@@ -7,6 +7,7 @@ package view;
 
 import java.util.ArrayList;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
@@ -130,6 +131,9 @@ public class BallenView extends Region {
             }
 
         }
+        if (b.get(0).getY() > 490 && b.get(0).getVy()!= 0) {
+            gameOver();
+        }
     }
 
     public void reset() {
@@ -151,5 +155,12 @@ public class BallenView extends Region {
         getChildren().get(0).setTranslateX(b.get(0).getX());
         getChildren().get(0).setTranslateY(b.get(0).getY());
 
+    }
+
+    private void gameOver() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("game over");
+        alert.setContentText("je bent dood... /druk op reset om opnieuw te beginnen");
+        alert.showAndWait();
     }
 }

@@ -5,6 +5,8 @@
  */
 package model;
 
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author lowie
