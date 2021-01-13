@@ -119,7 +119,7 @@ public class Bal {
     }
 
     public void setVy() {
-        vy = -vy;
+        vy = -vy * hy;
     }
 
     public void setHy(double hy) {
