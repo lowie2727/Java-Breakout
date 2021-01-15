@@ -5,8 +5,6 @@
  */
 package model;
 
-import javafx.scene.control.Alert;
-
 /**
  *
  * @author lowie
@@ -21,11 +19,13 @@ public class Bal {
     private double y;
     private final double SnelheidX;
     private final double SnelheidY;
+    private final double Snelheid;
     private double hy;
 
     public Bal(Paneel paneel, double straal) {
-        SnelheidX = 0.3;
-        SnelheidY = -0.3;
+        SnelheidX = 0.4;
+        SnelheidY = -0.4;
+        Snelheid = Math.sqrt((Math.pow(SnelheidX, 2)) + Math.pow(SnelheidY, 2));
         this.paneel = paneel;
         x = 500;
         y = 472;
@@ -122,7 +122,7 @@ public class Bal {
 
     public void setVy() {
         vy = -vy * hy;
-        vx = Math.sqrt((Math.pow(0.5, 2))-Math.pow(vy, 2));
+        vx = Math.sqrt((Math.pow(Snelheid, 2)) - Math.pow(vy, 2));
     }
 
     public void setHy(double hy) {

@@ -5,12 +5,10 @@
  */
 package view;
 
-import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import model.Peddel;
 
 /**
@@ -20,11 +18,11 @@ import model.Peddel;
 public class VeldView {
 
     private final StenenView stenenView;
+    private PeddelView peddelView;
     private final Peddel peddelModel;
     private final BallenView ballenView;
     private final double cos;
     private final double straal;
-    private final ArrayList<Bounds> s;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview) {
         this.ballenView = ballenview;
@@ -32,107 +30,101 @@ public class VeldView {
         this.stenenView = stenenView;
         cos = Math.cos(Math.toRadians(45));
         straal = getStraal();
-        s = getStenen();
     }
 
-    public void botsingBal() {
+    public void update() {
+        botsingBal();
+        stenenView.update();
+        ballenView.update();
+
+    }
+
+    private void botsingBal() {
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
         ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
 
         for (Node b : ballen) {
             Point2D middelPunt = b.localToParent(Point2D.ZERO);
-            if (middelPunt.getY() + straal >= peddelModel.getY() - 4
-                    && middelPunt.getY() + straal <= peddelModel.getY() + 4
+            if (middelPunt.getY() + straal >= peddelModel.getY() - 1
+                    && middelPunt.getY() + straal <= peddelModel.getY() + 1
                     && middelPunt.getX() > peddelModel.getX()
                     && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
                 b.setId("10");
             }
         }
+
         int n = 0;
         for (Node s : stenen) {
+            Bounds steenBounds = getBoundSteen(s);
             for (Node b : ballen) {
-                Bounds array = this.s.get(n);
                 Point2D middelPunt = b.localToParent(Point2D.ZERO);
                 Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-                if (middelPunt.getY() + straal >= array.getMinY() - 3 //onderkant bal
-                        && middelPunt.getY() + straal <= array.getMinY() + 3
-                        && middelPunt.getX() >= array.getMinX()
-                        && middelPunt.getX() <= array.getMinX() + array.getWidth()) {
+                if (middelPunt.getY() + straal >= steenBounds.getMinY() - 3 //onderkant bal
+                        && middelPunt.getY() + straal <= steenBounds.getMinY() + 3
+                        && middelPunt.getX() >= steenBounds.getMinX()
+                        && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
                     b.setId("1");
                     s.setId("geraakt");
-                } else if (middelPunt.getY() - straal >= array.getMaxY() - 3 //bovenkant bal
-                        && middelPunt.getY() - straal <= array.getMaxY() + 3
-                        && middelPunt.getX() >= array.getMinX()
-                        && middelPunt.getX() <= array.getMinX() + array.getWidth()) {
+                } else if (middelPunt.getY() - straal >= steenBounds.getMaxY() - 3 //bovenkant bal
+                        && middelPunt.getY() - straal <= steenBounds.getMaxY() + 3
+                        && middelPunt.getX() >= steenBounds.getMinX()
+                        && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
                     b.setId("2");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() + straal >= array.getMinX() - 3 //rechterkant bal
-                        && middelPunt.getX() + straal <= array.getMinX() + 3
-                        && middelPunt.getY() >= array.getMinY()
-                        && middelPunt.getY() <= array.getMinY() + array.getHeight()) {
+                } else if (middelPunt.getX() + straal >= steenBounds.getMinX() - 3 //rechterkant bal
+                        && middelPunt.getX() + straal <= steenBounds.getMinX() + 3
+                        && middelPunt.getY() >= steenBounds.getMinY()
+                        && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
                     b.setId("3");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() - straal >= array.getMaxX() - 3 //linkerkant bal
-                        && middelPunt.getX() - straal <= array.getMaxX() + 3
-                        && middelPunt.getY() >= array.getMinY()
-                        && middelPunt.getY() <= array.getMinY() + array.getHeight()) {
+                } else if (middelPunt.getX() - straal >= steenBounds.getMaxX() - 3 //linkerkant bal
+                        && middelPunt.getX() - straal <= steenBounds.getMaxX() + 3
+                        && middelPunt.getY() >= steenBounds.getMinY()
+                        && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
                     b.setId("4");
                     s.setId("geraakt");
-                } else if (boundsBal.getMinY() >= array.getMaxY() - 7 //linksboven bal
-                        && boundsBal.getMinY() <= array.getMaxY()
-                        && boundsBal.getMinX() >= array.getMaxX() - 7
-                        && boundsBal.getMinX() <= array.getMaxX()) {
+                } else if (boundsBal.getMinY() >= steenBounds.getMaxY() - 2 //linksboven bal
+                        && boundsBal.getMinY() <= steenBounds.getMaxY()
+                        && boundsBal.getMinX() >= steenBounds.getMaxX() - 2
+                        && boundsBal.getMinX() <= steenBounds.getMaxX()) {
                     b.setId("5");
                     s.setId("geraakt");
-                } else if (boundsBal.getMaxX() >= array.getMinX() //rechtsonder bal
-                        && boundsBal.getMaxX() <= array.getMinX() + 7
-                        && boundsBal.getMaxY() >= array.getMinY()
-                        && boundsBal.getMaxY() <= array.getMinY() + 7) {
+                } else if (boundsBal.getMaxX() >= steenBounds.getMinX() //rechtsonder bal
+                        && boundsBal.getMaxX() <= steenBounds.getMinX() + 2
+                        && boundsBal.getMaxY() >= steenBounds.getMinY()
+                        && boundsBal.getMaxY() <= steenBounds.getMinY() + 2) {
                     b.setId("6");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() + straal * cos >= array.getMinX() //rechtsboven bal
-                        && middelPunt.getX() + straal * cos <= array.getMinX() + 7
-                        && middelPunt.getY() - straal * cos >= array.getMaxY() - 7
-                        && middelPunt.getY() - straal * cos <= array.getMaxY()) {
+                } else if (middelPunt.getX() + straal * cos >= steenBounds.getMinX() //rechtsboven bal
+                        && middelPunt.getX() + straal * cos <= steenBounds.getMinX() + 2
+                        && middelPunt.getY() - straal * cos >= steenBounds.getMaxY() - 2
+                        && middelPunt.getY() - straal * cos <= steenBounds.getMaxY()) {
                     b.setId("7");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() - straal * cos >= array.getMaxX() - 7 //linksonder bal
-                        && middelPunt.getX() - straal * cos <= array.getMaxX()
-                        && middelPunt.getY() + straal * cos >= array.getMinY()
-                        && middelPunt.getY() + straal * cos <= array.getMinY() + 7) {
+                } else if (middelPunt.getX() - straal * cos >= steenBounds.getMaxX() - 2 //linksonder bal
+                        && middelPunt.getX() - straal * cos <= steenBounds.getMaxX()
+                        && middelPunt.getY() + straal * cos >= steenBounds.getMinY()
+                        && middelPunt.getY() + straal * cos <= steenBounds.getMinY() + 2) {
                     b.setId("8");
                     s.setId("geraakt");
-                } 
-                
+                }
             }
             n++;
         }
     }
 
     private double getStraal() {
-        double st = 0;
+        double str = 0;
         ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
         for (Node b : ballen) {
             Bounds layoutBounds = b.getLayoutBounds();
-            st = layoutBounds.getWidth() / 2;
+            str = layoutBounds.getWidth() / 2;
             break;
         }
-        return st;
+        return str;
     }
 
-    private ArrayList<Bounds> getStenen() {
-        ArrayList<Bounds> s = new ArrayList<>();
-        ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
-        for (Node sNode : stenen) {
-            Bounds boundSteen = sNode.localToParent(sNode.getBoundsInLocal());
-            s.add(boundSteen);
-        }
-        return s;
+    private Bounds getBoundSteen(Node s) {
+        return s.localToParent(s.getBoundsInLocal());
     }
-        private void gameOver() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("game over");
-        alert.setContentText("Je bent zo dood als ne ... \nDruk op spatiebalk om opnieuw te beginnen!");
-        alert.showAndWait();
-        }
 }

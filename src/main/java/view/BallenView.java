@@ -21,7 +21,7 @@ public class BallenView extends Region {
 
     private final Ballen ballen;
     private final Bal balModel;
-    private Peddel peddel;
+    private final Peddel peddel;
 
     public BallenView(Ballen ballen, Bal bal, Peddel peddel) {
         this.balModel = bal;
@@ -42,7 +42,7 @@ public class BallenView extends Region {
         }
     }
 
-    public final void update() {
+    public void update() {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
@@ -107,25 +107,22 @@ public class BallenView extends Region {
                                     bal.setVx();
                                 }
                                 double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
-                                bal.setHy((temp1*0.7)+0.3);
+                                bal.setHy((temp1 * 0.7) + 0.3);
                             } else {
                                 if (bal.getVx() > 0) {
                                     bal.setVx();
                                 }
                                 double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
-                                bal.setHy((temp2*0.7)+0.3);
+                                bal.setHy((temp2 * 0.7) + 0.3);
                             }
                             bal.setVy(bal.getSnelheidY() * bal.getHy());
                             bal.setHy(1);
                         }
-
                     default:
-
                         break;
                 }
                 balNode.setId(null);
             }
-
         }
         if (b.get(0).getY() > 490 && b.get(0).getVy() != 0) {
             gameOver();
@@ -156,7 +153,11 @@ public class BallenView extends Region {
     private void gameOver() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("game over");
-        alert.setContentText("je bent dood... /druk op reset om opnieuw te beginnen");
+        alert.setContentText("je bent dood...\ndruk op reset om opnieuw te beginnen");
         alert.showAndWait();
+    }
+
+    public int getAantalBallen() {
+        return getChildren().size();
     }
 }

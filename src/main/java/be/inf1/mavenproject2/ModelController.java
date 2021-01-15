@@ -75,8 +75,10 @@ public class ModelController {
         peddelView = new PeddelView(peddelModel);
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
-
+        
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
+
+        
         update();
 
         startButton.setFocusTraversable(true);
@@ -84,7 +86,6 @@ public class ModelController {
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
         paneel.setOnMouseMoved(this::beweeg);
-
     }
 
     public void update() {
@@ -95,18 +96,16 @@ public class ModelController {
         }
 
         if (n != 0) {
-            veldView = new VeldView(stenenView, peddelModel, ballenView);
-            ballenView.update();
-            veldView.botsingBal();
             peddelView.update();
-            stenenView.update();
+            veldView.update();
         }
-        textBox.setText(stenenView.aantalStenen() + "");
+        textBox.setText(stenenView.getAantalStenen() + "");
     }
 
     private void start(ActionEvent e) {
         n++;
-        if (n == 1) {
+        if (n == 1) { 
+            veldView = new VeldView(stenenView, peddelModel, ballenView);
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timer = new Timer(true);

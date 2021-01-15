@@ -69,7 +69,7 @@ public class StenenView extends Region {
         }
     }
 
-    public int aantalStenen() {
+    public int getAantalStenen() {
         return getChildren().size();
     }
 }
