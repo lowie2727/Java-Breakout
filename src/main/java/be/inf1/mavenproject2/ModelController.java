@@ -65,8 +65,8 @@ public class ModelController {
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        balModel = new Bal(vensterModel, 8); //paneel, straal
-        ballenModel = new Ballen(balModel);
+        //balModel = new Bal(vensterModel, 8); //paneel, straal
+        ballenModel = new Ballen(vensterModel);
         peddelModel = new Peddel(200, 10, vensterModel);  //breedte, hoogte
         stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
 

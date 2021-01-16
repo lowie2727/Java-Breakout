@@ -35,6 +35,7 @@ public class BallenView extends Region {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i < ballen.getaantalBallen(); i++) {
+            b.get(i).setX(b.get(i).getX()+i*20);
             BalView bv = new BalView(b.get(i));
             bv.setTranslateX(b.get(i).getX());
             bv.setTranslateY(b.get(i).getY());
@@ -96,8 +97,8 @@ public class BallenView extends Region {
                         }
                         break;
                     case "9":
-                        bal.setVx(balModel.getSnelheidX());
-                        bal.setVy(balModel.getSnelheidY());
+                        bal.setVx(bal.getSnelheidX());
+                        bal.setVy(bal.getSnelheidY());
                         break;
                     case "10":
                         if (bal.getVy() > 0) {
