@@ -55,7 +55,7 @@ public class ModelController {
     private VeldView veldView;
     private BallenView ballenView;
 
-    private int n = 0;
+    private boolean status;
     private Timer timer;
 
     @FXML
@@ -70,32 +70,31 @@ public class ModelController {
         peddelModel = new Peddel(200, 10, vensterModel);  //breedte, hoogte
         stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
 
-        ballenView = new BallenView(ballenModel, balModel, peddelModel);
+        ballenView = new BallenView(ballenModel, peddelModel, vensterModel);
         paneelView = new PaneelView(vensterModel);
         peddelView = new PeddelView(peddelModel);
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
-        
+
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
 
-        
         update();
 
         startButton.setFocusTraversable(true);
 
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
-        paneel.setOnMouseMoved(this::beweeg);
+        paneel.setOnMouseMoved(this::beweegPeddel);
     }
 
     public void update() {
-        if (n == 0) {
+        if (!status) {
             for (Node b : ballenView.getChildrenUnmodifiable()) {
                 b.setId("9");
             }
         }
 
-        if (n != 0) {
+        if (status) {
             peddelView.update();
             veldView.update();
         }
@@ -103,27 +102,33 @@ public class ModelController {
     }
 
     private void start(ActionEvent e) {
-        n++;
-        if (n == 1) { 
+
+        if (!status) {
+            timer = new Timer(true);
             veldView = new VeldView(stenenView, peddelModel, ballenView);
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
-                timer = new Timer(true);
                 timer.scheduleAtFixedRate(b, 0, 1);
             }
+            status = true;
         }
+
     }
 
     public void reset(ActionEvent e) {
-        peddelModel.reset();
-        peddelView.update();
-        stenenView.maakStenen();
-        ballenView.reset();
-        timer.cancel();
-        n = 0;
+
+        if (status) {
+            peddelModel.reset();
+            peddelView.update();
+            stenenView.maakStenen();
+            ballenView.reset();
+            timer.cancel();
+            status = false;
+        }
+
     }
 
-    private void beweeg(MouseEvent m) {
+    private void beweegPeddel(MouseEvent m) {
         peddelModel.setX(m.getX() - (peddelModel.getBreedte()) / 2);
         peddelModel.setMin();
         peddelModel.setMax();

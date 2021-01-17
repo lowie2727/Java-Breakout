@@ -170,7 +170,6 @@ public class Bal {
 
     public void tick() {
         setMaxX();
-        setMaxY();
         setMinX();
         setMinY();
         horizontaal();

@@ -19,7 +19,7 @@ public class Ballen {
 
     public Ballen(Paneel vensterModel) {
         this.vensterModel = vensterModel;
-        aantalBallen = 4;
+        aantalBallen = 10;
         createBallen();
     }
 

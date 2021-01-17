@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
+import model.Paneel;
 import model.Peddel;
 
 /**
@@ -20,13 +21,13 @@ import model.Peddel;
 public class BallenView extends Region {
 
     private final Ballen ballen;
-    private final Bal balModel;
     private final Peddel peddel;
+    private final Paneel paneel;
 
-    public BallenView(Ballen ballen, Bal bal, Peddel peddel) {
-        this.balModel = bal;
+    public BallenView(Ballen ballen, Peddel peddel, Paneel paneel) {
         this.ballen = ballen;
         this.peddel = peddel;
+        this.paneel = paneel;
         maakBallen();
         update();
     }
@@ -35,7 +36,7 @@ public class BallenView extends Region {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i < ballen.getaantalBallen(); i++) {
-            b.get(i).setX(b.get(i).getX()+i*20);
+            b.get(i).setX(b.get(i).getX() + i * 20);
             BalView bv = new BalView(b.get(i));
             bv.setTranslateX(b.get(i).getX());
             bv.setTranslateY(b.get(i).getY());
@@ -43,7 +44,7 @@ public class BallenView extends Region {
         }
     }
 
-    public void update() {
+    public final void update() {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
@@ -124,14 +125,22 @@ public class BallenView extends Region {
                 }
                 balNode.setId(null);
             }
+
+            if (bal.getY() >= paneel.getHoogte() - bal.getStraal() && b.size() > 1) {
+                b.remove(i);
+                getChildren().remove(i);
+            }
         }
-        if (b.get(0).getY() > 490 && b.get(0).getVy() != 0) {
+
+        if (b.get(0).getY() > paneel.getHoogte() - b.get(0).getStraal() && b.get(0).getVy() != 0 && ballen.getBallen().size() == 1) {
+            b.get(0).setVx(0);
+            b.get(0).setVy(0);
             gameOver();
         }
     }
 
     public void reset() {
-        ArrayList<Bal> ballenLijst = this.ballen.getBallen();
+        ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (int i = 50; i > 1; i--) {
             if (getChildren().size() + 1 > i && !getChildren().isEmpty()) {
                 getChildren().remove(i - 1);
@@ -141,13 +150,13 @@ public class BallenView extends Region {
             }
         }
         update();
-        ArrayList<Bal> b = ballen.getBallen();
-        b.get(0).setVx(0);
-        b.get(0).setVy(0);
-        b.get(0).setX(500);
-        b.get(0).setY(472);
-        getChildren().get(0).setTranslateX(b.get(0).getX());
-        getChildren().get(0).setTranslateY(b.get(0).getY());
+        Bal b = ballenLijst.get(0);
+        b.setVx(0);
+        b.setVy(0);
+        b.setX(500);
+        b.setY(472);
+        getChildren().get(0).setTranslateX(b.getX());
+        getChildren().get(0).setTranslateY(b.getY());
 
     }
 

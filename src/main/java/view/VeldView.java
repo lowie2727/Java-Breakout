@@ -22,14 +22,12 @@ public class VeldView {
     private final Peddel peddelModel;
     private final BallenView ballenView;
     private final double cos;
-    private final double straal;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview) {
         this.ballenView = ballenview;
         this.peddelModel = peddelModel;
         this.stenenView = stenenView;
         cos = Math.cos(Math.toRadians(45));
-        straal = getStraal();
     }
 
     public void update() {
@@ -42,8 +40,12 @@ public class VeldView {
     private void botsingBal() {
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
         ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
+        double straal;
+        int n = 0;
 
         for (Node b : ballen) {
+            Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
+            straal = boundsBal.getWidth()/2;
             Point2D middelPunt = b.localToParent(Point2D.ZERO);
             if (middelPunt.getY() + straal >= peddelModel.getY() - 1
                     && middelPunt.getY() + straal <= peddelModel.getY() + 1
@@ -52,13 +54,13 @@ public class VeldView {
                 b.setId("10");
             }
         }
-
-        int n = 0;
+        
         for (Node s : stenen) {
             Bounds steenBounds = getBoundSteen(s);
             for (Node b : ballen) {
                 Point2D middelPunt = b.localToParent(Point2D.ZERO);
                 Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
+                straal = boundsBal.getWidth()/2;
                 if (middelPunt.getY() + straal >= steenBounds.getMinY() - 3 //onderkant bal
                         && middelPunt.getY() + straal <= steenBounds.getMinY() + 3
                         && middelPunt.getX() >= steenBounds.getMinX()
@@ -111,17 +113,6 @@ public class VeldView {
             }
             n++;
         }
-    }
-
-    private double getStraal() {
-        double str = 0;
-        ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
-        for (Node b : ballen) {
-            Bounds layoutBounds = b.getLayoutBounds();
-            str = layoutBounds.getWidth() / 2;
-            break;
-        }
-        return str;
     }
 
     private Bounds getBoundSteen(Node s) {
