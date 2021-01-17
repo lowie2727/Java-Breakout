@@ -35,7 +35,7 @@ public class BallenView extends Region {
     public final void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
-        for (int i = 0; i < ballen.getaantalBallen(); i++) {
+        for (int i = 0; i < ballen.getAantalBallen(); i++) {
             b.get(i).setX(b.get(i).getX() + i * 20);
             BalView bv = new BalView(b.get(i));
             bv.setTranslateX(b.get(i).getX());
@@ -49,8 +49,7 @@ public class BallenView extends Region {
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
             Node balNode = getChildren().get(i);
-            balNode.setTranslateX(bal.getX());
-            balNode.setTranslateY(bal.getY());
+            
             if (null != balNode.getId()) {
                 switch (balNode.getId()) {
                     case "1":
@@ -125,7 +124,10 @@ public class BallenView extends Region {
                 }
                 balNode.setId(null);
             }
-
+            
+            balNode.setTranslateX(bal.getX());
+            balNode.setTranslateY(bal.getY());
+            
             if (bal.getY() >= paneel.getHoogte() - bal.getStraal() && b.size() > 1) {
                 b.remove(i);
                 getChildren().remove(i);
@@ -141,20 +143,13 @@ public class BallenView extends Region {
 
     public void reset() {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
-        for (int i = 50; i > 1; i--) {
-            if (getChildren().size() + 1 > i && !getChildren().isEmpty()) {
-                getChildren().remove(i - 1);
-            }
-            if (!ballenLijst.isEmpty() && ballenLijst.size() + 1 > i) {
-                ballenLijst.remove(i - 1);
-            }
+        for (int i = getChildren().size(); i > 1; i--) {
+            getChildren().remove(i - 1);
+            ballenLijst.remove(i - 1);
         }
         update();
         Bal b = ballenLijst.get(0);
-        b.setVx(0);
-        b.setVy(0);
-        b.setX(500);
-        b.setY(472);
+        b.reset();
         getChildren().get(0).setTranslateX(b.getX());
         getChildren().get(0).setTranslateY(b.getY());
 

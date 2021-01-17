@@ -65,8 +65,7 @@ public class ModelController {
         paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        //balModel = new Bal(vensterModel, 8); //paneel, straal
-        ballenModel = new Ballen(vensterModel);
+        ballenModel = new Ballen(vensterModel, 1);  //aantalBallen
         peddelModel = new Peddel(200, 10, vensterModel);  //breedte, hoogte
         stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
 
@@ -105,7 +104,7 @@ public class ModelController {
 
         if (!status) {
             timer = new Timer(true);
-            veldView = new VeldView(stenenView, peddelModel, ballenView);
+            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView);
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timer.scheduleAtFixedRate(b, 0, 1);
@@ -116,12 +115,8 @@ public class ModelController {
     }
 
     public void reset(ActionEvent e) {
-
         if (status) {
-            peddelModel.reset();
-            peddelView.update();
-            stenenView.maakStenen();
-            ballenView.reset();
+            veldView.reset();
             timer.cancel();
             status = false;
         }

@@ -23,10 +23,11 @@ public class VeldView {
     private final BallenView ballenView;
     private final double cos;
 
-    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview) {
+    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView) {
         this.ballenView = ballenview;
         this.peddelModel = peddelModel;
         this.stenenView = stenenView;
+        this.peddelView = peddelView;
         cos = Math.cos(Math.toRadians(45));
     }
 
@@ -45,7 +46,7 @@ public class VeldView {
 
         for (Node b : ballen) {
             Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-            straal = boundsBal.getWidth()/2;
+            straal = boundsBal.getWidth() / 2;
             Point2D middelPunt = b.localToParent(Point2D.ZERO);
             if (middelPunt.getY() + straal >= peddelModel.getY() - 1
                     && middelPunt.getY() + straal <= peddelModel.getY() + 1
@@ -54,13 +55,13 @@ public class VeldView {
                 b.setId("10");
             }
         }
-        
+
         for (Node s : stenen) {
             Bounds steenBounds = getBoundSteen(s);
             for (Node b : ballen) {
                 Point2D middelPunt = b.localToParent(Point2D.ZERO);
                 Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-                straal = boundsBal.getWidth()/2;
+                straal = boundsBal.getWidth() / 2;
                 if (middelPunt.getY() + straal >= steenBounds.getMinY() - 3 //onderkant bal
                         && middelPunt.getY() + straal <= steenBounds.getMinY() + 3
                         && middelPunt.getX() >= steenBounds.getMinX()
@@ -117,5 +118,12 @@ public class VeldView {
 
     private Bounds getBoundSteen(Node s) {
         return s.localToParent(s.getBoundsInLocal());
+    }
+
+    public void reset() {
+        ballenView.reset();
+        peddelModel.reset();
+        peddelView.update();
+        stenenView.maakStenen();
     }
 }

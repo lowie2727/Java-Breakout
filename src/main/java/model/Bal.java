@@ -17,22 +17,23 @@ public class Bal {
     private double vy;
     private double x;
     private double y;
-    private final double SnelheidX;
-    private final double SnelheidY;
-    private final double Snelheid;
+    private final double snelheidX;
+    private final double snelheidY;
+    private final double snelheid;
     private double hy;
 
     public Bal(Paneel paneel, double straal) {
-        SnelheidX = 0.4;
-        SnelheidY = -0.4;
-        Snelheid = Math.sqrt((Math.pow(SnelheidX, 2)) + Math.pow(SnelheidY, 2));
+        snelheidX = 0.4;
+        snelheidY = -0.4;
+        snelheid = Math.sqrt((Math.pow(snelheidX, 2)) + Math.pow(snelheidY, 2));
         this.paneel = paneel;
-        x = 500;
-        y = 472;
+        this.straal = straal;
+        x = paneel.getBreedte() / 2;
+        y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
         hy = 1;
-        this.straal = straal;
+        
     }
 
     /**
@@ -71,11 +72,11 @@ public class Bal {
     }
 
     public double getSnelheidX() {
-        return SnelheidX;
+        return snelheidX;
     }
 
     public double getSnelheidY() {
-        return SnelheidY;
+        return snelheidY;
     }
 
     /**
@@ -103,7 +104,7 @@ public class Bal {
 
     public void reset() {
         x = paneel.getBreedte() / 2;
-        y = paneel.getHoogte() - getStraal() - 20;
+        y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
     }
@@ -122,7 +123,7 @@ public class Bal {
 
     public void setVy() {
         vy = -vy * hy;
-        vx = Math.sqrt((Math.pow(Snelheid, 2)) - Math.pow(vy, 2));
+        vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
     }
 
     public void setHy(double hy) {
@@ -154,14 +155,14 @@ public class Bal {
     }
 
     public void setMaxY() {
-        if (y >= paneel.getHoogte() - getStraal()) {
+        if (y >= paneel.getHoogte() - straal) {
             vy = 0;
             vx = 0;
         }
     }
 
     public void setMinY() {
-        if (y <= getStraal()) {
+        if (y <= straal) {
             if (vy < 0) {
                 vy = -vy;
             }

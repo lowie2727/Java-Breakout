@@ -15,18 +15,18 @@ public class Ballen {
 
     private ArrayList<Bal> ballen;
     private final int aantalBallen;
-    private Paneel vensterModel;
+    private Paneel paneelModel;
 
-    public Ballen(Paneel vensterModel) {
-        this.vensterModel = vensterModel;
-        aantalBallen = 10;
+    public Ballen(Paneel vensterModel, int aantalBallen) {
+        this.paneelModel = vensterModel;
+        this.aantalBallen = aantalBallen;
         createBallen();
     }
 
     public final void createBallen() {
         ballen = new ArrayList<>(aantalBallen);
         for (int i = 0; i < aantalBallen; i++) {
-            ballen.add(new Bal(vensterModel, 8));
+            ballen.add(new Bal(paneelModel, 8));
         }
     }
 
@@ -34,7 +34,7 @@ public class Ballen {
         return ballen;
     }
 
-    public int getaantalBallen() {
+    public int getAantalBallen() {
         return aantalBallen;
     }
 }
