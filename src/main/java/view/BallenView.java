@@ -103,15 +103,13 @@ public class BallenView extends Region {
                         if (bal.getVy() > 0) {
                             double midden = peddel.getX() + peddel.getBreedte() / 2;
                             if ((bal.getX() - midden) > 0) {
-                                System.out.println("rechts");
                                 if (bal.getVx() < 0) {
                                     bal.setVx();
                                 }
                                 double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
                                 bal.setHy((temp1 * 0.7) + 0.3);
                             } else {
-                                System.out.println("links");
-                                if (bal.getVx() < 0) {
+                                if (bal.getVx() > 0) {
                                     bal.setVx();
                                 }
                                 double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
