@@ -14,11 +14,13 @@ import model.Bal;
 import model.Ballen;
 import model.Paneel;
 import model.Peddel;
+import model.PowerUp;
 import model.Steen;
 import model.Stenen;
 import view.BallenView;
 import view.PaneelView;
 import view.PeddelView;
+import view.PowerUpView;
 import view.StenenView;
 import view.VeldView;
 
@@ -48,15 +50,18 @@ public class ModelController {
     private Paneel vensterModel;
     private Stenen stenenModel;
     private Ballen ballenModel;
+    private PowerUp powerUpModel;
 
     private PeddelView peddelView;
     private PaneelView paneelView;
     private StenenView stenenView;
     private VeldView veldView;
     private BallenView ballenView;
+    private PowerUpView powerUpView;
 
     private boolean status;
     private Timer timer;
+    
 
     @FXML
     void initialize() {
@@ -67,15 +72,17 @@ public class ModelController {
         steenModel = new Steen(60, 20);  //breedte, hoogte
         ballenModel = new Ballen(vensterModel, 1);  //aantalBallen
         peddelModel = new Peddel(500, 10, vensterModel);  //breedte, hoogte
-        stenenModel = new Stenen(vensterModel, steenModel, 0, 0);  //rijen, kolommen
+        stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
+        powerUpModel = new PowerUp(30);
 
         ballenView = new BallenView(ballenModel, peddelModel, vensterModel);
         paneelView = new PaneelView(vensterModel);
         peddelView = new PeddelView(peddelModel);
         paneelView = new PaneelView(vensterModel);
         stenenView = new StenenView(stenenModel);
+        powerUpView = new PowerUpView(powerUpModel, vensterModel);
 
-        paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView);
+        paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
 
         update();
 
@@ -104,7 +111,7 @@ public class ModelController {
 
         if (!status) {
             timer = new Timer(true);
-            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView);
+            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView, powerUpModel);
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timer.scheduleAtFixedRate(b, 0, 1);

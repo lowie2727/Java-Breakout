@@ -9,7 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import model.Paneel;
 import model.Peddel;
+import model.PowerUp;
 
 /**
  *
@@ -21,13 +23,21 @@ public class VeldView {
     private final PeddelView peddelView;
     private final Peddel peddelModel;
     private final BallenView ballenView;
+    private PowerUpView powerUpView;
+    private PowerUp powerUpModel;
+    private Paneel paneelModel;
     private final double cos;
+    private int n;
+    private int interval;
 
-    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView) {
+    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel) {
         this.ballenView = ballenview;
         this.peddelModel = peddelModel;
         this.stenenView = stenenView;
         this.peddelView = peddelView;
+        this.powerUpView = powerUpView;
+        this.powerUpModel = powerUpModel;
+        interval = 5000;
         cos = Math.cos(Math.toRadians(45));
     }
 
@@ -35,6 +45,8 @@ public class VeldView {
         botsingBal();
         ballenView.update();
         stenenView.update();
+        powerUpView.update();
+        n++;
     }
 
     private void botsingBal() {
@@ -51,6 +63,9 @@ public class VeldView {
                     && middelPunt.getX() > peddelModel.getX()
                     && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
                 b.setId("10");
+            }
+            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal()&& powerUpView.getChildrenUnmodifiable().size()!=0) {
+                powerUpView.getChildrenUnmodifiable().get(0).setId("1");
             }
         }
 
@@ -71,37 +86,30 @@ public class VeldView {
                         && middelPunt.getY() - straal <= steenBounds.getMaxY() + 3
                         && middelPunt.getX() >= steenBounds.getMinX()
                         && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
-                    System.out.println("case: 2");
                     b.setId("2");
                     s.setId("geraakt");
                 } else if (middelPunt.getX() + straal >= steenBounds.getMinX() - 3 //rechterkant bal met linkerkant steen
                         && middelPunt.getX() + straal <= steenBounds.getMinX() + 3
                         && middelPunt.getY() >= steenBounds.getMinY()
                         && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
-                    System.out.println("case: 3");
                     b.setId("3");
                     s.setId("geraakt");
                 } else if (middelPunt.getX() - straal >= steenBounds.getMaxX() - 3 //linkerkant bal met rechterkant steen
                         && middelPunt.getX() - straal <= steenBounds.getMaxX() + 3
                         && middelPunt.getY() >= steenBounds.getMinY()
                         && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
-                    System.out.println("case: 4");
                     b.setId("4");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMinY(), 2)) < straal) { //linksboven bal
-                    System.out.println("case 5");
                     b.setId("5");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMaxX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMaxY(), 2)) < straal) { //rechtsonder bal
-                    System.out.println("case 6");
                     b.setId("6");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() + steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //rechtsboven bal
-                    System.out.println("case 7");
                     b.setId("7");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //linksonder bal
-                    System.out.println("case 8");
                     b.setId("8");
                     s.setId("geraakt");
                 }
@@ -118,5 +126,13 @@ public class VeldView {
         peddelModel.reset();
         peddelView.update();
         stenenView.maakStenen();
+    }
+
+    private void toonPowerUp() {
+        if (powerUpView.getChildrenUnmodifiable().size() == 0 && n > interval) {
+            n = 0;
+            powerUpView = new PowerUpView(powerUpModel, paneelModel);
+
+        }
     }
 }
