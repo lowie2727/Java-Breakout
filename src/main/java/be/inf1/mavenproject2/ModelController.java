@@ -66,8 +66,8 @@ public class ModelController {
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
         ballenModel = new Ballen(vensterModel, 1);  //aantalBallen
-        peddelModel = new Peddel(200, 10, vensterModel);  //breedte, hoogte
-        stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
+        peddelModel = new Peddel(1000, 10, vensterModel);  //breedte, hoogte
+        stenenModel = new Stenen(vensterModel, steenModel, 15, 500);  //rijen, kolommen
 
         ballenView = new BallenView(ballenModel, peddelModel, vensterModel);
         paneelView = new PaneelView(vensterModel);

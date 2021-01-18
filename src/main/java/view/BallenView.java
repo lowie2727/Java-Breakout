@@ -48,8 +48,7 @@ public class BallenView extends Region {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
-            Node balNode = getChildren().get(i);
-            
+            Node balNode = getChildren().get(i); 
             if (null != balNode.getId()) {
                 switch (balNode.getId()) {
                     case "1":
@@ -117,7 +116,6 @@ public class BallenView extends Region {
                                 bal.setHy((temp2 * 0.7) + 0.3);
                             }
                             bal.setVy(bal.getSnelheidY() * bal.getHy());
-                            bal.setHy(1);
                         }
                     default:
                         break;

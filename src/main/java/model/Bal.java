@@ -115,6 +115,7 @@ public class Bal {
 
     public void setVy(double vy) {
         this.vy = vy;
+        vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
     }
 
     public void setVx() {
@@ -122,8 +123,7 @@ public class Bal {
     }
 
     public void setVy() {
-        vy = -vy * hy;
-        vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
+        vy = -vy;
     }
 
     public void setHy(double hy) {
