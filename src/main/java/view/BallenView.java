@@ -48,7 +48,7 @@ public class BallenView extends Region {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
             Bal bal = b.get(i);
-            Node balNode = getChildren().get(i); 
+            Node balNode = getChildren().get(i);
             if (null != balNode.getId()) {
                 switch (balNode.getId()) {
                     case "1":
@@ -103,13 +103,15 @@ public class BallenView extends Region {
                         if (bal.getVy() > 0) {
                             double midden = peddel.getX() + peddel.getBreedte() / 2;
                             if ((bal.getX() - midden) > 0) {
+                                System.out.println("rechts");
                                 if (bal.getVx() < 0) {
                                     bal.setVx();
                                 }
                                 double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
                                 bal.setHy((temp1 * 0.7) + 0.3);
                             } else {
-                                if (bal.getVx() > 0) {
+                                System.out.println("links");
+                                if (bal.getVx() < 0) {
                                     bal.setVx();
                                 }
                                 double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
@@ -122,10 +124,10 @@ public class BallenView extends Region {
                 }
                 balNode.setId(null);
             }
-            
+
             balNode.setTranslateX(bal.getX());
             balNode.setTranslateY(bal.getY());
-            
+
             if (bal.getY() >= paneel.getHoogte() - bal.getStraal() && b.size() > 1) {
                 b.remove(i);
                 getChildren().remove(i);

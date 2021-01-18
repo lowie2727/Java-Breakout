@@ -172,6 +172,7 @@ public class Bal {
     public void tick() {
         setMaxX();
         setMinX();
+        setMaxY();
         setMinY();
         horizontaal();
         verticaal();

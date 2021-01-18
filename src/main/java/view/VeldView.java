@@ -89,15 +89,19 @@ public class VeldView {
                     b.setId("4");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMinY(), 2)) < straal) { //linksboven bal
+                    System.out.println("case 5");
                     b.setId("5");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMaxX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMaxY(), 2)) < straal) { //rechtsonder bal
+                    System.out.println("case 6");
                     b.setId("6");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() + steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //rechtsboven bal
+                    System.out.println("case 7");
                     b.setId("7");
                     s.setId("geraakt");
                 } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //linksonder bal
+                    System.out.println("case 8");
                     b.setId("8");
                     s.setId("geraakt");
                 }
