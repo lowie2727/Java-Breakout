@@ -103,7 +103,7 @@ public class ModelController {
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
         paneel.setOnMouseMoved(this::beweegPeddel);
-        gaNaarStartButton.setOnAction(this::gaNaarMenu);
+        gaNaarStartButton.setOnAction(this::gaNaarStart);
     }
 
     public void update() {
@@ -158,7 +158,7 @@ public class ModelController {
         peddelModel.setMax();
     }
 
-    private void gaNaarMenu(ActionEvent t) {
+    private void gaNaarStart(ActionEvent t) {
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);

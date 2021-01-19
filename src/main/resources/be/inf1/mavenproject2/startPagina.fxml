@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.StartPaginaController">
    <children>
       <Button fx:id="startButton" layoutX="504.0" layoutY="239.0" mnemonicParsing="false" text="Atari Breakout" />
-      <Button fx:id="exitButton" layoutX="532.0" layoutY="286.0" mnemonicParsing="false" text="Exit" />
+      <Button fx:id="exitButton" layoutX="532.0" layoutY="311.0" mnemonicParsing="false" text="Exit" />
       <Text layoutX="200.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atari Breakout" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="83.0" />
@@ -19,5 +19,6 @@
             <Font name="Bell MT" size="12.0" />
          </font>
       </Text>
+      <Button fx:id="spelregelsButton" layoutX="514.0" layoutY="275.0" mnemonicParsing="false" text="Spelregels" />
    </children>
 </AnchorPane>

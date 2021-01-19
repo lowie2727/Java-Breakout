@@ -27,11 +27,15 @@ public class StartPaginaController {
     
     @FXML
     private Button exitButton;
+    
+    @FXML
+    private Button spelregelsButton;
 
     @FXML
     void initialize() {
         startButton.setOnAction(this::gaNaarGame);
         exitButton.setOnAction(this::sluitGame);
+        spelregelsButton.setOnAction(this::gaNaarSpelregels);
     }
 
     private void gaNaarGame(ActionEvent t) {
@@ -48,5 +52,18 @@ public class StartPaginaController {
 
     private void sluitGame(ActionEvent t) {
         System.exit(0);
+    }
+
+    private void gaNaarSpelregels(ActionEvent t) {
+        try {
+            Parent modelParent = FXMLLoader.load(getClass().getResource("spelregels.fxml"));
+            Scene modelScene = new Scene(modelParent, 1100, 600);
+            Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            gameScherm.hide();
+            gameScherm.setTitle("Atari Breakout");
+            gameScherm.setScene(modelScene);
+            gameScherm.show();
+        } catch (IOException io) {
+        }
     }
 }
