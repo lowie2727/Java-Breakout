@@ -39,11 +39,10 @@ public class StartPaginaController {
             Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
             Scene modelScene = new Scene(modelParent, 1100, 600);
             Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            gameScherm.hide();
             gameScherm.setScene(modelScene);
             gameScherm.show();
         } catch (IOException io) {
-            io.printStackTrace();
-
         }
     }
 

@@ -36,10 +36,11 @@ public class VeldView {
     private final double cos;
     private int n;
     private final int intervalPowerUp;
-    private final int intervalPeddel;
+    private final int intervalPowerUpDuration;
 
     private TimerPeddel timerPeddel;
     public boolean statusPink;
+    public boolean statusBlack;
 
     private final double peddelMultiplier;
 
@@ -57,7 +58,7 @@ public class VeldView {
         this.timerPeddel = timerPeddel;
 
         intervalPowerUp = 10;
-        intervalPeddel = 5;
+        intervalPowerUpDuration = 5;
         cos = Math.cos(Math.toRadians(45));
 
         peddelMultiplier = 1.5;
@@ -96,12 +97,15 @@ public class VeldView {
                 } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
                     ballenView.statusPurple = true;
                     timerPeddel.setTijdPeddel();
-
+                } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
+                    peddelModel.setBreedte((peddelModel.getBreedte() / peddelMultiplier));
+                    peddelView.createPeddel();
+                    timerPeddel.setTijdPeddel();
+                    statusBlack = true;
                 }
-            powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-            timerPeddel.setTijdPowerUp();
+                powerUpView.getChildrenUnmodifiable().get(0).setId("1");
+                timerPeddel.setTijdPowerUp();
             }
-
         }
 
         for (Node s : stenen) {
@@ -175,11 +179,18 @@ public class VeldView {
     }
 
     private void tijdPeddel() {
-        if (timerPeddel.getTijdPeddel() > intervalPeddel && statusPink) {
+        if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusPink) {
             peddelModel.setBreedte(peddelModel.getBreedte() / peddelMultiplier);
             peddelView.createPeddel();
             statusPink = false;
+            timerPeddel.setTijdPowerUp();
+        } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && ballenView.statusPurple) {
             ballenView.statusPurple = false;
+            timerPeddel.setTijdPowerUp();
+        } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusBlack) {
+            peddelModel.setBreedte(peddelModel.getBreedte() * peddelMultiplier);
+            peddelView.createPeddel();
+            statusBlack = false;
             timerPeddel.setTijdPowerUp();
         }
     }
@@ -192,9 +203,9 @@ public class VeldView {
     }
 
     public String timerPeddel() {
-        if (statusPink) {
-            return (intervalPeddel - timerPeddel.getTijdPeddel() + "");
+        if (statusPink || ballenView.statusPurple|| statusBlack) {
+            return (intervalPowerUpDuration - timerPeddel.getTijdPeddel() + "");
         }
-        return intervalPeddel + "";
+        return intervalPowerUpDuration + "";
     }
 }

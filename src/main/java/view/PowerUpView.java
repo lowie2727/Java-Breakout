@@ -31,14 +31,14 @@ public class PowerUpView extends Region {
     }
 
     public final void createPowerUp() {
-        long i = Math.round(Math.random());
+        long i = Math.round(Math.random()*3);
         if (i == 1) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
-
-        } else {
+        } else if (i == 2) {
             c = new Circle(powerUp.getStraal(), Color.PURPLE);
+        } else {
+            c = new Circle(powerUp.getStraal(), Color.BLACK);
         }
-
         randX = Math.random() * paneelModel.getBreedte();
         randY = Math.random() * paneelModel.getHoogte() / 2;
         c.setTranslateX(randX);
@@ -77,11 +77,10 @@ public class PowerUpView extends Region {
     /**
      * @return the c
      */
-   public Paint getKleurC() {
+    public Paint getKleurC() {
         //Paint s = Color.PINK;
         //Paint u = (Color) c.getFill();
         return c.getFill();
     }
-    
 
 }
