@@ -22,21 +22,25 @@ import model.PowerUp;
 public class VeldView {
 
     private final Peddel peddelModel;
-    private  PowerUp powerUpModel;
+    private PowerUp powerUpModel;
     private final Paneel paneelModel;
 
     private final StenenView stenenView;
     private final PeddelView peddelView;
     private PowerUpView powerUpView;
     private final BallenView ballenView;
-    
+
     private Pane paneel;
 
     private final double cos;
     private int n;
-    private final int interval;
-    
+    private final int intervalPowerUp;
+    private final int intervalPeddel;
+
     private TimerPeddel timerPeddel;
+    private boolean status;
+
+    private final double peddelMultiplier;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel) {
         this.peddelModel = peddelModel;
@@ -47,13 +51,15 @@ public class VeldView {
         this.stenenView = stenenView;
         this.peddelView = peddelView;
         this.powerUpView = powerUpView;
-        
-        
+
         this.paneel = paneel;
         this.timerPeddel = timerPeddel;
 
-        interval = 10;
+        intervalPowerUp = 10;
+        intervalPeddel = 5;
         cos = Math.cos(Math.toRadians(45));
+
+        peddelMultiplier = 1.5;
     }
 
     public void update() {
@@ -62,6 +68,10 @@ public class VeldView {
         stenenView.update();
         powerUpView.update();
         toonPowerUp();
+        tijdPeddel();
+        System.out.println(timerPeddel.getTijdPowerUp());
+        
+
     }
 
     private void botsingBal() {
@@ -81,9 +91,11 @@ public class VeldView {
             }
             if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                double breedte = peddelModel.getBreedte();
-                peddelModel.setBreedte(1.5 * breedte);
+                peddelModel.setBreedte(peddelMultiplier * peddelModel.getBreedte());
                 peddelView.createPeddel();
+                timerPeddel.setTijdPeddel();
+                timerPeddel.setTijdPowerUp();
+                status = true;
             }
         }
 
@@ -143,20 +155,40 @@ public class VeldView {
         peddelModel.reset();
         peddelView.update();
         stenenView.maakStenen();
+        powerUpView.reset();
+        toonPowerUp();
     }
 
     private void toonPowerUp() {
-        System.out.println(timerPeddel.getT());
-        System.out.println(powerUpView.getChildrenUnmodifiable().isEmpty());
-        if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getT() > interval) {
+        
+        if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getTijdPowerUp() > intervalPowerUp) {
             this.powerUpModel = new PowerUp(powerUpModel.getStraal());
-            timerPeddel.setT();
+            timerPeddel.setTijdPowerUp();
             powerUpView = new PowerUpView(powerUpModel, paneelModel);
             paneel.getChildren().add(powerUpView);
         }
     }
 
     private void tijdPeddel() {
+        if (timerPeddel.getTijdPeddel() > intervalPeddel && status) {
+            peddelModel.setBreedte(peddelModel.getBreedte() / peddelMultiplier);
+            peddelView.createPeddel();
+            status = false;
+            timerPeddel.setTijdPowerUp();
+        }
+    }
 
+    /**
+     * @return the peddelView
+     */
+    public PeddelView getPeddelView() {
+        return peddelView;
+    }
+
+    public String timerPeddel() {
+        if (status) {
+            return (intervalPeddel - timerPeddel.getTijdPeddel() + "");
+        }
+        return intervalPeddel + "";
     }
 }

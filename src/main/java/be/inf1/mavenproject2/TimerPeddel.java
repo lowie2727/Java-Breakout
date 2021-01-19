@@ -13,7 +13,8 @@ import java.util.TimerTask;
  */
 public class TimerPeddel extends TimerTask {
 
-    private int t;
+    private int tijdPowerUp;
+    private int tijdPeddel;
 
     public TimerPeddel() {
 
@@ -21,18 +22,33 @@ public class TimerPeddel extends TimerTask {
 
     @Override
     public void run() {
-        t++;
+        tijdPowerUp++;
+        tijdPeddel++;
     }
 
     /**
      * @return the t
      */
-    public int getT() {
-        return t;
+    public int getTijdPowerUp() {
+        return tijdPowerUp;
     }
 
-    public void setT() {
-        t = 0;
+    public void setTijdPowerUp() {
+        tijdPowerUp = 0;
+    }
+
+    /**
+     * @return the tijdPeddel
+     */
+    public int getTijdPeddel() {
+        return tijdPeddel;
+    }
+
+    /**
+     * @param tijdPeddel the tijdPeddel to set
+     */
+    public void setTijdPeddel() {
+        tijdPeddel = 0;
     }
 
 }

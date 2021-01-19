@@ -45,6 +45,9 @@ public class ModelController {
     @FXML
     private Label label;
 
+    @FXML
+    private Label labelTijd;
+
     private Peddel peddelModel;
     private Bal balModel;
     private Steen steenModel;
@@ -99,11 +102,15 @@ public class ModelController {
             for (Node b : ballenView.getChildrenUnmodifiable()) {
                 b.setId("9");
             }
+
         }
 
         if (status) {
+            peddelView = veldView.getPeddelView();
             peddelView.update();
             veldView.update();
+            labelTijd.setText(veldView.timerPeddel());
+   
         }
         label.setText(stenenView.getAantalStenen() + "");
     }
@@ -112,12 +119,12 @@ public class ModelController {
 
         if (!status) {
             timerPeddel = new Timer(true);
-            TimerPeddel t  = new TimerPeddel();
+            TimerPeddel t = new TimerPeddel();
             timerPeddel.scheduleAtFixedRate(t, 0, 1000);
-            
+
             timerBal = new Timer(true);
-            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView,powerUpView, 
-                                    powerUpModel, t, paneelModel,paneel);
+            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView,
+                    powerUpModel, t, paneelModel, paneel);
 
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);

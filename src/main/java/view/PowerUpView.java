@@ -48,6 +48,10 @@ public class PowerUpView extends Region {
             }
         }
     }
+    
+    public void reset(){
+        getChildren().clear();
+    }
 
     /**
      * @return the randX
