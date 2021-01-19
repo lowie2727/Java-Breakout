@@ -47,6 +47,7 @@ public class VeldView {
         stenenView.update();
         powerUpView.update();
         n++;
+        toonPowerUp();
     }
 
     private void botsingBal() {
@@ -66,6 +67,8 @@ public class VeldView {
             }
             if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
+                peddelModel.setBreedte(1.5*peddelModel.getBreedte());
+                peddelView.createPeddel();
             }
         }
 
@@ -132,5 +135,8 @@ public class VeldView {
             n = 0;
             powerUpView = new PowerUpView(powerUpModel, paneelModel);
         }
+    }
+    private void tijdPeddel() {
+        
     }
 }

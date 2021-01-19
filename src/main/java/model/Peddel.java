@@ -13,7 +13,7 @@ public class Peddel {
 
     private final Paneel paneel;
     private final double hoogte;
-    private final double breedte;
+    private double breedte;
     private final double offset;
     private double x;
     private double y;
@@ -82,4 +82,12 @@ public class Peddel {
     public void setX(double x) {
         this.x = x;
     }
+
+    /**
+     * @param breedte the breedte to set
+     */
+    public void setBreedte(double breedte) {
+        this.breedte = breedte;
+    }
+    
 }

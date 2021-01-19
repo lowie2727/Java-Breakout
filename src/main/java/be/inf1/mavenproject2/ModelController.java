@@ -61,7 +61,8 @@ public class ModelController {
     private PowerUpView powerUpView;
 
     private boolean status;
-    private Timer timer;
+    private Timer timerBal;
+    private Timer timerPeddel;
 
     @FXML
     void initialize() {
@@ -70,9 +71,9 @@ public class ModelController {
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        ballenModel = new Ballen(paneelModel, 4);  //aantalBallen
-        peddelModel = new Peddel(1000, 10, paneelModel);  //breedte, hoogte
-        stenenModel = new Stenen(paneelModel, steenModel, 16, 500);  //rijen, kolommen
+        ballenModel = new Ballen(paneelModel, 1);  //aantalBallen
+        peddelModel = new Peddel(300, 10, paneelModel);  //breedte, hoogte
+        stenenModel = new Stenen(paneelModel, steenModel, 2, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
         ballenView = new BallenView(ballenModel, peddelModel, paneelModel);
@@ -110,11 +111,15 @@ public class ModelController {
     private void start(ActionEvent e) {
 
         if (!status) {
-            timer = new Timer(true);
+            timerPeddel = new Timer(true);
+            TimerPeddel t  = new TimerPeddel();
+            timerPeddel.scheduleAtFixedRate(t, 0, 1000);
+            timerBal = new Timer(true);
             veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView, powerUpModel);
+
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
-                timer.scheduleAtFixedRate(b, 0, 1);
+                timerBal.scheduleAtFixedRate(b, 0, 1);
             }
             status = true;
         }
@@ -124,7 +129,7 @@ public class ModelController {
     public void reset(ActionEvent e) {
         if (status) {
             veldView.reset();
-            timer.cancel();
+            timerBal.cancel();
             status = false;
         }
 
