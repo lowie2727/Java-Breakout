@@ -13,12 +13,12 @@ public class Bal {
 
     private final Paneel paneel;
     private final double straal;
-    
+
     private double vx;
     private double vy;
     private double x;
     private double y;
-    
+
     private final double snelheidX;
     private final double snelheidY;
     private final double snelheid;

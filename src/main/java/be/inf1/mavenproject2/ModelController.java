@@ -1,16 +1,21 @@
 package be.inf1.mavenproject2;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import model.Bal;
 import model.Ballen;
 import model.Paneel;
@@ -41,6 +46,9 @@ public class ModelController {
 
     @FXML
     private Button resetButton;
+
+    @FXML
+    private Button gaNaarStartButton;
 
     @FXML
     private Label label;
@@ -95,6 +103,7 @@ public class ModelController {
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
         paneel.setOnMouseMoved(this::beweegPeddel);
+        gaNaarStartButton.setOnAction(this::gaNaarMenu);
     }
 
     public void update() {
@@ -110,7 +119,7 @@ public class ModelController {
             peddelView.update();
             veldView.update();
             labelTijd.setText(veldView.timerPeddel());
-   
+
         }
         label.setText(stenenView.getAantalStenen() + "");
     }
@@ -147,5 +156,18 @@ public class ModelController {
         peddelModel.setX(m.getX() - (peddelModel.getBreedte()) / 2);
         peddelModel.setMin();
         peddelModel.setMax();
+    }
+
+    private void gaNaarMenu(ActionEvent t) {
+        try {
+            Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
+            Scene modelScene = new Scene(startPaginaParent, 1100, 700);
+            Stage startScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            startScherm.setScene(modelScene);
+            startScherm.show();
+        } catch (IOException io) {
+            io.printStackTrace();
+
+        }
     }
 }

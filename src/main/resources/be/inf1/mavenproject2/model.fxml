@@ -12,5 +12,6 @@
       <Button fx:id="startButton" layoutX="351.0" layoutY="39.0" mnemonicParsing="false" text="Start" />
       <Label fx:id="label" layoutX="199.0" layoutY="43.0" text="Label" />
       <Label fx:id="labelTijd" layoutX="500.0" layoutY="43.0" text="Label" />
+      <Button fx:id="gaNaarStartButton" layoutX="998.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar start" />
    </children>
 </AnchorPane>

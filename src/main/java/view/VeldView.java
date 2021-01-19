@@ -70,7 +70,6 @@ public class VeldView {
         toonPowerUp();
         tijdPeddel();
         System.out.println(timerPeddel.getTijdPowerUp());
-        
 
     }
 
@@ -160,7 +159,7 @@ public class VeldView {
     }
 
     private void toonPowerUp() {
-        
+
         if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getTijdPowerUp() > intervalPowerUp) {
             this.powerUpModel = new PowerUp(powerUpModel.getStraal());
             timerPeddel.setTijdPowerUp();

@@ -12,10 +12,10 @@ package model;
 public class Peddel {
 
     private final Paneel paneel;
-    
+
     private final double hoogte;
     private double breedte;
-    
+
     private final double offset;
     private double x;
     private double y;
@@ -93,5 +93,5 @@ public class Peddel {
     public void setBreedte(double breedte) {
         this.breedte = breedte;
     }
-    
+
 }

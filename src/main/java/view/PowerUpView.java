@@ -48,8 +48,8 @@ public class PowerUpView extends Region {
             }
         }
     }
-    
-    public void reset(){
+
+    public void reset() {
         getChildren().clear();
     }
 

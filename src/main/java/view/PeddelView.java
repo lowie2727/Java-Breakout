@@ -35,6 +35,6 @@ public class PeddelView extends Region {
     public void createPeddel() {
         getChildren().clear();
         p = new Rectangle(peddel.getBreedte(), peddel.getHoogte(), Color.GREEN);
-        
+
     }
 }
