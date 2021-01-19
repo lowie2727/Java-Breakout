@@ -114,12 +114,14 @@ public class ModelController {
             timerPeddel = new Timer(true);
             TimerPeddel t  = new TimerPeddel();
             timerPeddel.scheduleAtFixedRate(t, 0, 1000);
+            
             timerBal = new Timer(true);
-            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView, powerUpModel);
+            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView,powerUpView, 
+                                    powerUpModel, t, paneelModel,paneel);
 
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
-                timerBal.scheduleAtFixedRate(b, 0, 1);
+                timerBal.scheduleAtFixedRate(b, 0, 5);
             }
             status = true;
         }
@@ -132,7 +134,6 @@ public class ModelController {
             timerBal.cancel();
             status = false;
         }
-
     }
 
     private void beweegPeddel(MouseEvent m) {

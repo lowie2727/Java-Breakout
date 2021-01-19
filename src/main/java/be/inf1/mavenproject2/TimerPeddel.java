@@ -12,11 +12,11 @@ import java.util.TimerTask;
  * @author arnoa
  */
 public class TimerPeddel extends TimerTask {
-    
+
     private int t;
 
     public TimerPeddel() {
-        
+
     }
 
     @Override
@@ -30,9 +30,9 @@ public class TimerPeddel extends TimerTask {
     public int getT() {
         return t;
     }
-    
-    
-    
-}
-    
 
+    public void setT() {
+        t = 0;
+    }
+
+}

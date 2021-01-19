@@ -5,10 +5,12 @@
  */
 package view;
 
+import be.inf1.mavenproject2.TimerPeddel;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -19,25 +21,38 @@ import model.PowerUp;
  */
 public class VeldView {
 
+    private final Peddel peddelModel;
+    private  PowerUp powerUpModel;
+    private final Paneel paneelModel;
+
     private final StenenView stenenView;
     private final PeddelView peddelView;
-    private final Peddel peddelModel;
-    private final BallenView ballenView;
     private PowerUpView powerUpView;
-    private final PowerUp powerUpModel;
-    private Paneel paneelModel;
+    private final BallenView ballenView;
+    
+    private Pane paneel;
+
     private final double cos;
     private int n;
     private final int interval;
+    
+    private TimerPeddel timerPeddel;
 
-    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel) {
-        this.ballenView = ballenview;
+    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel) {
         this.peddelModel = peddelModel;
+        this.powerUpModel = powerUpModel;
+        this.paneelModel = paneelModel;
+
+        this.ballenView = ballenview;
         this.stenenView = stenenView;
         this.peddelView = peddelView;
         this.powerUpView = powerUpView;
-        this.powerUpModel = powerUpModel;
-        interval = 5000;
+        
+        
+        this.paneel = paneel;
+        this.timerPeddel = timerPeddel;
+
+        interval = 10;
         cos = Math.cos(Math.toRadians(45));
     }
 
@@ -46,7 +61,6 @@ public class VeldView {
         ballenView.update();
         stenenView.update();
         powerUpView.update();
-        n++;
         toonPowerUp();
     }
 
@@ -67,7 +81,8 @@ public class VeldView {
             }
             if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                peddelModel.setBreedte(1.5*peddelModel.getBreedte());
+                double breedte = peddelModel.getBreedte();
+                peddelModel.setBreedte(1.5 * breedte);
                 peddelView.createPeddel();
             }
         }
@@ -131,12 +146,17 @@ public class VeldView {
     }
 
     private void toonPowerUp() {
-        if (powerUpView.getChildrenUnmodifiable().isEmpty() && n > interval) {
-            n = 0;
+        System.out.println(timerPeddel.getT());
+        System.out.println(powerUpView.getChildrenUnmodifiable().isEmpty());
+        if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getT() > interval) {
+            this.powerUpModel = new PowerUp(powerUpModel.getStraal());
+            timerPeddel.setT();
             powerUpView = new PowerUpView(powerUpModel, paneelModel);
+            paneel.getChildren().add(powerUpView);
         }
     }
+
     private void tijdPeddel() {
-        
+
     }
 }

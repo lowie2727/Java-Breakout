@@ -13,18 +13,20 @@ public class Bal {
 
     private final Paneel paneel;
     private final double straal;
+    
     private double vx;
     private double vy;
     private double x;
     private double y;
+    
     private final double snelheidX;
     private final double snelheidY;
     private final double snelheid;
     private double hy;
 
     public Bal(Paneel paneel, double straal) {
-        snelheidX = 0.4;
-        snelheidY = -0.4;
+        snelheidX = 1.5;
+        snelheidY = -1.5;
         snelheid = Math.sqrt((Math.pow(snelheidX, 2)) + Math.pow(snelheidY, 2));
         this.paneel = paneel;
         this.straal = straal;
@@ -33,7 +35,7 @@ public class Bal {
         vx = 0;
         vy = 0;
         hy = 1;
-        
+
     }
 
     /**
@@ -115,13 +117,13 @@ public class Bal {
 
     public void setVy(double vy) {
         this.vy = vy;
-        if(vx<0){
-           vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2)); 
-           vx = vx*-1;
+        if (vx < 0) {
+            vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
+            vx = vx * -1;
         } else {
             vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
         }
-        
+
     }
 
     public void setVx() {

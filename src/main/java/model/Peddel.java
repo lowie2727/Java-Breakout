@@ -12,11 +12,14 @@ package model;
 public class Peddel {
 
     private final Paneel paneel;
+    
     private final double hoogte;
     private double breedte;
+    
     private final double offset;
     private double x;
     private double y;
+    private double vergroot;
 
     public Peddel(double breedte, double hoogte, Paneel paneel) {
         this.paneel = paneel;
@@ -25,6 +28,7 @@ public class Peddel {
         this.breedte = breedte;
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
+        vergroot = 1.5;
     }
 
     /**
