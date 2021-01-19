@@ -24,11 +24,11 @@ public class VeldView {
     private final Peddel peddelModel;
     private final BallenView ballenView;
     private PowerUpView powerUpView;
-    private PowerUp powerUpModel;
+    private final PowerUp powerUpModel;
     private Paneel paneelModel;
     private final double cos;
     private int n;
-    private int interval;
+    private final int interval;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel) {
         this.ballenView = ballenview;
@@ -64,7 +64,7 @@ public class VeldView {
                     && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
                 b.setId("10");
             }
-            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal()&& powerUpView.getChildrenUnmodifiable().size()!=0) {
+            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
             }
         }
@@ -79,7 +79,6 @@ public class VeldView {
                         && middelPunt.getY() + straal <= steenBounds.getMinY() + 3
                         && middelPunt.getX() >= steenBounds.getMinX()
                         && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
-                    System.out.println("case: 1");
                     b.setId("1");
                     s.setId("geraakt");
                 } else if (middelPunt.getY() - straal >= steenBounds.getMaxY() - 3 //bovenkant bal met onderkant steen
@@ -129,10 +128,9 @@ public class VeldView {
     }
 
     private void toonPowerUp() {
-        if (powerUpView.getChildrenUnmodifiable().size() == 0 && n > interval) {
+        if (powerUpView.getChildrenUnmodifiable().isEmpty() && n > interval) {
             n = 0;
             powerUpView = new PowerUpView(powerUpModel, paneelModel);
-
         }
     }
 }

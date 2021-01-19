@@ -15,7 +15,7 @@ public class Ballen {
 
     private ArrayList<Bal> ballen;
     private final int aantalBallen;
-    private Paneel paneelModel;
+    private final Paneel paneelModel;
 
     public Ballen(Paneel vensterModel, int aantalBallen) {
         this.paneelModel = vensterModel;

@@ -72,28 +72,20 @@ public class BallenView extends Region {
                         }
                         break;
                     case "5":
-                        if (bal.getVx() < 0 && bal.getVy() < 0) {
-                            bal.setVy();
-                            bal.setVx();
-                        }
+                        bal.setVy();
+                        bal.setVx();
                         break;
                     case "6":
-                        if (bal.getVx() > 0 && bal.getVy() > 0) {
-                            bal.setVx();
-                            bal.setVy();
-                        }
+                        bal.setVx();
+                        bal.setVy();
                         break;
                     case "7":
-                        if (bal.getVx() > 0 && bal.getVy() < 0) {
-                            bal.setVx();
-                            bal.setVy();
-                        }
+                        bal.setVx();
+                        bal.setVy();
                         break;
                     case "8":
-                        if (bal.getVx() < 0 && bal.getVy() > 0) {
-                            bal.setVx();
-                            bal.setVy();
-                        }
+                        bal.setVx();
+                        bal.setVy();
                         break;
                     case "9":
                         bal.setVx(bal.getSnelheidX());

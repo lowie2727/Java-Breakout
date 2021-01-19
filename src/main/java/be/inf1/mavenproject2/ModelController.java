@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -42,12 +43,12 @@ public class ModelController {
     private Button resetButton;
 
     @FXML
-    private TextField textBox;
+    private Label label;
 
     private Peddel peddelModel;
     private Bal balModel;
     private Steen steenModel;
-    private Paneel vensterModel;
+    private Paneel paneelModel;
     private Stenen stenenModel;
     private Ballen ballenModel;
     private PowerUp powerUpModel;
@@ -61,26 +62,25 @@ public class ModelController {
 
     private boolean status;
     private Timer timer;
-    
 
     @FXML
     void initialize() {
 
-        vensterModel = new Paneel(1000, 500);    //breedte, hoogte
-        paneel.setPrefSize(vensterModel.getBreedte(), vensterModel.getHoogte());
+        paneelModel = new Paneel(1000, 500);    //breedte, hoogte
+        paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        ballenModel = new Ballen(vensterModel, 1);  //aantalBallen
-        peddelModel = new Peddel(500, 10, vensterModel);  //breedte, hoogte
-        stenenModel = new Stenen(vensterModel, steenModel, 2, 500);  //rijen, kolommen
+        ballenModel = new Ballen(paneelModel, 4);  //aantalBallen
+        peddelModel = new Peddel(1000, 10, paneelModel);  //breedte, hoogte
+        stenenModel = new Stenen(paneelModel, steenModel, 16, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
-        ballenView = new BallenView(ballenModel, peddelModel, vensterModel);
-        paneelView = new PaneelView(vensterModel);
+        ballenView = new BallenView(ballenModel, peddelModel, paneelModel);
+        paneelView = new PaneelView(paneelModel);
         peddelView = new PeddelView(peddelModel);
-        paneelView = new PaneelView(vensterModel);
+        paneelView = new PaneelView(paneelModel);
         stenenView = new StenenView(stenenModel);
-        powerUpView = new PowerUpView(powerUpModel, vensterModel);
+        powerUpView = new PowerUpView(powerUpModel, paneelModel);
 
         paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
 
@@ -104,7 +104,7 @@ public class ModelController {
             peddelView.update();
             veldView.update();
         }
-        textBox.setText(stenenView.getAantalStenen() + "");
+        label.setText(stenenView.getAantalStenen() + "");
     }
 
     private void start(ActionEvent e) {
