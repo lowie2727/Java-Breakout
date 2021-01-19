@@ -18,7 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("startPagina"), 1100, 600);
-        stage.setTitle("F");
+        stage.setTitle("Atari Breakout");
         stage.setScene(scene);
         stage.show();
     }

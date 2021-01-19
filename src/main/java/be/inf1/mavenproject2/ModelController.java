@@ -163,6 +163,7 @@ public class ModelController {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);
             Stage startScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            startScherm.setTitle("Atari Breakout");
             startScherm.setScene(modelScene);
             startScherm.show();
         } catch (IOException io) {

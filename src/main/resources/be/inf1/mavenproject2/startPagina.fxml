@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.StartPaginaController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.StartPaginaController">
    <children>
       <Button fx:id="startButton" layoutX="504.0" layoutY="239.0" mnemonicParsing="false" text="Atari Breakout" />
       <Button fx:id="exitButton" layoutX="532.0" layoutY="286.0" mnemonicParsing="false" text="Exit" />
@@ -14,7 +14,7 @@
             <Font name="Algerian" size="83.0" />
          </font>
       </Text>
-      <Text layoutX="824.0" layoutY="683.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arnaud Paquet, Lowie Van Vyve, Jonas Vandenborne">
+      <Text layoutX="824.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arnaud Paquet, Lowie Van Vyve, Jonas Vandenborne">
          <font>
             <Font name="Bell MT" size="12.0" />
          </font>
