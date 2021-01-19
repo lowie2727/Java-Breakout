@@ -69,8 +69,6 @@ public class VeldView {
         powerUpView.update();
         toonPowerUp();
         tijdPeddel();
-        System.out.println(timerPeddel.getTijdPowerUp());
-
     }
 
     private void botsingBal() {

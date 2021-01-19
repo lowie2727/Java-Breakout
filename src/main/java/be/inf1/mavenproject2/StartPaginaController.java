@@ -24,13 +24,14 @@ public class StartPaginaController {
 
     @FXML
     private Button startButton;
-
+    
     @FXML
-    private ImageView logoView;
+    private Button exitButton;
 
     @FXML
     void initialize() {
         startButton.setOnAction(this::gaNaarGame);
+        exitButton.setOnAction(this::sluitGame);
     }
 
     private void gaNaarGame(ActionEvent t) {
@@ -44,5 +45,9 @@ public class StartPaginaController {
             io.printStackTrace();
 
         }
+    }
+
+    private void sluitGame(ActionEvent t) {
+        System.exit(0);
     }
 }

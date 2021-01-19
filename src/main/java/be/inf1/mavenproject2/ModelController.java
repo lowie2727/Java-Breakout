@@ -161,7 +161,7 @@ public class ModelController {
     private void gaNaarMenu(ActionEvent t) {
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
-            Scene modelScene = new Scene(startPaginaParent, 1100, 700);
+            Scene modelScene = new Scene(startPaginaParent);
             Stage startScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
             startScherm.setScene(modelScene);
             startScherm.show();
