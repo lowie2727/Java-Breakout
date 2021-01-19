@@ -4,14 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.ModelController">
    <children>
-      <Pane fx:id="paneel" layoutX="50.0" layoutY="95.0" prefHeight="500.0" prefWidth="1000.0" />
-      <Button fx:id="resetButton" layoutX="48.0" layoutY="39.0" mnemonicParsing="false" text="Reset" />
-      <Button fx:id="startButton" layoutX="351.0" layoutY="39.0" mnemonicParsing="false" text="Start" />
-      <Label fx:id="label" layoutX="199.0" layoutY="43.0" text="Label" />
-      <Label fx:id="labelTijd" layoutX="500.0" layoutY="43.0" text="Label" />
-      <Button fx:id="gaNaarStartButton" layoutX="998.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar start" />
+      <Pane fx:id="paneel" layoutX="50.0" layoutY="67.0" prefHeight="500.0" prefWidth="1000.0" />
+      <Button fx:id="resetButton" layoutX="93.0" layoutY="14.0" mnemonicParsing="false" text="Reset" />
+      <Button fx:id="startButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Start" />
+      <Label fx:id="label" layoutX="300.0" layoutY="18.0" text="Label" />
+      <Label fx:id="labelTijd" layoutX="421.0" layoutY="18.0" text="Label" />
+      <Button fx:id="gaNaarStartButton" layoutX="970.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar homepage" />
+      <Text layoutX="458.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="seconden tot de powerup weggaat" />
+      <Text layoutX="219.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aantal stenen:" />
    </children>
 </AnchorPane>

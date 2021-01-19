@@ -37,7 +37,7 @@ public class StartPaginaController {
     private void gaNaarGame(ActionEvent t) {
         try {
             Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
-            Scene modelScene = new Scene(modelParent, 1100, 700);
+            Scene modelScene = new Scene(modelParent, 1100, 600);
             Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
             gameScherm.setScene(modelScene);
             gameScherm.show();
