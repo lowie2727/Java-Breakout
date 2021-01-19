@@ -23,6 +23,7 @@ public class BallenView extends Region {
     private final Ballen ballen;
     private final Peddel peddel;
     private final Paneel paneel;
+    public boolean statusPurple;
 
     public BallenView(Ballen ballen, Peddel peddel, Paneel paneel) {
         this.ballen = ballen;
@@ -50,71 +51,62 @@ public class BallenView extends Region {
             Bal bal = b.get(i);
             Node balNode = getChildren().get(i);
             if (null != balNode.getId()) {
-                switch (balNode.getId()) {
-                    case "1":
+                String string = (balNode.getId());
+                if (!statusPurple) {
+                    if ("1".equals(string)) {
                         if (bal.getVy() > 0) {
                             bal.setVy();
                         }
-                        break;
-                    case "2":
+                    } else if ("2".equals(string)) {
                         if (bal.getVy() < 0) {
                             bal.setVy();
                         }
-                        break;
-                    case "3":
+                    } else if ("3".equals(string)) {
                         if (bal.getVx() > 0) {
                             bal.setVx();
                         }
-                        break;
-                    case "4":
+                    } else if ("4".equals(string)) {
                         if (bal.getVx() < 0) {
                             bal.setVx();
                         }
-                        break;
-                    case "5":
+                    } else if ("5".equals(string)) {
                         bal.setVy();
                         bal.setVx();
-                        break;
-                    case "6":
+                    } else if ("6".equals(string)) {
                         bal.setVx();
                         bal.setVy();
-                        break;
-                    case "7":
+                    } else if ("7".equals(string)) {
                         bal.setVx();
                         bal.setVy();
-                        break;
-                    case "8":
+                    } else if ("8".equals(string)) {
                         bal.setVx();
                         bal.setVy();
-                        break;
-                    case "9":
-                        bal.setVx(bal.getSnelheidX());
-                        bal.setVy(bal.getSnelheidY());
-                        break;
-                    case "10":
-                        if (bal.getVy() > 0) {
-                            double midden = peddel.getX() + peddel.getBreedte() / 2;
-                            if ((bal.getX() - midden) > 0) {
-                                if (bal.getVx() < 0) {
-                                    bal.setVx();
-                                }
-                                double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
-                                bal.setHy((temp1 * 0.7) + 0.3);
-                            } else {
-                                if (bal.getVx() > 0) {
-                                    bal.setVx();
-                                }
-                                double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
-                                bal.setHy((temp2 * 0.7) + 0.3);
-                            }
-                            bal.setVy(bal.getSnelheidY() * bal.getHy());
-                        }
-                    default:
-                        break;
+                    }
                 }
-                balNode.setId(null);
+                if ("9".equals(string)) {
+                    bal.setVx(bal.getSnelheidX());
+                    bal.setVy(bal.getSnelheidY());
+                } else if ("10".equals(string)) {
+                    if (bal.getVy() > 0) {
+                        double midden = peddel.getX() + peddel.getBreedte() / 2;
+                        if ((bal.getX() - midden) > 0) {
+                            if (bal.getVx() < 0) {
+                                bal.setVx();
+                            }
+                            double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
+                            bal.setHy((temp1 * 0.7) + 0.3);
+                        } else {
+                            if (bal.getVx() > 0) {
+                                bal.setVx();
+                            }
+                            double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
+                            bal.setHy((temp2 * 0.7) + 0.3);
+                        }
+                        bal.setVy(bal.getSnelheidY() * bal.getHy());
+                    }
+                }
             }
-
+            balNode.setId(null);
             balNode.setTranslateX(bal.getX());
             balNode.setTranslateY(bal.getY());
 
@@ -123,7 +115,6 @@ public class BallenView extends Region {
                 getChildren().remove(i);
             }
         }
-
         if (b.get(0).getY() > paneel.getHoogte() - b.get(0).getStraal() && b.get(0).getVy() != 0 && ballen.getBallen().size() == 1) {
             b.get(0).setVx(0);
             b.get(0).setVy(0);

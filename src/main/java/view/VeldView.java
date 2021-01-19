@@ -11,6 +11,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -38,7 +39,7 @@ public class VeldView {
     private final int intervalPeddel;
 
     private TimerPeddel timerPeddel;
-    private boolean status;
+    public boolean statusPink;
 
     private final double peddelMultiplier;
 
@@ -87,13 +88,20 @@ public class VeldView {
                 b.setId("10");
             }
             if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
-                powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                peddelModel.setBreedte(peddelMultiplier * peddelModel.getBreedte());
-                peddelView.createPeddel();
-                timerPeddel.setTijdPeddel();
-                timerPeddel.setTijdPowerUp();
-                status = true;
+                if (powerUpView.getKleurC().equals(Color.PINK)) {
+                    peddelModel.setBreedte(peddelMultiplier * peddelModel.getBreedte());
+                    peddelView.createPeddel();
+                    timerPeddel.setTijdPeddel();
+                    statusPink = true;
+                } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
+                    ballenView.statusPurple = true;
+                    timerPeddel.setTijdPeddel();
+
+                }
+            powerUpView.getChildrenUnmodifiable().get(0).setId("1");
+            timerPeddel.setTijdPowerUp();
             }
+
         }
 
         for (Node s : stenen) {
@@ -167,10 +175,11 @@ public class VeldView {
     }
 
     private void tijdPeddel() {
-        if (timerPeddel.getTijdPeddel() > intervalPeddel && status) {
+        if (timerPeddel.getTijdPeddel() > intervalPeddel && statusPink) {
             peddelModel.setBreedte(peddelModel.getBreedte() / peddelMultiplier);
             peddelView.createPeddel();
-            status = false;
+            statusPink = false;
+            ballenView.statusPurple = false;
             timerPeddel.setTijdPowerUp();
         }
     }
@@ -183,7 +192,7 @@ public class VeldView {
     }
 
     public String timerPeddel() {
-        if (status) {
+        if (statusPink) {
             return (intervalPeddel - timerPeddel.getTijdPeddel() + "");
         }
         return intervalPeddel + "";

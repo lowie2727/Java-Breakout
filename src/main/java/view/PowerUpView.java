@@ -7,6 +7,7 @@ package view;
 
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import model.Paneel;
 import model.PowerUp;
@@ -27,11 +28,16 @@ public class PowerUpView extends Region {
         this.powerUp = powerUp;
         this.paneelModel = paneelModel;
         createPowerUp();
-
     }
 
     public final void createPowerUp() {
-        c = new Circle(powerUp.getStraal(), Color.PINK);
+        long i = Math.round(Math.random());
+        if (i == 1) {
+            c = new Circle(powerUp.getStraal(), Color.PINK);
+
+        } else {
+            c = new Circle(powerUp.getStraal(), Color.PURPLE);
+        }
 
         randX = Math.random() * paneelModel.getBreedte();
         randY = Math.random() * paneelModel.getHoogte() / 2;
@@ -39,6 +45,7 @@ public class PowerUpView extends Region {
         c.setCenterY(randY);
 
         getChildren().add(c);
+
     }
 
     public void update() {
@@ -66,5 +73,15 @@ public class PowerUpView extends Region {
     public double getRandY() {
         return randY;
     }
+
+    /**
+     * @return the c
+     */
+   public Paint getKleurC() {
+        //Paint s = Color.PINK;
+        //Paint u = (Color) c.getFill();
+        return c.getFill();
+    }
+    
 
 }
