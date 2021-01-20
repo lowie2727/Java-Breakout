@@ -11,7 +11,6 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -38,8 +37,8 @@ public class VeldView {
     private final int intervalPowerUpDuration;
 
     private final TimerPeddel timerPeddel;
-    public boolean statusPink;
-    public boolean statusBlack;
+    private boolean statusPink;
+    private boolean statusBlack;
 
     private final double peddelMultiplier;
 
@@ -76,81 +75,93 @@ public class VeldView {
     private void botsingBal() {
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
         ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
-        double straal;
-
-        for (Node b : ballen) {
-            Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-            straal = boundsBal.getWidth() / 2;
-            Point2D middelPunt = b.localToParent(Point2D.ZERO);
-            if (middelPunt.getY() + straal >= peddelModel.getY() - 3
-                    && middelPunt.getY() + straal <= peddelModel.getY() + 3
-                    && middelPunt.getX() > peddelModel.getX()
-                    && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
-                b.setId("10");
-            }
-            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPunt.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPunt.getY(), 2)) < straal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
-                if (powerUpView.getKleurC().equals(Color.PINK)) {
-                    peddelModel.setBreedte(peddelMultiplier * peddelModel.getBreedte());
-                    peddelView.createPeddel();
-                    timerPeddel.setTijdPeddel();
-                    statusPink = true;
-                } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
-                    ballenView.statusPurple = true;
-                    timerPeddel.setTijdPeddel();
-                } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
-                    peddelModel.setBreedte((peddelModel.getBreedte() / peddelMultiplier));
-                    peddelView.createPeddel();
-                    timerPeddel.setTijdPeddel();
-                    statusBlack = true;
-                }
-                powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                timerPeddel.setTijdPowerUp();
-            }
-        }
 
         for (Node s : stenen) {
             Bounds steenBounds = getBoundSteen(s);
             for (Node b : ballen) {
-                Point2D middelPunt = b.localToParent(Point2D.ZERO);
+                Point2D middelPuntBal = b.localToParent(Point2D.ZERO);
                 Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-                straal = boundsBal.getWidth() / 2;
-                if (middelPunt.getY() + straal >= steenBounds.getMinY() - 3 //onderkant bal met bovenkant steen
-                        && middelPunt.getY() + straal <= steenBounds.getMinY() + 3
-                        && middelPunt.getX() >= steenBounds.getMinX()
-                        && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
+                double straalBal = boundsBal.getWidth() / 2;
+                if (middelPuntBal.getY() + straalBal >= steenBounds.getMinY() - 3 //onderkant bal met bovenkant steen
+                        && middelPuntBal.getY() + straalBal <= steenBounds.getMinY() + 3
+                        && middelPuntBal.getX() >= steenBounds.getMinX()
+                        && middelPuntBal.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
                     b.setId("1");
                     s.setId("geraakt");
-                } else if (middelPunt.getY() - straal >= steenBounds.getMaxY() - 3 //bovenkant bal met onderkant steen
-                        && middelPunt.getY() - straal <= steenBounds.getMaxY() + 3
-                        && middelPunt.getX() >= steenBounds.getMinX()
-                        && middelPunt.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
+                } else if (middelPuntBal.getY() - straalBal >= steenBounds.getMaxY() - 3 //bovenkant bal met onderkant steen
+                        && middelPuntBal.getY() - straalBal <= steenBounds.getMaxY() + 3
+                        && middelPuntBal.getX() >= steenBounds.getMinX()
+                        && middelPuntBal.getX() <= steenBounds.getMinX() + steenBounds.getWidth()) {
                     b.setId("2");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() + straal >= steenBounds.getMinX() - 3 //rechterkant bal met linkerkant steen
-                        && middelPunt.getX() + straal <= steenBounds.getMinX() + 3
-                        && middelPunt.getY() >= steenBounds.getMinY()
-                        && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
+                } else if (middelPuntBal.getX() + straalBal >= steenBounds.getMinX() - 3 //rechterkant bal met linkerkant steen
+                        && middelPuntBal.getX() + straalBal <= steenBounds.getMinX() + 3
+                        && middelPuntBal.getY() >= steenBounds.getMinY()
+                        && middelPuntBal.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
                     b.setId("3");
                     s.setId("geraakt");
-                } else if (middelPunt.getX() - straal >= steenBounds.getMaxX() - 3 //linkerkant bal met rechterkant steen
-                        && middelPunt.getX() - straal <= steenBounds.getMaxX() + 3
-                        && middelPunt.getY() >= steenBounds.getMinY()
-                        && middelPunt.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
+                } else if (middelPuntBal.getX() - straalBal >= steenBounds.getMaxX() - 3 //linkerkant bal met rechterkant steen
+                        && middelPuntBal.getX() - straalBal <= steenBounds.getMaxX() + 3
+                        && middelPuntBal.getY() >= steenBounds.getMinY()
+                        && middelPuntBal.getY() <= steenBounds.getMinY() + steenBounds.getHeight()) {
                     b.setId("4");
                     s.setId("geraakt");
-                } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMinY(), 2)) < straal) { //linksboven bal
+                } else if (Math.sqrt(Math.pow(middelPuntBal.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPuntBal.getY() - steenBounds.getMinY(), 2)) < straalBal) { //linksboven bal
                     b.setId("5");
                     s.setId("geraakt");
-                } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMaxX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getMaxY(), 2)) < straal) { //rechtsonder bal
+                } else if (Math.sqrt(Math.pow(middelPuntBal.getX() - steenBounds.getMaxX(), 2) + Math.pow(middelPuntBal.getY() - steenBounds.getMaxY(), 2)) < straalBal) { //rechtsonder bal
                     b.setId("6");
                     s.setId("geraakt");
-                } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() + steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //rechtsboven bal
+                } else if (Math.sqrt(Math.pow(middelPuntBal.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPuntBal.getY() + steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straalBal) { //rechtsboven bal
                     b.setId("7");
                     s.setId("geraakt");
-                } else if (Math.sqrt(Math.pow(middelPunt.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPunt.getY() - steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straal) { //linksonder bal
+                } else if (Math.sqrt(Math.pow(middelPuntBal.getX() - steenBounds.getMinX(), 2) + Math.pow(middelPuntBal.getY() - steenBounds.getHeight() - steenBounds.getMinY(), 2)) < straalBal) { //linksonder bal
                     b.setId("8");
                     s.setId("geraakt");
                 }
+
+                if (middelPuntBal.getY() + straalBal >= peddelModel.getY() - 3
+                        && middelPuntBal.getY() + straalBal <= peddelModel.getY() + 3
+                        && middelPuntBal.getX() > peddelModel.getX()
+                        && middelPuntBal.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
+                    b.setId("10");
+                }
+
+                /*if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPuntBal.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPuntBal.getY(), 2)) < straalBal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
+                    if (powerUpView.getKleurC().equals(Color.PINK)) {
+                        peddelModel.setBreedte(peddelModel.getMultiplier() * peddelModel.getBreedte());
+                        peddelView.createPeddel();
+                        timerPeddel.setTijdPeddel();
+                        statusPink = true;
+                    } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
+                        ballenView.statusPurple = true;
+                        timerPeddel.setTijdPeddel();
+                    } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
+                        peddelModel.setBreedte((peddelModel.getBreedte() / peddelMultiplier));
+                        peddelView.createPeddel();
+                        timerPeddel.setTijdPeddel();
+                        statusBlack = true;
+                    }
+                    powerUpView.getChildrenUnmodifiable().get(0).setId("1");
+                    timerPeddel.setTijdPowerUp();
+                }*/
+
+                /*for (Node b2 : ballen) {
+                    Bounds boundsBal2 = b2.localToParent(b2.getBoundsInLocal());
+                    straalBal = boundsBal.getWidth() / 2;
+                    Point2D middelPuntBal2 = b2.localToParent(Point2D.ZERO);
+                    if (Math.sqrt(Math.pow(middelPuntBal2.getX() - middelPuntBal.getX(), 2) + Math.pow(middelPuntBal2.getY() - middelPuntBal.getY(), 2)) < straalBal * 2 && !b2.equals(b)) {
+                        if (middelPuntBal.getX() == middelPuntBal2.getX() && middelPuntBal2.getY() > middelPuntBal.getY()) {
+                            b.setId("1");
+                        } else if (middelPuntBal.getX() == middelPuntBal2.getX() && middelPuntBal2.getY() < middelPuntBal.getY()) {
+                            b.setId("2");
+                        } else if (middelPuntBal.getY() == middelPuntBal2.getY() && middelPuntBal2.getX() < middelPuntBal.getX()) {
+                            b.setId("4");
+                        } else if (middelPuntBal.getY() == middelPuntBal2.getY() && middelPuntBal2.getX() > middelPuntBal.getX()) {
+                            b.setId("3");
+                        }
+                    }
+                }*/
             }
         }
     }

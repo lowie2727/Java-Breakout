@@ -19,7 +19,8 @@ public class Peddel {
     private final double offset;
     private double x;
     private double y;
-    private double vergroot;
+    
+    private final double multiplier;
 
     public Peddel(double breedte, double hoogte, Paneel paneel) {
         this.paneel = paneel;
@@ -28,7 +29,7 @@ public class Peddel {
         this.breedte = breedte;
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
-        vergroot = 1.5;
+        multiplier  = 1.5;
     }
 
     /**
@@ -64,6 +65,10 @@ public class Peddel {
      */
     public double getOffset() {
         return offset;
+    }
+    
+    public double getMultiplier(){
+        return multiplier;
     }
 
     public void reset() {

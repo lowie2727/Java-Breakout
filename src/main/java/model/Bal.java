@@ -27,8 +27,8 @@ public class Bal {
         this.paneel = paneel;
         this.straal = straal;
 
-        snelheidX = 1.5;
-        snelheidY = -1.5;
+        snelheidX = 4;
+        snelheidY = -4;
         snelheid = Math.sqrt((Math.pow(snelheidX, 2)) + Math.pow(snelheidY, 2));
 
         x = paneel.getBreedte() / 2;

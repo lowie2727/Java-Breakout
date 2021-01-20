@@ -81,8 +81,8 @@ public class ModelController {
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        ballenModel = new Ballen(paneelModel, 5);  //aantalBallen
-        peddelModel = new Peddel(200, 10, paneelModel);  //breedte, hoogte
+        ballenModel = new Ballen(paneelModel, 25);  //aantalBallen
+        peddelModel = new Peddel(1000, 10, paneelModel);  //breedte, hoogte
         stenenModel = new Stenen(paneelModel, steenModel, 3, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
@@ -132,7 +132,7 @@ public class ModelController {
 
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
-                timerBal.scheduleAtFixedRate(b, 0, 5);
+                timerBal.scheduleAtFixedRate(b, 0, 16);
             }
             status = true;
         }
@@ -155,9 +155,9 @@ public class ModelController {
     }
 
     private void gaNaarStart(ActionEvent t) {
-        timerBal.cancel();
-        timerPeddel.cancel();
         try {
+            timerBal.cancel();
+            timerPeddel.cancel();
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);
             Stage startScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();

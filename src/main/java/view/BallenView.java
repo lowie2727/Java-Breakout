@@ -119,8 +119,7 @@ public class BallenView extends Region {
             }
         }
         if (b.get(0).getY() > paneel.getHoogte() - b.get(0).getStraal() && b.get(0).getVy() != 0 && ballen.getBallen().size() == 1) {
-            b.get(0).setVx(0);
-            b.get(0).setVy(0);
+            b.get(0).reset();
             gameOver();
         }
     }
