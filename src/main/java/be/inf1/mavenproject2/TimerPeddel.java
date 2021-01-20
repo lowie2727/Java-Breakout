@@ -50,5 +50,4 @@ public class TimerPeddel extends TimerTask {
     public void setTijdPeddel() {
         tijdPeddel = 0;
     }
-
 }

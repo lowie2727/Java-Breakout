@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -82,8 +81,8 @@ public class ModelController {
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
-        ballenModel = new Ballen(paneelModel, 1);  //aantalBallen
-        peddelModel = new Peddel(500, 10, paneelModel);  //breedte, hoogte
+        ballenModel = new Ballen(paneelModel, 5);  //aantalBallen
+        peddelModel = new Peddel(200, 10, paneelModel);  //breedte, hoogte
         stenenModel = new Stenen(paneelModel, steenModel, 3, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
@@ -107,26 +106,22 @@ public class ModelController {
     }
 
     public void update() {
-        if (!status) {
-            for (Node b : ballenView.getChildrenUnmodifiable()) {
-                b.setId("9");
-            }
-
-        }
-
         if (status) {
-            peddelView = veldView.getPeddelView();
-            peddelView.update();
             veldView.update();
             labelTijd.setText(veldView.timerPeddel());
-
         }
         label.setText(stenenView.getAantalStenen() + "");
     }
 
     private void start(ActionEvent e) {
-
         if (!status) {
+            for (Bal b : ballenModel.getBallen()) {
+                b.setVx(b.getSnelheidX());
+                b.setVy(b.getSnelheidY());
+            }
+            paneel.getChildren().clear();
+            paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
+
             timerPeddel = new Timer(true);
             TimerPeddel t = new TimerPeddel();
             timerPeddel.scheduleAtFixedRate(t, 0, 1000);
@@ -148,6 +143,7 @@ public class ModelController {
         if (status) {
             veldView.reset();
             timerBal.cancel();
+            timerPeddel.cancel();
             status = false;
         }
     }
@@ -159,6 +155,8 @@ public class ModelController {
     }
 
     private void gaNaarStart(ActionEvent t) {
+        timerBal.cancel();
+        timerPeddel.cancel();
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);

@@ -26,7 +26,6 @@ public class SpelregelsController {
     @FXML
     void initialize() {
         gaNaarStartButton.setOnAction(this::gaNaarStart);
-
     }
 
     private void gaNaarStart(ActionEvent t) {
@@ -40,6 +39,5 @@ public class SpelregelsController {
             startScherm.show();
         } catch (IOException io) {
         }
-
     }
 }

@@ -31,20 +31,20 @@ public class VeldView {
     private PowerUpView powerUpView;
     private final BallenView ballenView;
 
-    private Pane paneel;
+    private final Pane paneel;
 
-    private final double cos;
     private int n;
     private final int intervalPowerUp;
     private final int intervalPowerUpDuration;
 
-    private TimerPeddel timerPeddel;
+    private final TimerPeddel timerPeddel;
     public boolean statusPink;
     public boolean statusBlack;
 
     private final double peddelMultiplier;
 
-    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView, PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel) {
+    public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView,
+            PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel) {
         this.peddelModel = peddelModel;
         this.powerUpModel = powerUpModel;
         this.paneelModel = paneelModel;
@@ -57,15 +57,15 @@ public class VeldView {
         this.paneel = paneel;
         this.timerPeddel = timerPeddel;
 
-        intervalPowerUp = 10;
+        intervalPowerUp = 1;
         intervalPowerUpDuration = 5;
-        cos = Math.cos(Math.toRadians(45));
 
         peddelMultiplier = 1.5;
     }
 
     public void update() {
         botsingBal();
+        peddelView.update();
         ballenView.update();
         stenenView.update();
         powerUpView.update();
@@ -82,8 +82,8 @@ public class VeldView {
             Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
             straal = boundsBal.getWidth() / 2;
             Point2D middelPunt = b.localToParent(Point2D.ZERO);
-            if (middelPunt.getY() + straal >= peddelModel.getY() - 1
-                    && middelPunt.getY() + straal <= peddelModel.getY() + 1
+            if (middelPunt.getY() + straal >= peddelModel.getY() - 3
+                    && middelPunt.getY() + straal <= peddelModel.getY() + 3
                     && middelPunt.getX() > peddelModel.getX()
                     && middelPunt.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
                 b.setId("10");
@@ -169,7 +169,6 @@ public class VeldView {
     }
 
     private void toonPowerUp() {
-
         if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getTijdPowerUp() > intervalPowerUp) {
             this.powerUpModel = new PowerUp(powerUpModel.getStraal());
             timerPeddel.setTijdPowerUp();
@@ -203,7 +202,7 @@ public class VeldView {
     }
 
     public String timerPeddel() {
-        if (statusPink || ballenView.statusPurple|| statusBlack) {
+        if (statusPink || ballenView.statusPurple || statusBlack) {
             return (intervalPowerUpDuration - timerPeddel.getTijdPeddel() + "");
         }
         return intervalPowerUpDuration + "";

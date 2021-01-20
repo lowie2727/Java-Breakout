@@ -31,7 +31,7 @@ public class PowerUpView extends Region {
     }
 
     public final void createPowerUp() {
-        long i = Math.round(Math.random()*3);
+        long i = Math.round(Math.random() * 3);
         if (i == 1) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
         } else if (i == 2) {

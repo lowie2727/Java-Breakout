@@ -88,21 +88,24 @@ public class BallenView extends Region {
                     bal.setVy(bal.getSnelheidY());
                 } else if ("10".equals(string)) {
                     if (bal.getVy() > 0) {
-                        double midden = peddel.getX() + peddel.getBreedte() / 2;
-                        if ((bal.getX() - midden) > 0) {
+                        double snelheidY;
+                        double middenPeddelX = peddel.getX() + peddel.getBreedte() / 2;
+                        if ((bal.getX() - middenPeddelX) > 0) {
                             if (bal.getVx() < 0) {
                                 bal.setVx();
                             }
-                            double temp1 = 1 - (bal.getX() - midden) / (peddel.getBreedte() / 2);
-                            bal.setHy((temp1 * 0.7) + 0.3);
+                            double percentTotMiddenRechts = 1 - (bal.getX() - middenPeddelX) / (peddel.getBreedte() / 2);
+                            double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
+                            snelheidY = -((percentTotMiddenRechts * (bal.getSnelheid() - snelheid)) + snelheid);
                         } else {
                             if (bal.getVx() > 0) {
                                 bal.setVx();
                             }
-                            double temp2 = 1 - (midden - bal.getX()) / (peddel.getBreedte() / 2);
-                            bal.setHy((temp2 * 0.7) + 0.3);
+                            double percentTotMiddenLinks = 1 - (middenPeddelX - bal.getX()) / (peddel.getBreedte() / 2);
+                            double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
+                            snelheidY = -((percentTotMiddenLinks * (bal.getSnelheid() - snelheid)) + snelheid);
                         }
-                        bal.setVy(bal.getSnelheidY() * bal.getHy());
+                        bal.setVy(snelheidY);
                     }
                 }
             }

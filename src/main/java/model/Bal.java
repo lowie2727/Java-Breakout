@@ -14,28 +14,27 @@ public class Bal {
     private final Paneel paneel;
     private final double straal;
 
-    private double vx;
-    private double vy;
     private double x;
     private double y;
+    private double vx;
+    private double vy;
 
     private final double snelheidX;
     private final double snelheidY;
     private final double snelheid;
-    private double hy;
 
     public Bal(Paneel paneel, double straal) {
+        this.paneel = paneel;
+        this.straal = straal;
+
         snelheidX = 1.5;
         snelheidY = -1.5;
         snelheid = Math.sqrt((Math.pow(snelheidX, 2)) + Math.pow(snelheidY, 2));
-        this.paneel = paneel;
-        this.straal = straal;
+
         x = paneel.getBreedte() / 2;
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
-        hy = 1;
-
     }
 
     /**
@@ -81,11 +80,8 @@ public class Bal {
         return snelheidY;
     }
 
-    /**
-     * @return the hy
-     */
-    public double getHy() {
-        return hy;
+    public double getSnelheid() {
+        return snelheid;
     }
 
     /**
@@ -123,7 +119,6 @@ public class Bal {
         } else {
             vx = Math.sqrt((Math.pow(snelheid, 2)) - Math.pow(vy, 2));
         }
-
     }
 
     public void setVx() {
@@ -132,10 +127,6 @@ public class Bal {
 
     public void setVy() {
         vy = -vy;
-    }
-
-    public void setHy(double hy) {
-        this.hy = hy;
     }
 
     public void setX(double x) {
@@ -185,5 +176,4 @@ public class Bal {
         horizontaal();
         verticaal();
     }
-
 }

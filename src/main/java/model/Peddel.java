@@ -93,5 +93,4 @@ public class Peddel {
     public void setBreedte(double breedte) {
         this.breedte = breedte;
     }
-
 }

@@ -23,5 +23,4 @@ public class PowerUp {
     public double getStraal() {
         return straal;
     }
-
 }
