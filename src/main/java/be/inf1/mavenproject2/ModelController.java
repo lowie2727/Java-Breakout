@@ -165,6 +165,8 @@ public class ModelController {
             startScherm.setTitle("Atari Breakout");
             startScherm.setScene(modelScene);
             startScherm.show();
+            timerBal.cancel();
+            timerPeddel.cancel();
         } catch (IOException io) {
         } catch (NullPointerException nu) {
         }
