@@ -155,8 +155,6 @@ public class ModelController {
     }
 
     private void gaNaarStart(ActionEvent t) {
-        timerBal.cancel();
-        timerPeddel.cancel();
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);
@@ -165,6 +163,8 @@ public class ModelController {
             startScherm.setTitle("Atari Breakout");
             startScherm.setScene(modelScene);
             startScherm.show();
+            timerBal.cancel();
+            timerPeddel.cancel();
         } catch (IOException io) {
         } catch (NullPointerException nu) {
         }
