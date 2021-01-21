@@ -48,72 +48,72 @@ public class BallenView extends Region {
     public final void update() {
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i <= b.size() - 1; i++) {
-            Bal bal = b.get(i);
+            Bal balModel = b.get(i);
             Node balNode = getChildren().get(i);
             if (null != balNode.getId()) {
                 String string = (balNode.getId());
                 if (!statusPurple) {
                     if ("1".equals(string)) {
-                        if (bal.getVy() > 0) {
-                            bal.setVy();
+                        if (balModel.getVy() > 0) {
+                            balModel.setVy();
                         }
                     } else if ("2".equals(string)) {
-                        if (bal.getVy() < 0) {
-                            bal.setVy();
+                        if (balModel.getVy() < 0) {
+                            balModel.setVy();
                         }
                     } else if ("3".equals(string)) {
-                        if (bal.getVx() > 0) {
-                            bal.setVx();
+                        if (balModel.getVx() > 0) {
+                            balModel.setVx();
                         }
                     } else if ("4".equals(string)) {
-                        if (bal.getVx() < 0) {
-                            bal.setVx();
+                        if (balModel.getVx() < 0) {
+                            balModel.setVx();
                         }
                     } else if ("5".equals(string)) {
-                        bal.setVy();
-                        bal.setVx();
+                        balModel.setVy();
+                        balModel.setVx();
                     } else if ("6".equals(string)) {
-                        bal.setVx();
-                        bal.setVy();
+                        balModel.setVx();
+                        balModel.setVy();
                     } else if ("7".equals(string)) {
-                        bal.setVx();
-                        bal.setVy();
+                        balModel.setVx();
+                        balModel.setVy();
                     } else if ("8".equals(string)) {
-                        bal.setVx();
-                        bal.setVy();
+                        balModel.setVx();
+                        balModel.setVy();
                     }
                 }
                 if ("9".equals(string)) {
-                    bal.setVx(bal.getSnelheidX());
-                    bal.setVy(bal.getSnelheidY());
+                    balModel.setVx(balModel.getSnelheidX());
+                    balModel.setVy(balModel.getSnelheidY());
                 } else if ("10".equals(string)) {
-                    if (bal.getVy() > 0) {
-                        double snelheidY;
+                    if (balModel.getVy() > 0) {
+                        double snelheidBalY;
                         double middenPeddelX = peddel.getX() + peddel.getBreedte() / 2;
-                        if ((bal.getX() - middenPeddelX) > 0) {
-                            if (bal.getVx() < 0) {
-                                bal.setVx();
+                        if ((balModel.getX() - middenPeddelX) > 0) {
+                            if (balModel.getVx() < 0) {
+                                balModel.setVx();
                             }
-                            double percentTotMiddenRechts = 1 - (bal.getX() - middenPeddelX) / (peddel.getBreedte() / 2);
-                            double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
-                            snelheidY = -((percentTotMiddenRechts * (bal.getSnelheid() - snelheid)) + snelheid);
+                            double percentTotMiddenRechts = 1 - (balModel.getX() - middenPeddelX) / (peddel.getBreedte() / 2);
+                            double snelheid = Math.sqrt(Math.pow(balModel.getSnelheid(), 2) / 2);
+                            snelheidBalY = -((percentTotMiddenRechts * (balModel.getSnelheid() - snelheid)) + snelheid);    //schaal van 0->1 naar gewenste schaal omzetten
                         } else {
-                            if (bal.getVx() > 0) {
-                                bal.setVx();
+                            if (balModel.getVx() > 0) {
+                                balModel.setVx();
                             }
-                            double percentTotMiddenLinks = 1 - (middenPeddelX - bal.getX()) / (peddel.getBreedte() / 2);
-                            double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
-                            snelheidY = -((percentTotMiddenLinks * (bal.getSnelheid() - snelheid)) + snelheid);
+                            double percentTotMiddenPeddelLinks = 1 - (middenPeddelX - balModel.getX()) / (peddel.getBreedte() / 2);
+                            double snelheid = Math.sqrt(Math.pow(balModel.getSnelheid(), 2) / 2);
+                            snelheidBalY = -((percentTotMiddenPeddelLinks * (balModel.getSnelheid() - snelheid)) + snelheid);
                         }
-                        bal.setVy(snelheidY);
+                        balModel.setVy(snelheidBalY);
                     }
                 }
             }
             balNode.setId(null);
-            balNode.setTranslateX(bal.getX());
-            balNode.setTranslateY(bal.getY());
+            balNode.setTranslateX(balModel.getX());
+            balNode.setTranslateY(balModel.getY());
 
-            if (bal.getY() >= paneel.getHoogte() - bal.getStraal() && b.size() > 1) {
+            if (balModel.getY() >= paneel.getHoogte() - balModel.getStraal() && b.size() > 1) {
                 b.remove(i);
                 getChildren().remove(i);
             }
@@ -130,7 +130,7 @@ public class BallenView extends Region {
             getChildren().remove(i - 1);
             ballenLijst.remove(i - 1);
         }
-        update();
+        //update();
         Bal b = ballenLijst.get(0);
         b.reset();
         getChildren().get(0).setTranslateX(b.getX());

@@ -82,7 +82,7 @@ public class ModelController {
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
         ballenModel = new Ballen(paneelModel, 25);  //aantalBallen
-        peddelModel = new Peddel(1000, 10, paneelModel);  //breedte, hoogte
+        peddelModel = new Peddel(500, 10, paneelModel);  //breedte, hoogte
         stenenModel = new Stenen(paneelModel, steenModel, 3, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
@@ -149,7 +149,7 @@ public class ModelController {
     }
 
     private void beweegPeddel(MouseEvent m) {
-        peddelModel.setX(m.getX() - (peddelModel.getBreedte()) / 2);
+        peddelModel.setX(m.getX() - (peddelModel.getHuidigeBreedte()) / 2);
         peddelModel.setMin();
         peddelModel.setMax();
     }

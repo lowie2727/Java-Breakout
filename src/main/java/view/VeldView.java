@@ -11,6 +11,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -76,12 +77,13 @@ public class VeldView {
         ObservableList<Node> stenen = stenenView.getChildrenUnmodifiable();
         ObservableList<Node> ballen = ballenView.getChildrenUnmodifiable();
 
-        for (Node s : stenen) {
-            Bounds steenBounds = getBoundSteen(s);
-            for (Node b : ballen) {
-                Point2D middelPuntBal = b.localToParent(Point2D.ZERO);
-                Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
-                double straalBal = boundsBal.getWidth() / 2;
+        for (Node b : ballen) {
+            Point2D middelPuntBal = b.localToParent(Point2D.ZERO);
+            Bounds boundsBal = b.localToParent(b.getBoundsInLocal());
+            double straalBal = boundsBal.getWidth() / 2;
+
+            for (Node s : stenen) {
+                Bounds steenBounds = getBoundSteen(s);
                 if (middelPuntBal.getY() + straalBal >= steenBounds.getMinY() - 3 //onderkant bal met bovenkant steen
                         && middelPuntBal.getY() + straalBal <= steenBounds.getMinY() + 3
                         && middelPuntBal.getX() >= steenBounds.getMinX()
@@ -119,49 +121,31 @@ public class VeldView {
                     b.setId("8");
                     s.setId("geraakt");
                 }
+            }
+            if (middelPuntBal.getY() + straalBal >= peddelModel.getY() - 3
+                    && middelPuntBal.getY() + straalBal <= peddelModel.getY() + 3
+                    && middelPuntBal.getX() > peddelModel.getX()
+                    && middelPuntBal.getX() < peddelModel.getX() + peddelModel.getHuidigeBreedte()) {
+                b.setId("10");
+            }
 
-                if (middelPuntBal.getY() + straalBal >= peddelModel.getY() - 3
-                        && middelPuntBal.getY() + straalBal <= peddelModel.getY() + 3
-                        && middelPuntBal.getX() > peddelModel.getX()
-                        && middelPuntBal.getX() < peddelModel.getX() + peddelModel.getBreedte()) {
-                    b.setId("10");
+            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPuntBal.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPuntBal.getY(), 2)) < straalBal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
+                if (powerUpView.getKleurC().equals(Color.PINK)) {
+                    peddelModel.setHuidigeBreedte(peddelModel.getMultiplier() * peddelModel.getBreedte());
+                    peddelView.createPeddel();
+                    timerPeddel.setTijdPeddel();
+                    statusPink = true;
+                } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
+                    ballenView.statusPurple = true;
+                    timerPeddel.setTijdPeddel();
+                } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
+                    peddelModel.setHuidigeBreedte((peddelModel.getBreedte() / peddelModel.getMultiplier()));
+                    peddelView.createPeddel();
+                    timerPeddel.setTijdPeddel();
+                    statusBlack = true;
                 }
-
-                /*if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPuntBal.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPuntBal.getY(), 2)) < straalBal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
-                    if (powerUpView.getKleurC().equals(Color.PINK)) {
-                        peddelModel.setBreedte(peddelModel.getMultiplier() * peddelModel.getBreedte());
-                        peddelView.createPeddel();
-                        timerPeddel.setTijdPeddel();
-                        statusPink = true;
-                    } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
-                        ballenView.statusPurple = true;
-                        timerPeddel.setTijdPeddel();
-                    } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
-                        peddelModel.setBreedte((peddelModel.getBreedte() / peddelMultiplier));
-                        peddelView.createPeddel();
-                        timerPeddel.setTijdPeddel();
-                        statusBlack = true;
-                    }
-                    powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                    timerPeddel.setTijdPowerUp();
-                }*/
-
-                /*for (Node b2 : ballen) {
-                    Bounds boundsBal2 = b2.localToParent(b2.getBoundsInLocal());
-                    straalBal = boundsBal.getWidth() / 2;
-                    Point2D middelPuntBal2 = b2.localToParent(Point2D.ZERO);
-                    if (Math.sqrt(Math.pow(middelPuntBal2.getX() - middelPuntBal.getX(), 2) + Math.pow(middelPuntBal2.getY() - middelPuntBal.getY(), 2)) < straalBal * 2 && !b2.equals(b)) {
-                        if (middelPuntBal.getX() == middelPuntBal2.getX() && middelPuntBal2.getY() > middelPuntBal.getY()) {
-                            b.setId("1");
-                        } else if (middelPuntBal.getX() == middelPuntBal2.getX() && middelPuntBal2.getY() < middelPuntBal.getY()) {
-                            b.setId("2");
-                        } else if (middelPuntBal.getY() == middelPuntBal2.getY() && middelPuntBal2.getX() < middelPuntBal.getX()) {
-                            b.setId("4");
-                        } else if (middelPuntBal.getY() == middelPuntBal2.getY() && middelPuntBal2.getX() > middelPuntBal.getX()) {
-                            b.setId("3");
-                        }
-                    }
-                }*/
+                powerUpView.getChildrenUnmodifiable().get(0).setId("1");
+                timerPeddel.setTijdPowerUp();
             }
         }
     }
@@ -174,9 +158,8 @@ public class VeldView {
         ballenView.reset();
         peddelModel.reset();
         peddelView.update();
-        stenenView.maakStenen();
         powerUpView.reset();
-        toonPowerUp();
+        stenenView.maakStenen();
     }
 
     private void toonPowerUp() {
@@ -190,7 +173,7 @@ public class VeldView {
 
     private void tijdPeddel() {
         if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusPink) {
-            peddelModel.setBreedte(peddelModel.getBreedte() / peddelMultiplier);
+            peddelModel.setHuidigeBreedte(peddelModel.getBreedte() / peddelMultiplier);
             peddelView.createPeddel();
             statusPink = false;
             timerPeddel.setTijdPowerUp();
@@ -198,7 +181,7 @@ public class VeldView {
             ballenView.statusPurple = false;
             timerPeddel.setTijdPowerUp();
         } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusBlack) {
-            peddelModel.setBreedte(peddelModel.getBreedte() * peddelMultiplier);
+            peddelModel.setHuidigeBreedte(peddelModel.getBreedte() * peddelMultiplier);
             peddelView.createPeddel();
             statusBlack = false;
             timerPeddel.setTijdPowerUp();

@@ -14,22 +14,24 @@ public class Peddel {
     private final Paneel paneel;
 
     private final double hoogte;
-    private double breedte;
+    private final double breedte;
+    private double huidigeBreedte;
 
     private final double offset;
     private double x;
     private double y;
-    
+
     private final double multiplier;
 
     public Peddel(double breedte, double hoogte, Paneel paneel) {
         this.paneel = paneel;
-        offset = 20;
         this.hoogte = hoogte;
         this.breedte = breedte;
+        offset = 20;
+        multiplier = 1.5;
+        huidigeBreedte = breedte;
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
-        multiplier  = 1.5;
     }
 
     /**
@@ -66,9 +68,13 @@ public class Peddel {
     public double getOffset() {
         return offset;
     }
-    
-    public double getMultiplier(){
+
+    public double getMultiplier() {
         return multiplier;
+    }
+
+    public double getHuidigeBreedte() {
+        return huidigeBreedte;
     }
 
     public void reset() {
@@ -77,8 +83,8 @@ public class Peddel {
     }
 
     public void setMax() {
-        if (x > paneel.getBreedte() - getBreedte()) {
-            x = paneel.getBreedte() - getBreedte();
+        if (x > paneel.getBreedte() - getHuidigeBreedte()) {
+            x = paneel.getBreedte() - getHuidigeBreedte();
         }
     }
 
@@ -95,7 +101,7 @@ public class Peddel {
     /**
      * @param breedte the breedte to set
      */
-    public void setBreedte(double breedte) {
-        this.breedte = breedte;
+    public void setHuidigeBreedte(double breedte) {
+        this.huidigeBreedte = breedte;
     }
 }
