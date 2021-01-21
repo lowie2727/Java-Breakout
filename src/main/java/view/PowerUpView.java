@@ -19,6 +19,7 @@ import model.PowerUp;
 public class PowerUpView extends Region {
 
     private Circle c;
+    private Circle i;
     private final PowerUp powerUp;
     private final Paneel paneelModel;
     private double randX;
@@ -31,13 +32,15 @@ public class PowerUpView extends Region {
     }
 
     public final void createPowerUp() {
-        long i = Math.round(Math.random() * 3);
+        long i = Math.round(Math.random() * 4);
         if (i == 1) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
         } else if (i == 2) {
             c = new Circle(powerUp.getStraal(), Color.PURPLE);
-        } else {
+        } else if (i == 3) {
             c = new Circle(powerUp.getStraal(), Color.BLACK);
+        } else {
+            c = new Circle(powerUp.getStraal(), Color.GRAY);
         }
         randX = Math.random() * paneelModel.getBreedte();
         randY = Math.random() * paneelModel.getHoogte() / 2;

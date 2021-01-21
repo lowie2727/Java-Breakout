@@ -143,6 +143,8 @@ public class VeldView {
                     peddelView.createPeddel();
                     timerPeddel.setTijdPeddel();
                     statusBlack = true;
+                } else if (powerUpView.getKleurC().equals(Color.GRAY)) {
+                    timerPeddel.setTijdPeddel();
                 }
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
                 timerPeddel.setTijdPowerUp();
@@ -173,7 +175,7 @@ public class VeldView {
 
     private void tijdPeddel() {
         if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusPink) {
-            peddelModel.setHuidigeBreedte(peddelModel.getBreedte() / peddelMultiplier);
+            peddelModel.setHuidigeBreedte(peddelModel.getBreedte());
             peddelView.createPeddel();
             statusPink = false;
             timerPeddel.setTijdPowerUp();
@@ -181,7 +183,7 @@ public class VeldView {
             ballenView.statusPurple = false;
             timerPeddel.setTijdPowerUp();
         } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusBlack) {
-            peddelModel.setHuidigeBreedte(peddelModel.getBreedte() * peddelMultiplier);
+            peddelModel.setHuidigeBreedte(peddelModel.getBreedte());
             peddelView.createPeddel();
             statusBlack = false;
             timerPeddel.setTijdPowerUp();
