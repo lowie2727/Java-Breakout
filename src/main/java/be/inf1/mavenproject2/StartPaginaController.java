@@ -81,7 +81,7 @@ public class StartPaginaController {
             intervalPowerUp = 20;
             intervalPowerUpDuration = 4;
         }
-        if (!level1.isSelected() || !level2.isSelected() || !level3.isSelected()) {
+        if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected()) {
             errorSound();
         }
         if (level1.isSelected() || level2.isSelected() || level3.isSelected()) {
