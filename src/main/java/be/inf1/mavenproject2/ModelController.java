@@ -117,6 +117,7 @@ public class ModelController {
     }
 
     private void start(ActionEvent e) {
+        toetsGeluid();
         if (!status) {
             for (Bal b : ballenModel.getBallen()) {
                 b.setVx(b.getSnelheidX());
@@ -143,6 +144,7 @@ public class ModelController {
     }
 
     public void reset(ActionEvent e) {
+        toetsGeluid2();
         if (status) {
             veldView.reset();
             timerBal.cancel();
@@ -158,6 +160,7 @@ public class ModelController {
     }
 
     private void gaNaarStart(ActionEvent t) {
+        toetsGeluid();
         try {
             timerBal.cancel();
             timerPeddel.cancel();
@@ -180,6 +183,22 @@ public class ModelController {
     public void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("startGeluid.mp3");
+        Media media = new Media(resource.toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+    
+    public void toetsGeluid() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource("kk.mp3");
+        Media media = new Media(resource.toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+    
+    public void toetsGeluid2() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource("m.mp3");
         Media media = new Media(resource.toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
