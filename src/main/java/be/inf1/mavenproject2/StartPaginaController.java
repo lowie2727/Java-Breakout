@@ -11,6 +11,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class StartPaginaController {
@@ -29,18 +32,24 @@ public class StartPaginaController {
 
     @FXML
     private Button spelregelsButton;
-    
+
     @FXML
     private Button instellingenButton;
-    
-    @FXML
-    private CheckBox checkBox1;
 
     @FXML
-    private CheckBox checkBox3;
+    private RadioButton level1;
 
     @FXML
-    private CheckBox checkBox2;
+    private RadioButton level2;
+
+    @FXML
+    private RadioButton level3;
+
+    private static double straalBal;
+    private static double peddelBreedte;
+    private static int aantalRijen;
+    private static int intervalPowerUp;
+    private static int intervalPowerUpDuration;
 
     @FXML
     void initialize() {
@@ -51,14 +60,41 @@ public class StartPaginaController {
     }
 
     private void gaNaarGame(ActionEvent t) {
-        try {
-            Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
-            Scene modelScene = new Scene(modelParent, 1100, 600);
-            Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
-            gameScherm.hide();
-            gameScherm.setScene(modelScene);
-            gameScherm.show();
-        } catch (IOException io) {
+        if (level1.isSelected()) {
+            straalBal = 10;
+            peddelBreedte = 500;
+            aantalRijen = 2;
+            intervalPowerUp = 10;
+            intervalPowerUpDuration = 8;
+        }
+        if (level2.isSelected()) {
+            straalBal = 7;
+            peddelBreedte = 300;
+            aantalRijen = 3;
+            intervalPowerUp = 15;
+            intervalPowerUpDuration = 6;
+        }
+        if (level3.isSelected()) {
+            straalBal = 5;
+            peddelBreedte = 150;
+            aantalRijen = 4;
+            intervalPowerUp = 20;
+            intervalPowerUpDuration = 4;
+        }
+        if (!level1.isSelected() || !level2.isSelected() || !level3.isSelected()) {
+            errorSound();
+        }
+        if (level1.isSelected() || level2.isSelected() || level3.isSelected()) {
+            startSound();
+            try {
+                Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
+                Scene modelScene = new Scene(modelParent, 1100, 600);
+                Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+                gameScherm.hide();
+                gameScherm.setScene(modelScene);
+                gameScherm.show();
+            } catch (IOException io) {
+            }
         }
     }
 
@@ -78,8 +114,8 @@ public class StartPaginaController {
         } catch (IOException io) {
         }
     }
-    
-    private void gaNaarInstellingen(ActionEvent t){
+
+    private void gaNaarInstellingen(ActionEvent t) {
         try {
             Parent modelParent = FXMLLoader.load(getClass().getResource("instellingen.fxml"));
             Scene modelScene = new Scene(modelParent, 1100, 600);
@@ -91,4 +127,58 @@ public class StartPaginaController {
         } catch (IOException io) {
         }
     }
+
+    /**
+     * @return the straalBal
+     */
+    public static double getStraalBal() {
+        return straalBal;
+    }
+
+    /**
+     * @return the peddelBreedte
+     */
+    public static double getPeddelBreedte() {
+        return peddelBreedte;
+    }
+
+    /**
+     * @return the aantalRijen
+     */
+    public static int getAantalRijen() {
+        return aantalRijen;
+    }
+
+    /**
+     * @return the intervalPowerUp
+     */
+    public static int getIntervalPowerUp() {
+        return intervalPowerUp;
+    }
+
+    /**
+     * @return the intervalPowerUpDuration
+     */
+    public static int getIntervalPowerUpDuration() {
+        return intervalPowerUpDuration;
+    }
+
+    MediaPlayer mediaPlayer;
+
+    public void errorSound() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource("erro.mp3");
+        Media media = new Media(resource.toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+
+    public void startSound() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource("start.mp3");
+        Media media = new Media(resource.toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+    }
+
 }

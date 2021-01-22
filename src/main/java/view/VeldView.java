@@ -5,6 +5,7 @@
  */
 package view;
 
+import be.inf1.mavenproject2.StartPaginaController;
 import be.inf1.mavenproject2.TimerPeddel;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
@@ -57,8 +58,8 @@ public class VeldView {
         this.paneel = paneel;
         this.timerPeddel = timerPeddel;
 
-        intervalPowerUp = 1;
-        intervalPowerUpDuration = 5;
+        this.intervalPowerUp = StartPaginaController.getIntervalPowerUp();
+        this.intervalPowerUpDuration = StartPaginaController.getIntervalPowerUpDuration();
 
         peddelMultiplier = 1.5;
     }

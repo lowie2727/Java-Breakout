@@ -78,15 +78,14 @@ public class ModelController {
 
     @FXML
     void initialize() {
-        speelMuziek();
 
         paneelModel = new Paneel(1000, 500);    //breedte, hoogte
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         steenModel = new Steen(60, 20);  //breedte, hoogte
         ballenModel = new Ballen(paneelModel, 25);  //aantalBallen
-        peddelModel = new Peddel(500, 10, paneelModel);  //breedte, hoogte
-        stenenModel = new Stenen(paneelModel, steenModel, 3, 500);  //rijen, kolommen
+        peddelModel = new Peddel(10, paneelModel);  //breedte, hoogte
+        stenenModel = new Stenen(paneelModel, steenModel, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
         ballenView = new BallenView(ballenModel, peddelModel, paneelModel);
@@ -117,7 +116,6 @@ public class ModelController {
     }
 
     private void start(ActionEvent e) {
-        toetsGeluid();
         if (!status) {
             for (Bal b : ballenModel.getBallen()) {
                 b.setVx(b.getSnelheidX());
@@ -144,7 +142,6 @@ public class ModelController {
     }
 
     public void reset(ActionEvent e) {
-        toetsGeluid2();
         if (status) {
             veldView.reset();
             timerBal.cancel();
@@ -160,7 +157,6 @@ public class ModelController {
     }
 
     private void gaNaarStart(ActionEvent t) {
-        toetsGeluid();
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);
@@ -185,15 +181,7 @@ public class ModelController {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
     }
-    
-    public void toetsGeluid() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("kk.mp3");
-        Media media = new Media(resource.toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-    }
-    
+
     public void toetsGeluid2() {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("m.mp3");

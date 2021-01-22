@@ -5,6 +5,8 @@
  */
 package model;
 
+import be.inf1.mavenproject2.StartPaginaController;
+
 /**
  *
  * @author lowie
@@ -21,10 +23,10 @@ public class Stenen {
     private final Paneel paneel;
     private final Steen steen;
 
-    public Stenen(Paneel paneel, Steen steen, int rijen, int kolommen) {
+    public Stenen(Paneel paneel, Steen steen, int kolommen) {
         this.paneel = paneel;
         this.steen = steen;
-        this.rijen = rijen;
+        this.rijen = StartPaginaController.getAantalRijen();
         this.kolommen = kolommen;
         offsetBreedte = 5;
         offsetHoogte = 5;

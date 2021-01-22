@@ -148,12 +148,12 @@ public class BallenView extends Region {
     public int getAantalBallen() {
         return getChildren().size();
     }
-    
-    public boolean getStatusPurple(){
+
+    public boolean getStatusPurple() {
         return statusPurple;
     }
-    
-    public void setStatusPurple(boolean statusPurple){
+
+    public void setStatusPurple(boolean statusPurple) {
         this.statusPurple = statusPurple;
     }
 }

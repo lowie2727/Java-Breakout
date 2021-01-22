@@ -44,7 +44,8 @@ public class InstellingenController {
         } catch (IOException io) {
         }
     }
-    private void slider(ActionEvent t){
+
+    private void slider(ActionEvent t) {
         double waarde = sliderPeddel.getValue();
         System.out.println(waarde);
     }
