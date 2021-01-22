@@ -23,7 +23,7 @@ public class BallenView extends Region {
     private final Ballen ballen;
     private final Peddel peddel;
     private final Paneel paneel;
-    private boolean statusPurple;
+    public boolean statusPurple;
 
     public BallenView(Ballen ballen, Peddel peddel, Paneel paneel) {
         this.ballen = ballen;
@@ -147,13 +147,5 @@ public class BallenView extends Region {
 
     public int getAantalBallen() {
         return getChildren().size();
-    }
-    
-    public boolean getStatusPurple(){
-        return statusPurple;
-    }
-    
-    public void setStatusPurple(boolean statusPurple){
-        this.statusPurple = statusPurple;
     }
 }
