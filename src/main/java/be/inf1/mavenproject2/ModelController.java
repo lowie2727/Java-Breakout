@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Bal;
 import model.Ballen;
@@ -76,6 +78,7 @@ public class ModelController {
 
     @FXML
     void initialize() {
+        speelMuziek();
 
         paneelModel = new Paneel(1000, 500);    //breedte, hoogte
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
@@ -170,5 +173,15 @@ public class ModelController {
         } catch (IOException io) {
         } catch (NullPointerException nu) {
         }
+    }
+
+    MediaPlayer mediaPlayer;
+
+    public void speelMuziek() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL resource = classLoader.getResource("startGeluid.mp3");
+        Media media = new Media(resource.toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
     }
 }
