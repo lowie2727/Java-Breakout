@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 
 public class StartPaginaController {
@@ -28,12 +29,25 @@ public class StartPaginaController {
 
     @FXML
     private Button spelregelsButton;
+    
+    @FXML
+    private Button instellingenButton;
+    
+    @FXML
+    private CheckBox checkBox1;
+
+    @FXML
+    private CheckBox checkBox3;
+
+    @FXML
+    private CheckBox checkBox2;
 
     @FXML
     void initialize() {
         startButton.setOnAction(this::gaNaarGame);
         exitButton.setOnAction(this::sluitGame);
         spelregelsButton.setOnAction(this::gaNaarSpelregels);
+        instellingenButton.setOnAction(this::gaNaarInstellingen);
     }
 
     private void gaNaarGame(ActionEvent t) {
@@ -55,6 +69,19 @@ public class StartPaginaController {
     private void gaNaarSpelregels(ActionEvent t) {
         try {
             Parent modelParent = FXMLLoader.load(getClass().getResource("spelregels.fxml"));
+            Scene modelScene = new Scene(modelParent, 1100, 600);
+            Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            gameScherm.hide();
+            gameScherm.setTitle("Atari Breakout");
+            gameScherm.setScene(modelScene);
+            gameScherm.show();
+        } catch (IOException io) {
+        }
+    }
+    
+    private void gaNaarInstellingen(ActionEvent t){
+        try {
+            Parent modelParent = FXMLLoader.load(getClass().getResource("instellingen.fxml"));
             Scene modelScene = new Scene(modelParent, 1100, 600);
             Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
             gameScherm.hide();

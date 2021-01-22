@@ -13,7 +13,7 @@
       <Button fx:id="startButton" layoutX="30.0" layoutY="21.0" mnemonicParsing="false" text="Start" />
       <Label fx:id="label" layoutX="259.0" layoutY="27.0" text="Label" />
       <Label fx:id="labelTijd" layoutX="375.0" layoutY="27.0" text="Label" />
-      <Button fx:id="gaNaarStartButton" layoutX="932.0" layoutY="23.0" mnemonicParsing="false" text="Ga naar homepage" />
+      <Button fx:id="gaNaarStartButton" layoutX="968.0" layoutY="22.0" mnemonicParsing="false" text="Ga naar homepage" />
       <Text layoutX="415.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="seconden tot de powerup weggaat" wrappingWidth="193.7276611328125" />
       <Text layoutX="178.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aantal stenen:" />
    </children>

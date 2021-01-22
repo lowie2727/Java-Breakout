@@ -162,8 +162,6 @@ public class ModelController {
     private void gaNaarStart(ActionEvent t) {
         toetsGeluid();
         try {
-            timerBal.cancel();
-            timerPeddel.cancel();
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
             Scene modelScene = new Scene(startPaginaParent);
             Stage startScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
