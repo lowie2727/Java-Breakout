@@ -5,9 +5,6 @@
  */
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
-import java.util.Arrays;
-
 /**
  *
  * @author lowie
@@ -22,10 +19,10 @@ public class Stenen {
     private double offsetBreedtePaneel;
     private final double offsetHoogtePaneel;
     private final Paneel paneel;
-    private Steen steen;
+    private final Steen steen;
 
     public Stenen(Paneel paneel, int kolommen) {
-        steen = new Steen(60,20,0,0);
+        steen = new Steen(60, 20, 0, 0);
         this.paneel = paneel;
         this.rijen = 5;
         this.kolommen = kolommen;
@@ -35,7 +32,7 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         createMatrix();
-        
+
     }
 
     private void createMatrix() {
@@ -49,8 +46,8 @@ public class Stenen {
             }
         }
     }
-    
-    public void reset(){
+
+    public void reset() {
         createMatrix();
     }
 

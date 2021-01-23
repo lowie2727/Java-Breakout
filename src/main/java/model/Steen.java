@@ -13,8 +13,8 @@ public class Steen {
 
     private final double breedte;
     private final double hoogte;
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
     private boolean geraakt;
 
     public Steen(double breedte, double hoogte, double x, double y) {
@@ -37,20 +37,20 @@ public class Steen {
     public double getHoogte() {
         return hoogte;
     }
-    
-    public double getX(){
+
+    public double getX() {
         return x;
     }
-    
-    public double getY(){
+
+    public double getY() {
         return y;
     }
-    
-    public boolean isGeraakt(){
+
+    public boolean isGeraakt() {
         return geraakt;
     }
-    
-    public void setGeraakt(){
+
+    public void setGeraakt() {
         geraakt = true;
     }
 }

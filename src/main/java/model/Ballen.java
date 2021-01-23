@@ -5,7 +5,6 @@
  */
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
 import java.util.ArrayList;
 
 /**
@@ -17,12 +16,12 @@ public class Ballen {
     private ArrayList<Bal> ballen;
     private final int aantalBallen;
     private final Paneel paneelModel;
-    private double straal;
+    private final double straal;
 
     public Ballen(Paneel vensterModel, int aantalBallen) {
         straal = 8;
         this.paneelModel = vensterModel;
-        this.aantalBallen = aantalBallen;
+        this.aantalBallen = 1;
         createBallen();
     }
 

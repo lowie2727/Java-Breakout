@@ -15,34 +15,48 @@ import model.Spel;
  */
 public class SpelView {
 
-    private final PeddelView peddelView;
-    private final PaneelView paneelView;
-    private final StenenView stenenView;
-    private final BallenView ballenView;
-    private final PowerUpView powerUpView;
+    private PeddelView peddelView;
+    private PaneelView paneelView;
+    private StenenView stenenView;
+    private BallenView ballenView;
+    private PowerUpView powerUpView;
+
+    private Paneel paneelModel;
+    private final Pane paneel;
+    private final Spel spel;
 
     public SpelView(Spel spel, Pane paneel, Paneel paneelModel) {
-
-        ballenView = new BallenView(spel.getBallen(), spel.getPeddel(), paneelModel);
+        this.paneelModel = paneelModel;
+        this.spel = spel;
+        ballenView = new BallenView(spel.getBallen());
         paneelView = new PaneelView(paneelModel);
         peddelView = new PeddelView(spel.getPeddel());
         stenenView = new StenenView(spel.getStenen());
         powerUpView = new PowerUpView(spel.getPowerUp());
+        this.paneel = paneel;
 
         paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
 
     }
 
     public void update() {
+        paneel.getChildren().clear();
         ballenView.update();
         peddelView.update();
         stenenView.update();
+        powerUpView = new PowerUpView(spel.getPowerUp());
         powerUpView.update();
+        paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
     }
 
     public void reset() {
-        ballenView.reset();
+        ballenView = new BallenView(spel.getBallen());
+        paneelView = new PaneelView(paneelModel);
+        peddelView = new PeddelView(spel.getPeddel());
+        stenenView = new StenenView(spel.getStenen());
+        powerUpView = new PowerUpView(spel.getPowerUp());
+        paneel.getChildren().clear();
+        paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
 
     }
-
 }

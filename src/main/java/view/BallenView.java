@@ -6,13 +6,10 @@
 package view;
 
 import java.util.ArrayList;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
-import model.Paneel;
-import model.Peddel;
 
 /**
  *
@@ -21,14 +18,9 @@ import model.Peddel;
 public class BallenView extends Region {
 
     private final Ballen ballen;
-    private final Peddel peddel;
-    private final Paneel paneel;
-    private boolean statusPurple;
 
-    public BallenView(Ballen ballen, Peddel peddel, Paneel paneel) {
+    public BallenView(Ballen ballen) {
         this.ballen = ballen;
-        this.peddel = peddel;
-        this.paneel = paneel;
         maakBallen();
         update();
     }
@@ -44,8 +36,8 @@ public class BallenView extends Region {
             getChildren().add(bv);
         }
     }
-    
-    public void update(){
+
+    public void update() {
         getChildren().clear();
         for (int i = 0; i < ballen.getAantalBallen(); i++) {
             BalView bv = new BalView(ballen.getBallen().get(i));
@@ -53,13 +45,12 @@ public class BallenView extends Region {
             bv.setTranslateY(ballen.getBallen().get(i).getY());
             getChildren().add(bv);
         }
-        
+
     }
-    
-    public void reset(){
-        ArrayList<Bal> ballenLijst = ballen.getBallen();
-        for (int i = 0; i<ballen.getAantalBallen(); i++) {
-            if(i!=0){
+
+    public void reset() {
+        for (int i = 0; i < ballen.getAantalBallen(); i++) {
+            if (i != 0) {
                 getChildren().remove(i);
             }
         }
@@ -70,17 +61,5 @@ public class BallenView extends Region {
         alert.setTitle("game over");
         alert.setContentText("je bent dood...\ndruk op reset om opnieuw te beginnen");
         alert.showAndWait();
-    }
-
-    public int getAantalBallen() {
-        return getChildren().size();
-    }
-
-    public boolean getStatusPurple() {
-        return statusPurple;
-    }
-
-    public void setStatusPurple(boolean statusPurple) {
-        this.statusPurple = statusPurple;
     }
 }

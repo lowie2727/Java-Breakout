@@ -50,22 +50,23 @@ public class ModelController {
 
     private Spel spel;
     private SpelView spelView;
-
     private Paneel paneelModel;
 
     private boolean status;
+
+    private MediaPlayer mediaPlayer;
+
     private Timer timerBal;
     private Timer timerPeddel;
-    
     private TimerPeddel t;
 
     @FXML
     void initialize() {
-        
+
         timerPeddel = new Timer(true);
-            t = new TimerPeddel();
-            timerPeddel.scheduleAtFixedRate(t, 0, 1000);
-        
+        t = new TimerPeddel();
+        timerPeddel.scheduleAtFixedRate(t, 0, 1000);
+
         paneelModel = new Paneel(1000, 500);    //breedte, hoogte
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
@@ -83,7 +84,6 @@ public class ModelController {
     }
 
     public void update() {
-
         if (status) {
             spel.update();
             spelView.update();
@@ -99,13 +99,8 @@ public class ModelController {
                 bal.setVx(bal.getSnelheidX());
                 bal.setVy(bal.getSnelheidY());
             }
-            //paneel.getChildren().clear();
-            //paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
-
-            
 
             timerBal = new Timer(true);
-
             for (Bal bal : spel.getBallen().getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timerBal.scheduleAtFixedRate(b, 0, 16);
@@ -117,6 +112,9 @@ public class ModelController {
 
     public void reset(ActionEvent e) {
         if (status) {
+            spel.reset();
+            spelView.reset();
+            spelView.update();
             timerBal.cancel();
             timerPeddel.cancel();
             status = false;
@@ -124,8 +122,13 @@ public class ModelController {
     }
 
     private void beweegPeddel(MouseEvent m) {
-        spel.getPeddel().setX(m.getX() - (spel.getPeddel().getHuidigeBreedte()) / 2);
-
+        if (m.getX() + spel.getPeddel().getHuidigeBreedte() / 2 > paneelModel.getBreedte()) {
+            spel.getPeddel().setX(paneelModel.getBreedte() - spel.getPeddel().getHuidigeBreedte());
+        } else if (m.getX() - spel.getPeddel().getHuidigeBreedte() / 2 < 0) {
+            spel.getPeddel().setX(0);
+        } else {
+            spel.getPeddel().setX(m.getX() - spel.getPeddel().getHuidigeBreedte() / 2);
+        }
     }
 
     private void gaNaarStart(ActionEvent t) {
@@ -143,8 +146,6 @@ public class ModelController {
         } catch (NullPointerException nu) {
         }
     }
-
-    MediaPlayer mediaPlayer;
 
     public void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();

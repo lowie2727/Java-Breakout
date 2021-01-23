@@ -11,20 +11,19 @@ package model;
  */
 public class PowerUp {
 
-    private double straal;
-    
-    private double x;
-    private double y;
+    private final double straal;
+
+    private final double x;
+    private final double y;
     private Kleuren kleur;
     private boolean geraakt;
-    
 
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
-        
+
         x = Math.random() * paneel.getBreedte();
         y = Math.random() * paneel.getHoogte() / 2;
-        
+
         kleurBal();
     }
 
@@ -34,25 +33,25 @@ public class PowerUp {
     public double getStraal() {
         return straal;
     }
-    
-    public double getX(){
+
+    public double getX() {
         return x;
     }
-    
-    public double getY(){
+
+    public double getY() {
         return y;
     }
-    
-    public void reset(){
-        
+
+    public void reset() {
+
     }
-    
-    private void kleurBal(){
+
+    private void kleurBal() {
         int i = (int) Math.round(Math.random() * 4);
-        
+
         switch (i) {
             case 10:
-                kleur = Kleuren.ROZE;
+                kleur = Kleuren.GRIJS;
                 break;
             case 11:
                 kleur = Kleuren.PAARS;
@@ -65,16 +64,16 @@ public class PowerUp {
                 break;
         }
     }
-    
-    public Kleuren getKleurBal(){
+
+    public Kleuren getKleurBal() {
         return kleur;
     }
-    
-    public boolean isGeraakt(){
+
+    public boolean isGeraakt() {
         return geraakt;
     }
-    
-    public void setGeraakt(boolean stat){
+
+    public void setGeraakt(boolean stat) {
         geraakt = stat;
     }
 }

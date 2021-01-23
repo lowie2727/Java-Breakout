@@ -7,7 +7,6 @@ package view;
 
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import model.Kleuren;
 import model.PowerUp;
@@ -26,7 +25,8 @@ public class PowerUpView extends Region {
         createPowerUp();
     }
 
-    public final void createPowerUp() {
+    public void createPowerUp() {
+        getChildren().clear();
         if (powerUp.getKleurBal() == Kleuren.ROZE) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
         } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -43,8 +43,9 @@ public class PowerUpView extends Region {
     }
 
     public void update() {
-        if (powerUp.isGeraakt()) {
-            getChildren().clear();
+        getChildren().clear();
+        if(!powerUp.isGeraakt()){
+            createPowerUp();
         }
     }
 
