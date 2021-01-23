@@ -81,8 +81,6 @@ public class PowerUpView extends Region {
      * @return the c
      */
     public Paint getKleurC() {
-        //Paint s = Color.PINK;
-        //Paint u = (Color) c.getFill();
         return c.getFill();
     }
 

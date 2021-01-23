@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import model.Bal;
+import model.Ballen;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -28,6 +29,7 @@ public class VeldView {
     private PowerUp powerUpModel;
     private final Paneel paneelModel;
     private final Bal balModel;
+    private final Ballen ballenModel;
 
     private final StenenView stenenView;
     private final PeddelView peddelView;
@@ -49,11 +51,12 @@ public class VeldView {
     private final double peddelMultiplier;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView,
-            PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel, Bal balModel, BalView balView) {
+            PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel, Bal balModel, BalView balView, Ballen ballenModel) {
         this.peddelModel = peddelModel;
         this.powerUpModel = powerUpModel;
         this.paneelModel = paneelModel;
         this.balModel = balModel;
+        this.ballenModel = ballenModel;
 
         this.ballenView = ballenview;
         this.stenenView = stenenView;
@@ -154,7 +157,7 @@ public class VeldView {
                     balModel.setHuidigeStraal((balModel.getStraal() * 2));
                     balView.createBal();
                     timerPeddel.setTijdPeddel();
-                    statusGray = true;
+                    statusGray = true;  
                 }
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
                 timerPeddel.setTijdPowerUp();

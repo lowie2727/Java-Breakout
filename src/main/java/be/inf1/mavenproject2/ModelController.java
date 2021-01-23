@@ -132,7 +132,7 @@ public class ModelController {
 
             timerBal = new Timer(true);
             veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView,
-                    powerUpModel, t, paneelModel, paneel, balModel, balView);
+                    powerUpModel, t, paneelModel, paneel, balModel, balView, ballenModel);
 
             for (Bal bal : ballenModel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
