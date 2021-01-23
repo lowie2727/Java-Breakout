@@ -15,6 +15,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import be.inf1.mavenproject2.StartPaginaController;
 
 public class StartPaginaController {
 
@@ -51,7 +52,7 @@ public class StartPaginaController {
     private static int intervalPowerUp;
     private static int intervalPowerUpDuration;
 
-    @FXML
+    private @FXML
     void initialize() {
         startButton.setOnAction(this::gaNaarGame);
         exitButton.setOnAction(this::sluitGame);
@@ -82,20 +83,24 @@ public class StartPaginaController {
             intervalPowerUpDuration = 4;
         }
         if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected()) {
-            errorSound();
+            peddelBreedte = InstellingenController.getBreedtePeddel();
+            straalBal = InstellingenController.getBalStraal();
+            aantalRijen = InstellingenController.getRijenAantal();
+            intervalPowerUp = InstellingenController.getPowerUpInterval();
+            intervalPowerUpDuration = InstellingenController.getDurationPowerUp();
         }
-        if (level1.isSelected() || level2.isSelected() || level3.isSelected()) {
-            startSound();
-            try {
-                Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
-                Scene modelScene = new Scene(modelParent, 1100, 600);
-                Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
-                gameScherm.hide();
-                gameScherm.setScene(modelScene);
-                gameScherm.show();
-            } catch (IOException io) {
-            }
+
+        startSound();
+        try {
+            Parent modelParent = FXMLLoader.load(getClass().getResource("model.fxml"));
+            Scene modelScene = new Scene(modelParent, 1100, 600);
+            Stage gameScherm = (Stage) ((Node) t.getSource()).getScene().getWindow();
+            gameScherm.hide();
+            gameScherm.setScene(modelScene);
+            gameScherm.show();
+        } catch (IOException io) {
         }
+
     }
 
     private void sluitGame(ActionEvent t) {
@@ -179,6 +184,41 @@ public class StartPaginaController {
         Media media = new Media(resource.toString());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+    }
+
+    /**
+     * @param aPeddelBreedte the peddelBreedte to set
+     */
+    public static void setPeddelBreedte(double aPeddelBreedte) {
+        peddelBreedte = aPeddelBreedte;
+    }
+
+    /**
+     * @param aAantalRijen the aantalRijen to set
+     */
+    public static void setAantalRijen(int aAantalRijen) {
+        aantalRijen = aAantalRijen;
+    }
+
+    /**
+     * @param aStraalBal the straalBal to set
+     */
+    public static void setStraalBal(double aStraalBal) {
+        straalBal = aStraalBal;
+    }
+
+    /**
+     * @param aIntervalPowerUp the intervalPowerUp to set
+     */
+    public static void setIntervalPowerUp(int aIntervalPowerUp) {
+        intervalPowerUp = aIntervalPowerUp;
+    }
+
+    /**
+     * @param aIntervalPowerUpDuration the intervalPowerUpDuration to set
+     */
+    public static void setIntervalPowerUpDuration(int aIntervalPowerUpDuration) {
+        intervalPowerUpDuration = aIntervalPowerUpDuration;
     }
 
 }
