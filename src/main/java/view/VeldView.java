@@ -13,6 +13,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import model.Bal;
 import model.Paneel;
 import model.Peddel;
 import model.PowerUp;
@@ -26,11 +27,13 @@ public class VeldView {
     private final Peddel peddelModel;
     private PowerUp powerUpModel;
     private final Paneel paneelModel;
+    private final Bal balModel;
 
     private final StenenView stenenView;
     private final PeddelView peddelView;
     private PowerUpView powerUpView;
     private final BallenView ballenView;
+    private final BalView balView;
 
     private final Pane paneel;
 
@@ -41,19 +44,22 @@ public class VeldView {
     private final TimerPeddel timerPeddel;
     private boolean statusPink;
     private boolean statusBlack;
+    private boolean statusGray;
 
     private final double peddelMultiplier;
 
     public VeldView(StenenView stenenView, Peddel peddelModel, BallenView ballenview, PeddelView peddelView, PowerUpView powerUpView,
-            PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel) {
+            PowerUp powerUpModel, TimerPeddel timerPeddel, Paneel paneelModel, Pane paneel, Bal balModel, BalView balView) {
         this.peddelModel = peddelModel;
         this.powerUpModel = powerUpModel;
         this.paneelModel = paneelModel;
+        this.balModel = balModel;
 
         this.ballenView = ballenview;
         this.stenenView = stenenView;
         this.peddelView = peddelView;
         this.powerUpView = powerUpView;
+        this.balView = balView;
 
         this.paneel = paneel;
         this.timerPeddel = timerPeddel;
@@ -145,7 +151,10 @@ public class VeldView {
                     timerPeddel.setTijdPeddel();
                     statusBlack = true;
                 } else if (powerUpView.getKleurC().equals(Color.GRAY)) {
+                    balModel.setHuidigeStraal((balModel.getStraal() * 2));
+                    balView.createBal();
                     timerPeddel.setTijdPeddel();
+                    statusGray = true;
                 }
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
                 timerPeddel.setTijdPowerUp();
@@ -188,7 +197,13 @@ public class VeldView {
             peddelView.createPeddel();
             statusBlack = false;
             timerPeddel.setTijdPowerUp();
+        } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusGray) {
+            balModel.setHuidigeStraal(balModel.getStraal());
+            balView.createBal();
+            statusGray = false;
+            timerPeddel.setTijdPowerUp();
         }
+
     }
 
     /**
@@ -199,7 +214,7 @@ public class VeldView {
     }
 
     public String timerPeddel() {
-        if (statusPink || ballenView.getStatusPurple() || statusBlack) {
+        if (statusPink || ballenView.getStatusPurple() || statusBlack || statusGray) {
             return (intervalPowerUpDuration - timerPeddel.getTijdPeddel() + "");
         }
         return intervalPowerUpDuration + "";
