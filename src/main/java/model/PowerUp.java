@@ -12,9 +12,20 @@ package model;
 public class PowerUp {
 
     private double straal;
+    
+    private double x;
+    private double y;
+    private Kleuren kleur;
+    private boolean geraakt;
+    
 
-    public PowerUp(double straal) {
+    public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
+        
+        x = Math.random() * paneel.getBreedte();
+        y = Math.random() * paneel.getHoogte() / 2;
+        
+        kleurBal();
     }
 
     /**
@@ -22,5 +33,48 @@ public class PowerUp {
      */
     public double getStraal() {
         return straal;
+    }
+    
+    public double getX(){
+        return x;
+    }
+    
+    public double getY(){
+        return y;
+    }
+    
+    public void reset(){
+        
+    }
+    
+    private void kleurBal(){
+        int i = (int) Math.round(Math.random() * 4);
+        
+        switch (i) {
+            case 10:
+                kleur = Kleuren.ROZE;
+                break;
+            case 11:
+                kleur = Kleuren.PAARS;
+                break;
+            case 12:
+                kleur = Kleuren.ZWART;
+                break;
+            default:
+                kleur = Kleuren.GRIJS;
+                break;
+        }
+    }
+    
+    public Kleuren getKleurBal(){
+        return kleur;
+    }
+    
+    public boolean isGeraakt(){
+        return geraakt;
+    }
+    
+    public void setGeraakt(boolean stat){
+        geraakt = stat;
     }
 }

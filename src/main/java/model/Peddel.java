@@ -28,7 +28,7 @@ public class Peddel {
     public Peddel(double hoogte, Paneel paneel) {
         this.paneel = paneel;
         this.hoogte = hoogte;
-        this.breedte = StartPaginaController.getPeddelBreedte();
+        this.breedte = 300;
         offset = 20;
         multiplier = 1.5;
         huidigeBreedte = breedte;
@@ -80,8 +80,9 @@ public class Peddel {
     }
 
     public void reset() {
-        x = (paneel.getBreedte() - getBreedte()) / 2;
+        x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
+        huidigeBreedte = breedte;
     }
 
     public void setMax() {
@@ -105,5 +106,11 @@ public class Peddel {
      */
     public void setHuidigeBreedte(double breedte) {
         this.huidigeBreedte = breedte;
+    }
+
+    public void tick() {
+        setMin();
+        setMax();
+
     }
 }

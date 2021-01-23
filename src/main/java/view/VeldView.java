@@ -130,26 +130,26 @@ public class VeldView {
                 b.setId("10");
             }
 
-            if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPuntBal.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPuntBal.getY(), 2)) < straalBal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
+            /*if (Math.sqrt(Math.pow(powerUpView.getRandX() - middelPuntBal.getX(), 2) + Math.pow(powerUpView.getRandY() - middelPuntBal.getY(), 2)) < straalBal + powerUpModel.getStraal() && !powerUpView.getChildrenUnmodifiable().isEmpty()) {
                 if (powerUpView.getKleurC().equals(Color.PINK)) {
                     peddelModel.setHuidigeBreedte(peddelModel.getMultiplier() * peddelModel.getBreedte());
                     peddelView.createPeddel();
-                    timerPeddel.setTijdPeddel();
+                    timerPeddel.settijdsduurPowerUp();
                     statusPink = true;
                 } else if (powerUpView.getKleurC().equals(Color.PURPLE)) {
                     ballenView.setStatusPurple(true);
-                    timerPeddel.setTijdPeddel();
+                    timerPeddel.settijdsduurPowerUp();
                 } else if (powerUpView.getKleurC().equals(Color.BLACK)) {
                     peddelModel.setHuidigeBreedte((peddelModel.getBreedte() / peddelModel.getMultiplier()));
                     peddelView.createPeddel();
-                    timerPeddel.setTijdPeddel();
+                    timerPeddel.settijdsduurPowerUp();
                     statusBlack = true;
                 } else if (powerUpView.getKleurC().equals(Color.GRAY)) {
-                    timerPeddel.setTijdPeddel();
+                    timerPeddel.settijdsduurPowerUp();
                 }
                 powerUpView.getChildrenUnmodifiable().get(0).setId("1");
-                timerPeddel.setTijdPowerUp();
-            }
+                timerPeddel.setTijdsintervalPowerUp();
+            }*/
         }
     }
 
@@ -166,28 +166,28 @@ public class VeldView {
     }
 
     private void toonPowerUp() {
-        if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getTijdPowerUp() > intervalPowerUp) {
-            this.powerUpModel = new PowerUp(powerUpModel.getStraal());
-            timerPeddel.setTijdPowerUp();
-            powerUpView = new PowerUpView(powerUpModel, paneelModel);
+        if (powerUpView.getChildrenUnmodifiable().isEmpty() && timerPeddel.getTijdsintervalPowerUp() > intervalPowerUp) {
+            this.powerUpModel = new PowerUp(powerUpModel.getStraal(), paneelModel);
+            timerPeddel.setTijdsintervalPowerUp();
+            powerUpView = new PowerUpView(powerUpModel);
             paneel.getChildren().add(powerUpView);
         }
     }
 
     private void tijdPeddel() {
-        if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusPink) {
+        if (timerPeddel.getTijdsduurPowerUp() > intervalPowerUpDuration && statusPink) {
             peddelModel.setHuidigeBreedte(peddelModel.getBreedte());
             peddelView.createPeddel();
             statusPink = false;
-            timerPeddel.setTijdPowerUp();
-        } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && ballenView.getStatusPurple()) {
+            timerPeddel.setTijdsintervalPowerUp();
+        } else if (timerPeddel.getTijdsduurPowerUp() > intervalPowerUpDuration && ballenView.getStatusPurple()) {
             ballenView.setStatusPurple(false);
-            timerPeddel.setTijdPowerUp();
-        } else if (timerPeddel.getTijdPeddel() > intervalPowerUpDuration && statusBlack) {
+            timerPeddel.setTijdsintervalPowerUp();
+        } else if (timerPeddel.getTijdsduurPowerUp() > intervalPowerUpDuration && statusBlack) {
             peddelModel.setHuidigeBreedte(peddelModel.getBreedte());
             peddelView.createPeddel();
             statusBlack = false;
-            timerPeddel.setTijdPowerUp();
+            timerPeddel.setTijdsintervalPowerUp();
         }
     }
 
@@ -200,7 +200,7 @@ public class VeldView {
 
     public String timerPeddel() {
         if (statusPink || ballenView.getStatusPurple() || statusBlack) {
-            return (intervalPowerUpDuration - timerPeddel.getTijdPeddel() + "");
+            return (intervalPowerUpDuration - timerPeddel.getTijdsduurPowerUp() + "");
         }
         return intervalPowerUpDuration + "";
     }

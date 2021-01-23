@@ -20,7 +20,7 @@ public class Ballen {
     private double straal;
 
     public Ballen(Paneel vensterModel, int aantalBallen) {
-        straal = StartPaginaController.getStraalBal();
+        straal = 8;
         this.paneelModel = vensterModel;
         this.aantalBallen = aantalBallen;
         createBallen();
@@ -33,8 +33,23 @@ public class Ballen {
         }
     }
 
+    public void reset() {
+        for (int i = 0; i < aantalBallen; i++) {
+            if (i == 0) {
+                ballen.get(i).reset();
+            } else {
+                ballen.remove(i);
+            }
+
+        }
+    }
+
     public ArrayList<Bal> getBallen() {
         return ballen;
+    }
+
+    public Bal getBal(int i) {
+        return ballen.get(i);
     }
 
     public int getAantalBallen() {

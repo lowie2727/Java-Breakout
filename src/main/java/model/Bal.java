@@ -13,6 +13,7 @@ public class Bal {
 
     private final Paneel paneel;
     private final double straal;
+    private double huidigeStraal;
 
     private double x;
     private double y;
@@ -22,6 +23,9 @@ public class Bal {
     private final double snelheidX;
     private final double snelheidY;
     private final double snelheid;
+    
+    private boolean godMode;
+    private double multiplier;
 
     public Bal(Paneel paneel, double straal) {
         this.paneel = paneel;
@@ -35,6 +39,9 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
+        
+        huidigeStraal = straal;
+        multiplier = 1.5;
     }
 
     /**
@@ -63,6 +70,18 @@ public class Bal {
      */
     public double getVy() {
         return vy;
+    }
+    
+    public double getHuidigeStraal(){
+        return huidigeStraal;
+    }
+    
+    public double getMutiplier(){
+        return multiplier;
+    }
+    
+    public boolean isGodMode(){
+        return godMode;
     }
 
     /**
@@ -105,6 +124,14 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
+    }
+    
+    public void setGodMode(boolean stat){
+        godMode = stat;
+    }
+    
+    public void setStraal(double straal){
+        huidigeStraal = straal;
     }
 
     public void setVx(double vx) {

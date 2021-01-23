@@ -25,8 +25,9 @@ public class Stenen {
     private Steen steen;
 
     public Stenen(Paneel paneel, int kolommen) {
+        steen = new Steen(60,20,0,0);
         this.paneel = paneel;
-        this.rijen = StartPaginaController.getAantalRijen();
+        this.rijen = 5;
         this.kolommen = kolommen;
         offsetBreedte = 5;
         offsetHoogte = 5;
@@ -34,7 +35,7 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         createMatrix();
-        steen = getSteen(0, 0);
+        
     }
 
     private void createMatrix() {
@@ -47,6 +48,10 @@ public class Stenen {
                         breedte * i + offsetBreedtePaneel, hoogte * j + offsetHoogtePaneel);
             }
         }
+    }
+    
+    public void reset(){
+        createMatrix();
     }
 
     /**

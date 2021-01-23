@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import model.Paneel;
+import model.Kleuren;
 import model.PowerUp;
 
 /**
@@ -19,71 +19,36 @@ import model.PowerUp;
 public class PowerUpView extends Region {
 
     private Circle c;
-    private Circle i;
     private final PowerUp powerUp;
-    private final Paneel paneelModel;
-    private double randX;
-    private double randY;
 
-    public PowerUpView(PowerUp powerUp, Paneel paneelModel) {
+    public PowerUpView(PowerUp powerUp) {
         this.powerUp = powerUp;
-        this.paneelModel = paneelModel;
         createPowerUp();
     }
 
     public final void createPowerUp() {
-        long i = Math.round(Math.random() * 4);
-        if (i == 10) {
+        if (powerUp.getKleurBal() == Kleuren.ROZE) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
-        } else if (i == 11) {
+        } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
             c = new Circle(powerUp.getStraal(), Color.PURPLE);
-        } else if (i == 12) {
+        } else if (powerUp.getKleurBal() == Kleuren.ZWART) {
             c = new Circle(powerUp.getStraal(), Color.BLACK);
         } else {
             c = new Circle(powerUp.getStraal(), Color.GRAY);
         }
-        randX = Math.random() * paneelModel.getBreedte();
-        randY = Math.random() * paneelModel.getHoogte() / 2;
-        c.setTranslateX(randX);
-        c.setCenterY(randY);
-
+        c.setTranslateX(powerUp.getX());
+        c.setTranslateY(powerUp.getY());
         getChildren().add(c);
 
     }
 
     public void update() {
-        if (!getChildren().isEmpty()) {
-            if ("1".equals(getChildren().get(0).getId())) {
-                getChildren().remove(0);
-            }
+        if (powerUp.isGeraakt()) {
+            getChildren().clear();
         }
     }
 
     public void reset() {
         getChildren().clear();
     }
-
-    /**
-     * @return the randX
-     */
-    public double getRandX() {
-        return randX;
-    }
-
-    /**
-     * @return the randY
-     */
-    public double getRandY() {
-        return randY;
-    }
-
-    /**
-     * @return the c
-     */
-    public Paint getKleurC() {
-        //Paint s = Color.PINK;
-        //Paint u = (Color) c.getFill();
-        return c.getFill();
-    }
-
 }
