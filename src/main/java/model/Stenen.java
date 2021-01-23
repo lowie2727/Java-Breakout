@@ -6,6 +6,7 @@
 package model;
 
 import be.inf1.mavenproject2.StartPaginaController;
+import java.util.Arrays;
 
 /**
  *
@@ -21,11 +22,10 @@ public class Stenen {
     private double offsetBreedtePaneel;
     private final double offsetHoogtePaneel;
     private final Paneel paneel;
-    private final Steen steen;
+    private Steen steen;
 
-    public Stenen(Paneel paneel, Steen steen, int kolommen) {
+    public Stenen(Paneel paneel, int kolommen) {
         this.paneel = paneel;
-        this.steen = steen;
         this.rijen = StartPaginaController.getAantalRijen();
         this.kolommen = kolommen;
         offsetBreedte = 5;
@@ -34,13 +34,17 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         createMatrix();
+        steen = getSteen(0, 0);
     }
 
     private void createMatrix() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
-                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte());
+                double breedte = steen.getBreedte() + offsetBreedte;
+                double hoogte = steen.getHoogte() + offsetHoogte;
+                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte(),
+                        breedte * i + offsetBreedtePaneel, hoogte * j + offsetHoogtePaneel);
             }
         }
     }
@@ -50,6 +54,10 @@ public class Stenen {
      */
     public Steen[][] getStenen() {
         return stenen;
+    }
+
+    public Steen getSteen(int j, int i) {
+        return stenen[j][i];
     }
 
     /**

@@ -24,6 +24,7 @@ import model.Peddel;
 import model.PowerUp;
 import model.Steen;
 import model.Stenen;
+import model.Spel;
 import view.BallenView;
 import view.PaneelView;
 import view.PeddelView;
@@ -56,6 +57,8 @@ public class ModelController {
 
     @FXML
     private Label labelTijd;
+    
+    private Spel spel;
 
     private Peddel peddelModel;
     private Bal balModel;
@@ -76,16 +79,19 @@ public class ModelController {
     private Timer timerBal;
     private Timer timerPeddel;
 
+
     @FXML
     void initialize() {
+        
 
+        
         paneelModel = new Paneel(1000, 500);    //breedte, hoogte
+        //spel = new Spel(paneelModel);
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
-        steenModel = new Steen(60, 20);  //breedte, hoogte
         ballenModel = new Ballen(paneelModel, 1);  //aantalBallen
         peddelModel = new Peddel(10, paneelModel);  //breedte, hoogte
-        stenenModel = new Stenen(paneelModel, steenModel, 500);  //rijen, kolommen
+        stenenModel = new Stenen(paneelModel, 500);  //rijen, kolommen
         powerUpModel = new PowerUp(30);
 
         ballenView = new BallenView(ballenModel, peddelModel, paneelModel);

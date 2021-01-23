@@ -33,11 +33,11 @@ public class PowerUpView extends Region {
 
     public final void createPowerUp() {
         long i = Math.round(Math.random() * 4);
-        if (i == 1) {
+        if (i == 10) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
-        } else if (i == 2) {
+        } else if (i == 11) {
             c = new Circle(powerUp.getStraal(), Color.PURPLE);
-        } else if (i == 3) {
+        } else if (i == 12) {
             c = new Circle(powerUp.getStraal(), Color.BLACK);
         } else {
             c = new Circle(powerUp.getStraal(), Color.GRAY);
