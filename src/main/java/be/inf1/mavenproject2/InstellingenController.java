@@ -47,6 +47,8 @@ public class InstellingenController {
     private static int balStraal;
     private static int durationPowerUp;
     private static int powerUpInterval;
+    
+    private static boolean klaarOmTeSpelen;
 
     @FXML
     void initialize() {
@@ -79,7 +81,7 @@ public class InstellingenController {
         durationPowerUp = (int)sliderPowerUpDuration.getValue();
         StartPaginaController.setIntervalPowerUp((int) sliderPowerUp.getValue());
         powerUpInterval = (int)sliderPowerUp.getValue();
-        
+        klaarOmTeSpelen = true;
     }
 
     /**
@@ -115,5 +117,12 @@ public class InstellingenController {
      */
     public static int getPowerUpInterval() {
         return powerUpInterval;
+    }
+
+    /**
+     * @return the klaarOmTeSpelen
+     */
+    public static boolean isKlaarOmTeSpelen() {
+        return klaarOmTeSpelen;
     }
 }
