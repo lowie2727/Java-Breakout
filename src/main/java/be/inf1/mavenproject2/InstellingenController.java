@@ -78,6 +78,7 @@ public class InstellingenController {
         StartPaginaController.setIntervalPowerUpDuration((int) sliderPowerUpDuration.getValue());
         durationPowerUp = (int)sliderPowerUpDuration.getValue();
         StartPaginaController.setIntervalPowerUp((int) sliderPowerUp.getValue());
+        powerUpInterval = (int)sliderPowerUp.getValue();
         
     }
 
