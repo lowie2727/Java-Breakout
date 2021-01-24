@@ -21,6 +21,8 @@ public class Spel {
     private final int maxTijdsduurPowerUp;
     private final int maxTijdsduurTussenPowerUp;
     private boolean toonLabel;
+    private boolean balStatus;
+    private boolean balStatusNa;
 
     /**
      *
@@ -140,8 +142,8 @@ public class Spel {
      */
     private void botsingBalPeddel() {
         for (Bal bal : ballen.getBallen()) {
-            if (bal.getY() + bal.getStraal() >= peddel.getY() - 3
-                    && bal.getY() + bal.getStraal() <= peddel.getY() + 3
+            if (bal.getY() + bal.getHuidigeStraal() >= peddel.getY() - 3
+                    && bal.getY() + bal.getHuidigeStraal() <= peddel.getY() + 3
                     && bal.getX() >= peddel.getX()
                     && bal.getX() <= peddel.getX() + peddel.getHuidigeBreedte()) {
 
@@ -175,8 +177,9 @@ public class Spel {
     private void botsingBalPowerUp() {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (Bal bal : ballenLijst) {
-            if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
+            if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getHuidigeStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
                 toonLabel = true;
+                balStatus = true;
                 powerUp.setGeraakt(true);
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
@@ -198,8 +201,10 @@ public class Spel {
     }
 
     private void PowerUpVoorbij() {
-        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && toonLabel) {
+        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && balStatus) {
             toonLabel = false;
+            balStatus = false;
+            balStatusNa = true;
             if (powerUp.getKleurBal() == Kleuren.ROZE || powerUp.getKleurBal() == Kleuren.ZWART) {
                 peddel.setHuidigeBreedte(peddel.getBreedte());
             } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -228,10 +233,11 @@ public class Spel {
     }
 
     private void toonPowerUp() {
-        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt()) {
+        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt() && balStatusNa) {
             powerUp = new PowerUp(20, paneel);
             timerPeddel.setTijdsintervalPowerUp();
             powerUp.setGeraakt(false);
+            balStatusNa = false;
         }
     }
 
