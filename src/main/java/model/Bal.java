@@ -178,22 +178,16 @@ public class Bal {
 
     /**
      * verplaatst de bal verticaal
-     *
-     * @return y
      */
-    public double verticaal() {
+    public void verticaal() {
         y = y + vy;
-        return y;
     }
 
     /**
      * verplaatst de bal horizontaal
-     *
-     * @return x
      */
-    public double horizontaal() {
+    public void horizontaal() {
         x = x + vx;
-        return x;
     }
 
     /**

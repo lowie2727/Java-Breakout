@@ -25,7 +25,7 @@ public class SpelregelsController {
 
     /*
     * initialiseert de scene
-    */
+     */
     @FXML
     void initialize() {
         gaNaarStartButton.setOnAction(this::gaNaarStart);
@@ -33,7 +33,7 @@ public class SpelregelsController {
 
     /*
     * @param t is de ActionEvent die gekoppeld is aan de knop om terug te gaan naar de startpagina
-    */
+     */
     private void gaNaarStart(ActionEvent t) {
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));

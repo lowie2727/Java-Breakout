@@ -8,9 +8,7 @@ import javafx.scene.control.Alert;
 /**
  * klasse Spel
  *
- * Lowie Van Vyve: 65%
- * Arnaud Paquet: 10%
- * Jonas Vandenborne: 25%
+ * Lowie Van Vyve: 65% Arnaud Paquet: 10% Jonas Vandenborne: 25%
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
@@ -27,7 +25,7 @@ public class Spel {
      * de tijdsduur van een powerup
      */
     private final int maxTijdsduurPowerUp;
-    
+
     /**
      * de tijdsduur tussen powerups in
      */
@@ -88,25 +86,24 @@ public class Spel {
         timerPeddel.setTijdsduurPowerUp();
         powerUp = new PowerUp(20, paneel);
     }
-    
+
     /**
      * deze methode zorgt voor de notificaties zoals gewonnen en verloren
      */
-    public void notificatie(){
-        if(stenen.isGewonnen()){
+    public void notificatie() {
+        if (stenen.isGewonnen()) {
             gewonnen();
             reset();
         }
     }
-    
-    
+
     /**
-     * deze methode laat een bericht zien als je dood bent
+     * deze methode laat een bericht zien als je gewonnen bent
      */
     private void gewonnen() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("game over");
-        alert.setContentText("je bent dood...druk op reset om opnieuw te beginnen");
+        alert.setTitle("gewonnen");
+        alert.setContentText("je hebt gewonnen!\nproficiat!\ndruk op reset om opnieuw te beginnen");
         alert.show();
     }
 
@@ -194,19 +191,19 @@ public class Spel {
 
                 if (bal.getVy() > 0) {
                     double snelheidBalY;
-                    double middenPeddelX = peddel.getX() + peddel.getBreedte() / 2;
+                    double middenPeddelX = peddel.getX() + peddel.getHuidigeBreedte() / 2;
                     if ((bal.getX() - middenPeddelX) > 0) {
                         if (bal.getVx() < 0) {
                             bal.setVx();
                         }
-                        double percentTotMiddenRechts = 1 - (bal.getX() - middenPeddelX) / (peddel.getBreedte() / 2);
+                        double percentTotMiddenRechts = 1 - (bal.getX() - middenPeddelX) / (peddel.getHuidigeBreedte() / 2);
                         double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
                         snelheidBalY = -((percentTotMiddenRechts * (bal.getSnelheid() - snelheid)) + snelheid);    //schaal van 0->1 naar gewenste schaal omzetten
                     } else {
                         if (bal.getVx() > 0) {
                             bal.setVx();
                         }
-                        double percentTotMiddenPeddelLinks = 1 - (middenPeddelX - bal.getX()) / (peddel.getBreedte() / 2);
+                        double percentTotMiddenPeddelLinks = 1 - (middenPeddelX - bal.getX()) / (peddel.getHuidigeBreedte() / 2);
                         double snelheid = Math.sqrt(Math.pow(bal.getSnelheid(), 2) / 2);
                         snelheidBalY = -((percentTotMiddenPeddelLinks * (bal.getSnelheid() - snelheid)) + snelheid);
                     }

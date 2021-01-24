@@ -37,8 +37,6 @@ public class Stenen {
     private final Paneel paneel;
     private final Steen steen;
     private boolean gewonnen;
-    
-
 
     /**
      * constructur voor objecten van de klasse Stenen
@@ -57,7 +55,6 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         maakStenen();
-   
 
     }
 
@@ -83,12 +80,12 @@ public class Stenen {
         maakStenen();
         gewonnen = false;
     }
-    
+
     /**
      * zet de boolean gewonnen op true als er geen stenen meer zijn
      */
-    public void gewonnen(){
-        if(getAantalStenen()==0){
+    public void gewonnen() {
+        if (getAantalStenen() == 0) {
             gewonnen = true;
         }
     }
@@ -104,6 +101,7 @@ public class Stenen {
 
     /**
      * geeft een steen op een bepaalde positie
+     *
      * @param j de rijen in de 2D-ArrayList
      * @param i de kolommen in de 2D-ArrayList
      * @return stenen[rijen][kolommen]
