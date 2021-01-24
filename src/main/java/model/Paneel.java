@@ -1,23 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 /**
  * klasse Paneel
- * 
+ *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Paneel {
 
+    /**
+     * de breedte van het paneel
+     */
     private final double breedte;
+    /**
+     * de hoogte van het paneel
+     */
     private final double hoogte;
 
     /**
      * constructur voor objecten van klasse Paneel
-     * 
+     *
      * @param breedte de breedte van het paneel
      * @param hoogte de hoogte van het paneel
      */
@@ -27,14 +28,18 @@ public class Paneel {
     }
 
     /**
-     * @return de breedte van het paneel
+     * geeft de breedte van het paneel
+     *
+     * @return breedte
      */
     public double getBreedte() {
         return breedte;
     }
 
     /**
-     * @return de hoogte van het paneel
+     * geeft de hoogte van het paneel
+     *
+     * @return hoogte
      */
     public double getHoogte() {
         return hoogte;

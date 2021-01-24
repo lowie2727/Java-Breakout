@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import be.inf1.mavenproject2.StartPaginaController;
@@ -16,8 +11,14 @@ import java.util.ArrayList;
 public class Ballen {
 
     private final ArrayList<Bal> ballen;
+    /**
+     * het aantal ballen
+     */
     private final int aantalBallen;
     private final Paneel paneelModel;
+    /**
+     * de straal van een bal
+     */
     private final double straal;
 
     /**
@@ -35,7 +36,7 @@ public class Ballen {
     }
 
     /**
-     * maakt alle ballen aan
+     * methode die alle ballen aanmaakt
      */
     private void maakBallen() {
         for (int i = 0; i < aantalBallen; i++) {
@@ -58,7 +59,8 @@ public class Ballen {
 
     /**
      * geeft alle ballen in de ArrayList van het type bal
-     * @return ballen in de ArrayList
+     *
+     * @return ballen
      */
     public ArrayList<Bal> getBallen() {
         return ballen;
@@ -66,8 +68,9 @@ public class Ballen {
 
     /**
      * geeft een bal op positie i in de ArrayList
-     * @param i positie in de ArrayList
-     * @return bal op positie i
+     *
+     * @param i positie i in de ArrayList
+     * @return ballen.get(i)
      */
     public Bal getBal(int i) {
         return ballen.get(i);
@@ -75,7 +78,8 @@ public class Ballen {
 
     /**
      * neemt de grote van de ArrayList ballen
-     * @return grote van de ArrayList
+     *
+     * @return ballen.size()
      */
     public int getHuidigAantalBallen() {
         return ballen.size();
@@ -83,7 +87,8 @@ public class Ballen {
 
     /**
      * geeft het aantal ballen in het begin van het spel
-     * @return aantal ballen
+     *
+     * @return aantalBallen
      */
     public int getAantalBallen() {
         return aantalBallen;

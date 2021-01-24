@@ -1,28 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 /**
  * klasse PowerUp
- * 
- * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
+ *
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PowerUp {
 
+    /**
+     * de straal van de PowerUp
+     */
     private final double straal;
+    /**
+     * de x positie van het middelpunt van een PowerUp
+     */
     private final double x;
+    /**
+     * de y positie van het middelpunt van een PowerUp
+     */
     private final double y;
+    /**
+     * de enum klasse Kleuren
+     */
     private Kleuren kleur;
+    /**
+     * geeft de status of een bal een PowerUp geraakt heeft
+     */
     private boolean geraakt;
 
     /**
      * constructor voor objecten van de klasse PowerUp
-     * 
+     *
      * @param straal de straal van de PowerUp
-     * @param paneel 
+     * @param paneel
      */
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
@@ -32,28 +42,36 @@ public class PowerUp {
     }
 
     /**
-     * @return the diameter
+     * geeft de straal van de PowerUp
+     *
+     * @return straal
      */
     public double getStraal() {
         return straal;
     }
 
     /**
+     * geeft de x positie van de PowerUp
      *
-     * @return
+     * @return x
      */
     public double getX() {
         return x;
     }
 
     /**
+     * geeft de y positie van de PowerUp
      *
-     * @return
+     * @return y
      */
     public double getY() {
         return y;
     }
 
+    /**
+     * methode om 1 van de 4 PowerUps willekeurig te selecteren
+    *
+     */
     private void kleurBal() {
         int i = (int) Math.round(Math.random() * 4);
         if (i == 1) {
@@ -68,26 +86,29 @@ public class PowerUp {
     }
 
     /**
+     * geeft de kleur van de PowerUp
      *
-     * @return
+     * @return kleur
      */
     public Kleuren getKleurBal() {
         return kleur;
     }
 
     /**
+     * geeft de status of de bal geraakt is
      *
-     * @return
+     * @return geraakt
      */
     public boolean isGeraakt() {
         return geraakt;
     }
 
     /**
+     * methode om de status van de PowerUp te veranderen
      *
-     * @param stat
+     * @param geraakt status of de PowerUp geraakt is
      */
-    public void setGeraakt(boolean stat) {
-        geraakt = stat;
+    public void setGeraakt(boolean geraakt) {
+        this.geraakt = geraakt;
     }
 }

@@ -1,34 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import be.inf1.mavenproject2.StartPaginaController;
 
 /**
  * klasse Peddel
- * 
+ *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Peddel {
 
     private final Paneel paneel;
-
+    /**
+     * de hoogte van een peddel
+     */
     private final double hoogte;
+    /**
+     * de breedte van een peddel
+     */
     private final double breedte;
+    /**
+     * de huidige breedte van de peddel
+     */
     private double huidigeBreedte;
 
+    /**
+     * de afstand van de peddel boven de onderkant van het veld
+     */
     private final double offset;
+    /**
+     * de x positie van de peddel van de linkerboven hoek
+     */
     private double x;
+    /**
+     * de y positie van de peddel van de linkerboven hoek
+     */
     private double y;
 
+    /**
+     * de factor waarmee de peddel breder wordt tijdens de PowerUp
+     */
     private final double multiplier;
 
     /**
      * constructur voor objecten van klasse Peddel
-     * 
+     *
      * @param hoogte de hoogte van de peddel
      * @param paneel is het paneel dat aangemaakt wordt
      */
@@ -44,49 +59,63 @@ public class Peddel {
     }
 
     /**
-     * @return geeft de hoogte van de peddel in het begin van het spel
+     * geeft de hoogte van de peddel in het begin van het spel
+     *
+     * @return hoogte
      */
     public double getHoogte() {
         return hoogte;
     }
 
     /**
-     * @return geeft de breedte van de peddel in het begin van het spel
+     * geeft de breedte van de peddel in het begin van het spel
+     *
+     * @return breedte
      */
     public double getBreedte() {
         return breedte;
     }
 
     /**
-     * @return geeft de x positie van de peddel
+     * geeft de x positie van de peddel
+     *
+     * @return x
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return geeft de y positie van de peddel
+     * geeft de y positie van de peddel
+     *
+     * @return y
      */
     public double getY() {
         return y;
     }
 
     /**
-     * @return geeft hoe ver de peddel van de onderkant van het paneel staat
+     * geeft hoe ver de peddel van de onderkant van het paneel staat
+     *
+     * @return offset
      */
     public double getOffset() {
         return offset;
     }
 
     /**
-     * @return geeft de factor waarmee de bal breder wordt tijdens de PowerUp
+     * geeft de factor waarmee de bal breder wordt tijdens de PowerUp
+     *
+     * @return multiplier
      */
     public double getMultiplier() {
         return multiplier;
     }
 
     /**
-     * @return geeft de huidige breedte van de peddel
+     * geeft de huidige breedte van de peddel
+     *
+     * @return huidigeBreedte
      */
     public double getHuidigeBreedte() {
         return huidigeBreedte;
@@ -103,6 +132,7 @@ public class Peddel {
 
     /**
      * methode die de x positie van de peddel verandert
+     *
      * @param x de x positie van de peddel
      */
     public void setX(double x) {
@@ -111,6 +141,7 @@ public class Peddel {
 
     /**
      * methode die de huidige breedte van de bal verandert
+     *
      * @param breedte the breedte van de peddel
      */
     public void setHuidigeBreedte(double breedte) {

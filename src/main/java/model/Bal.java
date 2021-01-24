@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 /**
  * klasse Bal
- * 
+ *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Bal {
@@ -16,21 +11,48 @@ public class Bal {
     private final double straal;
     private double huidigeStraal;
 
+    /**
+     * de x positie van het middelpunt van een bal
+     */
     private double x;
+    /**
+     * de y positie van het middelpunt van een bal
+     */
     private double y;
+    /**
+     * de snelheid in de x richting van een bal
+     */
     private double vx;
+    /**
+     * de snelheid in de y richting van een bal
+     */
     private double vy;
 
+    /**
+     * de beginsnelheid in de x richting van een bal
+     */
     private final double snelheidX;
+    /**
+     * de beginsnelheid in de y richting van een bal
+     */
     private final double snelheidY;
+    /**
+     * de vectoriële som van de totale snelheid van een bal
+     */
     private final double snelheid;
 
+    /**
+     * de status of de bal in godMode is
+     */
     private boolean godMode;
+    /**
+     * de factor waarmee de bal groter wordt tijdens de PowerUp
+     */
     private final double multiplier;
 
     /**
      * constructor voor objecten van de klasse Bal
-     * 
+     *
      * @param paneel is het paneel dat aangemaakt wordt
      * @param straal is de straal van de bal
      */
@@ -48,93 +70,116 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
-        
+
         multiplier = 1.5;
     }
 
     /**
-     * @return geeft de x-coördinaten van het middelpunt van de bal
+     * geeft de x-coördinaten van het middelpunt van de bal
+     *
+     * @return x
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return geeft de y-coördinaten van het middelpunt van de bal
+     * geeft de y-coördinaten van het middelpunt van de bal
+     *
+     * @return y
      */
     public double getY() {
         return y;
     }
 
     /**
-     * @return geeft de snelheid van de bal in de x richting 
+     * geeft de snelheid van de bal in de x richting
+     *
+     * @return vx
      */
     public double getVx() {
         return vx;
     }
 
     /**
-     * @return geeft de snelheid van de bal in de y richting
+     * geeft de snelheid van de bal in de y richting
+     *
+     * @return vy
      */
     public double getVy() {
         return vy;
     }
 
     /**
-     * @return geeft de huidige straal van de bal
+     * geeft de huidige straal van de bal
+     *
+     * @return huidigeStraal
      */
     public double getHuidigeStraal() {
         return huidigeStraal;
     }
 
     /**
-     * @return geeft de factor waarmee de bal vergroot wordt tijdens de PowerUp
+     * geeft de factor waarmee de bal vergroot wordt tijdens de PowerUp
+     *
+     * @return multiplier
      */
     public double getMutiplier() {
         return multiplier;
     }
 
     /**
-     * @return geeft de status van de Bal van de bal terug
-     * Bal wil zeggen dat de snelheid van de bal niet veranderd als hij botst met een steen, 
-     * maar de steen gaat wel weg als de bal de steen raakt
+     * geeft de status van de godMode van een bal terug
+     *
+     * @return godMode true indien godMode actief is godMode wil zeggen dat de
+     * snelheid van de bal niet veranderd als hij botst met een steen, maar de
+     * steen gaat wel weg als de bal de steen raakt
      */
     public boolean isGodMode() {
         return godMode;
     }
 
     /**
-     * @return geeft de beginstraal van de bal terug
+     * geeft de beginstraal van de bal terug
+     *
+     * @return straal
      */
     public double getStraal() {
         return straal;
     }
 
     /**
-     * @return geeft de beginsnelheid in de x richting terug waarmee de bal vertrekt
+     * geeft de beginsnelheid in de x richting terug waarmee de bal vertrekt
+     *
+     * @return snelheidX
      */
     public double getSnelheidX() {
         return snelheidX;
     }
 
     /**
-     * @return geeft de beginsnelheid in de y richting terug waarmee de bal vertrekt
+     * geeft de beginsnelheid in de y richting terug waarmee de bal vertrekt
+     *
+     * @return snleheidY
      */
     public double getSnelheidY() {
         return snelheidY;
     }
 
     /**
-     * @return geeft de totale vertoriële som van beginsnelheid terug waarmee de bal vertrekt
+     * geeft de totale vertoriële som van beginsnelheid terug waarmee de bal
+     * vertrekt
+     *
+     * @return snelheid
      */
     public double getSnelheid() {
         return snelheid;
     }
 
-   
-
     /**
-     * @return verplaatst de bal verticaal
+     * verplaatst de bal verticaal
+     *
+     * @return y
      */
     public double verticaal() {
         y = y + vy;
@@ -142,7 +187,9 @@ public class Bal {
     }
 
     /**
-     * @return verplaatst de bal horizontaal
+     * verplaatst de bal horizontaal
+     *
+     * @return x
      */
     public double horizontaal() {
         x = x + vx;
@@ -161,7 +208,8 @@ public class Bal {
 
     /**
      * verandert de status van godMode
-     * @param godMode nieuwe status van godMode
+     *
+     * @param godMode true indien de godMode actief is
      */
     public void setGodMode(boolean godMode) {
         this.godMode = godMode;
@@ -169,7 +217,8 @@ public class Bal {
 
     /**
      * verandert de huidigestraal
-     * @param straal de nieuwe huidige straal 
+     *
+     * @param straal de nieuwe huidige straal
      */
     public void setHuidigeStraal(double straal) {
         huidigeStraal = straal;
@@ -177,6 +226,7 @@ public class Bal {
 
     /**
      * verandert de snelheid in de x richting
+     *
      * @param vx de snelheid in de x richting
      */
     public void setVx(double vx) {
@@ -185,6 +235,7 @@ public class Bal {
 
     /**
      * verandert de snelheid in de y richting
+     *
      * @param vy de snelheid in de y richting
      */
     public void setVy(double vy) {
@@ -213,6 +264,7 @@ public class Bal {
 
     /**
      * verandert de x positie
+     *
      * @param x de x positie
      */
     public void setX(double x) {
@@ -221,6 +273,7 @@ public class Bal {
 
     /**
      * verandert de y positie
+     *
      * @param y de y positie
      */
     public void setY(double y) {
@@ -282,6 +335,4 @@ public class Bal {
         verticaal();
     }
 
-    
-    
 }
