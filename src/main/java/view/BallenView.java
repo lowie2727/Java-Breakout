@@ -63,14 +63,4 @@ public class BallenView extends Region {
             }
         }
     }
-    
-    /**
-     * deze methode laat een bericht zien als je dood bent
-     */
-    private void gameOver() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("game over");
-        alert.setContentText("je bent dood...druk op reset om opnieuw te beginnen");
-        alert.showAndWait();
-    }
 }

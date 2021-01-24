@@ -36,6 +36,8 @@ public class Stenen {
     private final double offsetHoogtePaneel;
     private final Paneel paneel;
     private final Steen steen;
+    
+
 
     /**
      * constructur voor objecten van de klasse Stenen
@@ -54,6 +56,7 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         maakStenen();
+   
 
     }
 

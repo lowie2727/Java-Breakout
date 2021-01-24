@@ -218,7 +218,7 @@ public class Bal {
     }
 
     /**
-     * verandert de huidigestraal
+     * verandert de huidigeStraal
      *
      * @param straal de nieuwe huidige straal
      */

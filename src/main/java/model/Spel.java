@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 /**
  * klasse Spel
- * 
+ *
+ * Lowie Van Vyve: 65%
+ * Arnaud Paquet: 10%
+ * Jonas Vandenborne: 25%
+ *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Spel {
@@ -18,16 +22,32 @@ public class Spel {
     private final Paneel paneel;
 
     private final TimerPeddel timerPeddel;
+    /**
+     * de tijdsduur van een powerup
+     */
     private final int maxTijdsduurPowerUp;
+    /**
+     * de tijdsduur tussen powerups in
+     */
     private final int maxTijdsduurTussenPowerUp;
+    /**
+     * de status of de boolean zichtbaar is
+     */
     private boolean toonLabel;
+    /**
+     * de status of de bal geraakt is
+     */
     private boolean balStatus;
+    /**
+     * de status of de bal weg is
+     */
     private boolean balStatusNa;
 
     /**
+     * constructor voor objecten van klasse Spel
      *
-     * @param paneel
-     * @param timerPeddel
+     * @param paneel vraagt het model van Paneel op
+     * @param timerPeddel vraagt de timerpeddel op
      */
     public Spel(Paneel paneel, TimerPeddel timerPeddel) {
         this.paneel = paneel;
@@ -42,7 +62,7 @@ public class Spel {
     }
 
     /**
-     *
+     * deze methode update de klasse Spel
      */
     public void update() {
         botsingBalStenen();
@@ -53,7 +73,7 @@ public class Spel {
     }
 
     /**
-     *
+     * de methode reset de klasse Spel
      */
     public void reset() {
         ballen.reset();
@@ -66,7 +86,7 @@ public class Spel {
     }
 
     /**
-     *
+     * deze methode regiseert de botsingen tussen de bal en de stenen
      */
     private void botsingBalStenen() {
         for (Bal bal : ballen.getBallen()) {
@@ -138,7 +158,7 @@ public class Spel {
     }
 
     /**
-     *
+     * de methode registreert de botsing tussen de bal en de peddel
      */
     private void botsingBalPeddel() {
         for (Bal bal : ballen.getBallen()) {
@@ -172,15 +192,15 @@ public class Spel {
     }
 
     /**
-     *
+     * deze methode registreert de botsing tussen de bal en de powerup
      */
     private void botsingBalPowerUp() {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (Bal bal : ballenLijst) {
             if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getHuidigeStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
                 toonLabel = true;
-                balStatus = true;
                 powerUp.setGeraakt(true);
+                balStatus = true;
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
                 } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -200,8 +220,11 @@ public class Spel {
         }
     }
 
+    /**
+     * deze methode zegt wanneer de powerup gedaan is
+     */
     private void PowerUpVoorbij() {
-        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && balStatus) {
+        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && /*toonLabel*/ balStatus) {
             toonLabel = false;
             balStatus = false;
             balStatusNa = true;
@@ -222,8 +245,9 @@ public class Spel {
     }
 
     /**
+     * deze methode print de label voor de tijdsduur van de powerup
      *
-     * @return
+     * @return tekst in label voor tijd
      */
     public String labelPowerUp() {
         if (toonLabel) {
@@ -232,6 +256,9 @@ public class Spel {
         return maxTijdsduurPowerUp + "";
     }
 
+    /**
+     * deze methode toont een powerup na een bepaalde tijd
+     */
     private void toonPowerUp() {
         if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt() && balStatusNa) {
             powerUp = new PowerUp(20, paneel);
@@ -242,32 +269,36 @@ public class Spel {
     }
 
     /**
+     * geeft de ballen terug
      *
-     * @return
+     * @return ballen de ballen
      */
     public Ballen getBallen() {
         return ballen;
     }
 
     /**
+     * geeft de peddel terug
      *
-     * @return
+     * @return peddel de peddel
      */
     public Peddel getPeddel() {
         return peddel;
     }
 
     /**
+     * geeft de stenen terug
      *
-     * @return
+     * @return stenen de stenen
      */
     public Stenen getStenen() {
         return stenen;
     }
 
     /**
+     * geeft de powerup terug
      *
-     * @return
+     * @return puwerUp de powerUp
      */
     public PowerUp getPowerUp() {
         return powerUp;
