@@ -50,12 +50,19 @@ public class InstellingenController {
 
     private static boolean klaarOmTeSpelen;
 
+    /*
+    *initialieerst de scene
+     */
     @FXML
     void initialize() {
         gaNaarStart.setOnAction(this::gaNaarStart);
         okButton.setOnAction(this::bevestigVeranderingen);
     }
 
+    /*
+    * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan, 
+    * deze methode veranderd het scherm dat zichtbaar is
+     */
     private void gaNaarStart(ActionEvent t) {
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
@@ -69,6 +76,11 @@ public class InstellingenController {
         }
     }
 
+    /*
+    * @param t is de ActionEvent die gekoppeld is aan de knop om de instellingen van de sliders te bevestigen
+    * in deze methode worden de instellingen van de straal, aantalrijen, .... 
+    * gestuurd naar de modellen die deze nodig hebben
+     */
     private void bevestigVeranderingen(ActionEvent t) {
         StartPaginaController.setPeddelBreedte((int) sliderPeddel.getValue());
         breedtePeddel = (int) sliderPeddel.getValue();
@@ -84,42 +96,44 @@ public class InstellingenController {
     }
 
     /**
-     * @return the breedtePeddel
+     * @return breedtePeddel geeft de breedte van de peddel terug
      */
     public static int getBreedtePeddel() {
         return breedtePeddel;
     }
 
     /**
-     * @return the rijenAantal
+     * @return het rijenAantal geeft het aantal rijen stenen terug
      */
     public static int getRijenAantal() {
         return rijenAantal;
     }
 
     /**
-     * @return the balStraal
+     * @return de balStraal geeft de straal van de bal terug
      */
     public static int getBalStraal() {
         return balStraal;
     }
 
     /**
-     * @return the durationPowerUp
+     * @return de durationPowerUp geeft de tijd terug hoelang een PowerUp duurt
      */
     public static int getDurationPowerUp() {
         return durationPowerUp;
     }
 
     /**
-     * @return the powerUpInterval
+     * @return de powerUpInterval geeft de tijd terug wanneer een nieuwe PowerUp
+     * tevoorschijn mag komen
      */
     public static int getPowerUpInterval() {
         return powerUpInterval;
     }
 
     /**
-     * @return the klaarOmTeSpelen
+     * @return klaarOmTeSpelen geeft de toestand terug of de ok knop is
+     * ingeklikt om de instellingen te bevestigen
      */
     public static boolean isKlaarOmTeSpelen() {
         return klaarOmTeSpelen;

@@ -28,9 +28,9 @@ public class Bal {
     private final double multiplier;
 
     /**
-     *
-     * @param paneel
-     * @param straal
+     * constructor voor objecten van de klasse bal
+     * @param paneel is het paneel dat aangemaakt wordt
+     * @param straal is de straal van de bal
      */
     public Bal(Paneel paneel, double straal) {
         this.paneel = paneel;
@@ -51,83 +51,79 @@ public class Bal {
     }
 
     /**
-     * @return
+     * @return geeft de x-coördinaten van het middelpunt van de bal
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return
+     * @return geeft de y-coördinaten van het middelpunt van de bal
      */
     public double getY() {
         return y;
     }
 
     /**
-     * @return
+     * @return geeft de snelheid van de bal in de x richting 
      */
     public double getVx() {
         return vx;
     }
 
     /**
-     * @return
+     * @return geeft de snelheid van de bal in de y richting
      */
     public double getVy() {
         return vy;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de huidige straal van de bal
      */
     public double getHuidigeStraal() {
         return huidigeStraal;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de factor waarmee de bal vergroot wordt tijdens de PowerUp
      */
     public double getMutiplier() {
         return multiplier;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de status van de Bal van de bal terug
+     * Bal wil zeggen dat de snelheid van de bal niet veranderd als hij botst met een steen, 
+     * maar de steen gaat wel weg als de bal de steen raakt
      */
     public boolean isGodMode() {
         return godMode;
     }
 
     /**
-     * @return
+     * @return geeft de beginstraal van de bal terug
      */
     public double getStraal() {
         return straal;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de beginsnelheid in de x richting terug waarmee de bal vertrekt
      */
     public double getSnelheidX() {
         return snelheidX;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de beginsnelheid in de y richting terug waarmee de bal vertrekt
      */
     public double getSnelheidY() {
         return snelheidY;
     }
 
     /**
-     *
-     * @return
+     * @return geeft de totale vertoriële som van beginsnelheid terug waarmee de bal vertrekt
      */
     public double getSnelheid() {
         return snelheid;
@@ -136,7 +132,7 @@ public class Bal {
    
 
     /**
-     * @return
+     * @return verplaatst de bal verticaal
      */
     public double verticaal() {
         y = y + vy;
@@ -144,7 +140,7 @@ public class Bal {
     }
 
     /**
-     * @return
+     * @return verplaatst de bal horizontaal
      */
     public double horizontaal() {
         x = x + vx;
@@ -152,7 +148,7 @@ public class Bal {
     }
 
     /**
-     *
+     * de methode die de bal reset
      */
     public void reset() {
         x = paneel.getBreedte() / 2;
@@ -162,32 +158,32 @@ public class Bal {
     }
 
     /**
-     *
-     * @param stat
+     * verandert de status van godMode
+     * @param godMode nieuwe status van godMode
      */
-    public void setGodMode(boolean stat) {
-        godMode = stat;
+    public void setGodMode(boolean godMode) {
+        this.godMode = godMode;
     }
 
     /**
-     *
-     * @param straal
+     * verandert de huidigestraal
+     * @param straal de nieuwe huidige straal 
      */
     public void setHuidigeStraal(double straal) {
         huidigeStraal = straal;
     }
 
     /**
-     *
-     * @param vx
+     * verandert de snelheid in de x richting
+     * @param vx de snelheid in de x richting
      */
     public void setVx(double vx) {
         this.vx = vx;
     }
 
     /**
-     *
-     * @param vy
+     * verandert de snelheid in de y richting
+     * @param vy de snelheid in de y richting
      */
     public void setVy(double vy) {
         this.vy = vy;
@@ -200,39 +196,39 @@ public class Bal {
     }
 
     /**
-     *
+     * keert de x snelheid om
      */
     public void setVx() {
         vx = -vx;
     }
 
     /**
-     *
+     * keert de y snelheid om
      */
     public void setVy() {
         vy = -vy;
     }
 
     /**
-     *
-     * @param x
+     * verandert de x positie
+     * @param x de x positie
      */
     public void setX(double x) {
         this.x = x;
     }
 
     /**
-     *
-     * @param y
+     * verandert de y positie
+     * @param y de y positie
      */
     public void setY(double y) {
         this.y = y;
     }
 
     /**
-     *
+     * keert de x snelheid om als de bal zijn maximale x positie bereikt
      */
-    public void setMaxX() {
+    private void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
             if (vx > 0) {
                 vx = -vx;
@@ -241,9 +237,9 @@ public class Bal {
     }
 
     /**
-     *
+     * keert de x snelheid om als de bal zijn minimale x positie bereikt
      */
-    public void setMinX() {
+    private void setMinX() {
         if (x <= getStraal()) {
             if (vx < 0) {
                 vx = -vx;
@@ -252,9 +248,9 @@ public class Bal {
     }
 
     /**
-     *
+     * keert de y snelheid om als de bal zijn maximale y positie bereikt
      */
-    public void setMaxY() {
+    private void setMaxY() {
         if (y >= paneel.getHoogte() - straal) {
             vy = 0;
             vx = 0;
@@ -262,9 +258,9 @@ public class Bal {
     }
 
     /**
-     *
+     * keert de y snelheid om als de bal zijn minimale y positie bereikt
      */
-    public void setMinY() {
+    private void setMinY() {
         if (y <= straal) {
             if (vy < 0) {
                 vy = -vy;
@@ -273,7 +269,7 @@ public class Bal {
     }
 
     /**
-     *
+     * gaat de methodes die opgeroepen zijn controleren en uitvoeren
      */
     public void tick() {
         setMaxX();

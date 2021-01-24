@@ -63,6 +63,9 @@ public class ModelController {
     private Timer timerPeddel;
     private TimerPeddel t;
 
+    /*
+    * initialeerst de scene
+    */
     @FXML
     void initialize() {
 
@@ -86,6 +89,9 @@ public class ModelController {
         gaNaarStartButton.setOnAction(this::gaNaarStart);
     }
 
+    /*
+    * deze methode update het spel aan de hand van tickmethode in UpdateBal
+    */
     public void update() {
         if (status) {
             spel.update();
@@ -96,6 +102,9 @@ public class ModelController {
         labelTotaleTijd.setText(t.getTijdTotaal() + "");
     }
 
+    /*
+    * @param e is de ActionEvent die gekoppeld is aan de knop om het spel te starten
+    */
     private void start(ActionEvent e) {
         if (!status) {
             for (Bal bal : spel.getBallen().getBallen()) {
@@ -112,7 +121,10 @@ public class ModelController {
         }
 
     }
-
+    
+    /*
+    *@param e is de ActionEvent die gekoppeld is aan de knop om het spel te resetten 
+    */
     public void reset(ActionEvent e) {
         if (status) {
             spel.reset();
@@ -123,6 +135,9 @@ public class ModelController {
         }
     }
 
+    /*
+    * @param m is de MouseEvent die gekoppeld is aan het bewegen van de mouse om de peddel te bewegen
+    */
     private void beweegPeddel(MouseEvent m) {
         if (m.getX() + spel.getPeddel().getHuidigeBreedte() / 2 > paneelModel.getBreedte()) {
             spel.getPeddel().setX(paneelModel.getBreedte() - spel.getPeddel().getHuidigeBreedte());
@@ -133,6 +148,9 @@ public class ModelController {
         }
     }
 
+    /*
+    * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan
+    */
     private void gaNaarStart(ActionEvent t) {
         try {
             Parent startPaginaParent = FXMLLoader.load(getClass().getResource("startPagina.fxml"));
@@ -149,6 +167,9 @@ public class ModelController {
         }
     }
 
+    /*
+    * 
+    */
     public void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("startGeluid.mp3");

@@ -235,9 +235,7 @@ public class Spel {
     }
 
     private void toonPowerUp() {
-        System.out.println(timerPeddel.getTijdsintervalPowerUp());
         if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt() && balStatusNa) {
-            System.out.println("model.Spel.toonPowerUp()");
             powerUp = new PowerUp(20, paneel);
             timerPeddel.setTijdsintervalPowerUp();
             powerUp.setGeraakt(false);
