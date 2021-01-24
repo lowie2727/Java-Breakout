@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.util.ArrayList;
@@ -13,15 +8,16 @@ import model.Ballen;
 
 /**
  *
- * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class BallenView extends Region {
 
     private final Ballen ballen;
 
     /**
+     * constructor voor objecten van BallenView
      *
-     * @param ballen
+     * @param ballen vraagt model Ballen op
      */
     public BallenView(Ballen ballen) {
         this.ballen = ballen;
@@ -30,7 +26,7 @@ public class BallenView extends Region {
     }
 
     /**
-     *
+     * maakt een ArrayList met ballen aan
      */
     public final void maakBallen() {
         getChildren().clear();
@@ -45,7 +41,7 @@ public class BallenView extends Region {
     }
 
     /**
-     *
+     * deze methode update BallenView
      */
     public void update() {
         getChildren().clear();
@@ -58,7 +54,7 @@ public class BallenView extends Region {
     }
 
     /**
-     *
+     * de methode reset BallenView 
      */
     public void reset() {
         for (int i = ballen.getAantalBallen() - 1; i >= 0; i--) {
@@ -67,7 +63,10 @@ public class BallenView extends Region {
             }
         }
     }
-
+    
+    /**
+     * deze methode laat een bericht zien als je dood bent
+     */
     private void gameOver() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("game over");

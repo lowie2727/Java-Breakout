@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.scene.layout.Region;
@@ -10,6 +5,7 @@ import model.Steen;
 import model.Stenen;
 
 /**
+ * klasse StenenView
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
@@ -18,8 +14,9 @@ public class StenenView extends Region {
     private final Stenen stenen;
 
     /**
+     * constructor voor objecten van StenenView
      *
-     * @param stenen
+     * @param stenen vraagt het model Stenen op
      */
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
@@ -27,7 +24,7 @@ public class StenenView extends Region {
     }
 
     /**
-     *
+     * deze methode update StenenView
      */
     public final void update() {
         int n = 0;
@@ -42,7 +39,7 @@ public class StenenView extends Region {
     }
 
     /**
-     *
+     * deze methode maakt stenen aan
      */
     public final void maakStenen() {
         getChildren().clear();

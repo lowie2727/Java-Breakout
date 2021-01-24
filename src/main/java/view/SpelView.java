@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.scene.layout.Pane;
@@ -10,6 +5,7 @@ import model.Paneel;
 import model.Spel;
 
 /**
+ * klasse SpelView
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
@@ -25,10 +21,11 @@ public class SpelView {
     private final Spel spel;
 
     /**
+     * constructor voor objecten van SpelView
      *
-     * @param spel
-     * @param paneel
-     * @param paneelModel
+     * @param spel vraagt model Spel op
+     * @param paneel paneel waar alle views op getoond worden
+     * @param paneelModel vraagt model Paneel op
      */
     public SpelView(Spel spel, Pane paneel, Paneel paneelModel) {
         this.spel = spel;
@@ -42,7 +39,7 @@ public class SpelView {
     }
 
     /**
-     *
+     * deze methode update SpelView
      */
     public void update() {
         paneel.getChildren().clear();

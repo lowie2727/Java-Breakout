@@ -11,15 +11,15 @@ public class Peddel {
 
     private final Paneel paneel;
     /**
-     * de hoogte van een peddel
+     * de hoogte
      */
     private final double hoogte;
     /**
-     * de breedte van een peddel
+     * de breedte
      */
     private final double breedte;
     /**
-     * de huidige breedte van de peddel
+     * de huidige breedte
      */
     private double huidigeBreedte;
 
@@ -44,7 +44,7 @@ public class Peddel {
     /**
      * constructur voor objecten van klasse Peddel
      *
-     * @param hoogte de hoogte van de peddel
+     * @param hoogte de hoogte
      * @param paneel is het paneel dat aangemaakt wordt
      */
     public Peddel(double hoogte, Paneel paneel) {
@@ -77,7 +77,7 @@ public class Peddel {
     }
 
     /**
-     * geeft de x positie van de peddel
+     * geeft de x positie
      *
      * @return x
      */
@@ -86,7 +86,7 @@ public class Peddel {
     }
 
     /**
-     * geeft de y positie van de peddel
+     * geeft de y positie
      *
      * @return y
      */
@@ -104,7 +104,7 @@ public class Peddel {
     }
 
     /**
-     * geeft de factor waarmee de bal breder wordt tijdens de PowerUp
+     * geeft de factor waarmee de peddel breder wordt tijdens de PowerUp
      *
      * @return multiplier
      */
@@ -113,7 +113,7 @@ public class Peddel {
     }
 
     /**
-     * geeft de huidige breedte van de peddel
+     * geeft de huidige breedte
      *
      * @return huidigeBreedte
      */
@@ -131,7 +131,7 @@ public class Peddel {
     }
 
     /**
-     * methode die de x positie van de peddel verandert
+     * methode die de x positie verandert
      *
      * @param x de x positie van de peddel
      */
@@ -140,7 +140,7 @@ public class Peddel {
     }
 
     /**
-     * methode die de huidige breedte van de bal verandert
+     * methode die de huidige breedteverandert
      *
      * @param breedte the breedte van de peddel
      */

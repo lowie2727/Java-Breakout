@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.scene.layout.Region;
@@ -12,25 +7,29 @@ import javafx.scene.shape.StrokeType;
 import model.Steen;
 
 /**
+ * klasse SteenView
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class SteenView extends Region {
 
     private final Steen steen;
-    private Rectangle r;
 
     /**
+     * constructor voor objecten van SteenView
      *
-     * @param steen
+     * @param steen vraagt het model Steen op
      */
     public SteenView(Steen steen) {
         this.steen = steen;
-        createSteen();
+        maakSteen();
     }
 
-    private void createSteen() {
-        r = new Rectangle(steen.getBreedte(), steen.getHoogte(), Color.RED);
+    /**
+     * deze methode maakt een nieuwe steen aan
+     */
+    private void maakSteen() {
+        Rectangle r = new Rectangle(steen.getBreedte(), steen.getHoogte(), Color.RED);
         r.setStroke(Color.ORANGE);
         r.setStrokeType(StrokeType.INSIDE);
         r.setStrokeWidth(2);

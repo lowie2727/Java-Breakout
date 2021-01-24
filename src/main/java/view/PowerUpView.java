@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.scene.layout.Region;
@@ -12,27 +7,29 @@ import model.Kleuren;
 import model.PowerUp;
 
 /**
+ * klasse PowerUpView
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PowerUpView extends Region {
 
-    private Circle c;
     private final PowerUp powerUp;
 
     /**
+     * constructor voor objecten van PowerUpView
      *
-     * @param powerUp
+     * @param powerUp vraagt model PowerUp op
      */
     public PowerUpView(PowerUp powerUp) {
         this.powerUp = powerUp;
-        createPowerUp();
+        maakPowerUp();
     }
 
     /**
-     *
+     * deze methode maakt een nieuwe PowerUp
      */
-    public void createPowerUp() {
+    public void maakPowerUp() {
+        Circle c;
         getChildren().clear();
         if (powerUp.getKleurBal() == Kleuren.ROZE) {
             c = new Circle(powerUp.getStraal(), Color.PINK);
@@ -50,17 +47,17 @@ public class PowerUpView extends Region {
     }
 
     /**
-     *
+     * deze methode update PowerUpView
      */
     public void update() {
         getChildren().clear();
         if (!powerUp.isGeraakt()) {
-            createPowerUp();
+            maakPowerUp();
         }
     }
 
     /**
-     *
+     * deze methode reset PowerUpView
      */
     public void reset() {
         getChildren().clear();

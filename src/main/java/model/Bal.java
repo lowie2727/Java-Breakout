@@ -12,32 +12,32 @@ public class Bal {
     private double huidigeStraal;
 
     /**
-     * de x positie van het middelpunt van een bal
+     * de x positie van het middelpunt
      */
     private double x;
     /**
-     * de y positie van het middelpunt van een bal
+     * de y positie van het middelpunt
      */
     private double y;
     /**
-     * de snelheid in de x richting van een bal
+     * de snelheid in de x richting
      */
     private double vx;
     /**
-     * de snelheid in de y richting van een bal
+     * de snelheid in de y richting
      */
     private double vy;
 
     /**
-     * de beginsnelheid in de x richting van een bal
+     * de beginsnelheid in de x richting
      */
     private final double snelheidX;
     /**
-     * de beginsnelheid in de y richting van een bal
+     * de beginsnelheid in de y richting
      */
     private final double snelheidY;
     /**
-     * de vectoriële som van de totale snelheid van een bal
+     * de vectoriële som van de totale snelheid
      */
     private final double snelheid;
 
@@ -54,7 +54,7 @@ public class Bal {
      * constructor voor objecten van de klasse Bal
      *
      * @param paneel is het paneel dat aangemaakt wordt
-     * @param straal is de straal van de bal
+     * @param straal is de straal
      */
     public Bal(Paneel paneel, double straal) {
         this.paneel = paneel;
@@ -75,7 +75,7 @@ public class Bal {
     }
 
     /**
-     * geeft de x-coördinaten van het middelpunt van de bal
+     * geeft de x-coördinaten van het middelpunt
      *
      * @return x
      */
@@ -84,7 +84,7 @@ public class Bal {
     }
 
     /**
-     * geeft de y-coördinaten van het middelpunt van de bal
+     * geeft de y-coördinaten van het middelpunt
      *
      * @return y
      */
@@ -93,7 +93,7 @@ public class Bal {
     }
 
     /**
-     * geeft de snelheid van de bal in de x richting
+     * geeft de snelheid in de x richting
      *
      * @return vx
      */
@@ -102,7 +102,7 @@ public class Bal {
     }
 
     /**
-     * geeft de snelheid van de bal in de y richting
+     * geeft de snelheid in de y richting
      *
      * @return vy
      */
@@ -111,7 +111,7 @@ public class Bal {
     }
 
     /**
-     * geeft de huidige straal van de bal
+     * geeft de huidige straal
      *
      * @return huidigeStraal
      */
@@ -129,7 +129,7 @@ public class Bal {
     }
 
     /**
-     * geeft de status van de godMode van een bal terug
+     * geeft de status van de godMode terug
      *
      * @return godMode true indien godMode actief is godMode wil zeggen dat de
      * snelheid van de bal niet veranderd als hij botst met een steen, maar de
@@ -140,7 +140,7 @@ public class Bal {
     }
 
     /**
-     * geeft de beginstraal van de bal terug
+     * geeft de beginstraal terug
      *
      * @return straal
      */

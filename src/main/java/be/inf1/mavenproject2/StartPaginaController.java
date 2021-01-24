@@ -80,7 +80,7 @@ public class StartPaginaController {
             intervalPowerUp = 30;
             intervalPowerUpDuration = 5;
         }
-        if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected() && InstellingenController.isKlaarOmTeSpelen()) {
+        if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected() && !InstellingenController.isKlaarOmTeSpelen()) {
             errorSound();
         }
 

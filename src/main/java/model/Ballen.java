@@ -17,7 +17,7 @@ public class Ballen {
     private final int aantalBallen;
     private final Paneel paneelModel;
     /**
-     * de straal van een bal
+     * de straal
      */
     private final double straal;
 
@@ -25,7 +25,7 @@ public class Ballen {
      * contructor voor objecten van de klasse Ballen
      *
      * @param paneelModel is het paneel dat aangemaakt wordt
-     * @param aantalBallen is de het aantal ballen
+     * @param aantalBallen is het aantal ballen
      */
     public Ballen(Paneel paneelModel, int aantalBallen) {
         straal = StartPaginaController.getStraalBal();

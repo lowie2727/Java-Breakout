@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import javafx.scene.layout.Region;
@@ -11,8 +6,9 @@ import javafx.scene.shape.Rectangle;
 import model.Peddel;
 
 /**
+ * klasse PeddelView
  *
- * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PeddelView extends Region {
 
@@ -20,17 +16,18 @@ public class PeddelView extends Region {
     private Rectangle p;
 
     /**
+     * constructor voor objecten van PeddelView
      *
-     * @param peddel
+     * @param peddel vraag model Peddel op
      */
     public PeddelView(Peddel peddel) {
         this.peddel = peddel;
-        createPeddel();
+        maakPeddel();
         update();
     }
 
     /**
-     *
+     * deze methode update PeddelView
      */
     public final void update() {
         getChildren().clear();
@@ -40,9 +37,9 @@ public class PeddelView extends Region {
     }
 
     /**
-     *
+     * deze methode maakt een nieuwe peddel aan
      */
-    public final void createPeddel() {
+    public final void maakPeddel() {
         getChildren().clear();
         p = new Rectangle(peddel.getHuidigeBreedte(), peddel.getHoogte(), Color.GREEN);
 

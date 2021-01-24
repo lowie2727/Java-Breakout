@@ -8,19 +8,19 @@ package model;
 public class Paneel {
 
     /**
-     * de breedte van het paneel
+     * de breedte
      */
     private final double breedte;
     /**
-     * de hoogte van het paneel
+     * de hoogte
      */
     private final double hoogte;
 
     /**
      * constructur voor objecten van klasse Paneel
      *
-     * @param breedte de breedte van het paneel
-     * @param hoogte de hoogte van het paneel
+     * @param breedte de breedte
+     * @param hoogte de hoogte
      */
     public Paneel(double breedte, double hoogte) {
         this.breedte = breedte;
@@ -28,7 +28,7 @@ public class Paneel {
     }
 
     /**
-     * geeft de breedte van het paneel
+     * geeft de breedte
      *
      * @return breedte
      */
@@ -37,7 +37,7 @@ public class Paneel {
     }
 
     /**
-     * geeft de hoogte van het paneel
+     * geeft de hoogte
      *
      * @return hoogte
      */
