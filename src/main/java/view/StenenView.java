@@ -11,7 +11,7 @@ import model.Stenen;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class StenenView extends Region {
 

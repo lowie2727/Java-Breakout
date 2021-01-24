@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class Steen {
 

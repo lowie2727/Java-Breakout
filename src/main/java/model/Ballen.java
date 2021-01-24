@@ -9,8 +9,9 @@ import be.inf1.mavenproject2.StartPaginaController;
 import java.util.ArrayList;
 
 /**
+ * klasse Ballen
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Ballen {
 
@@ -20,29 +21,30 @@ public class Ballen {
     private final double straal;
 
     /**
+     * contructor voor objecten van de klasse Ballen
      *
-     * @param vensterModel
-     * @param aantalBallen
+     * @param paneelModel is het paneel dat aangemaakt wordt
+     * @param aantalBallen is de het aantal ballen
      */
-    public Ballen(Paneel vensterModel, int aantalBallen) {
+    public Ballen(Paneel paneelModel, int aantalBallen) {
         straal = StartPaginaController.getStraalBal();
-        this.paneelModel = vensterModel;
+        this.paneelModel = paneelModel;
         this.aantalBallen = 1;
         ballen = new ArrayList<>();
-        createBallen();
+        maakBallen();
     }
 
     /**
-     *
+     * maakt alle ballen aan
      */
-    public final void createBallen() {
+    private void maakBallen() {
         for (int i = 0; i < aantalBallen; i++) {
             ballen.add(new Bal(paneelModel, straal));
         }
     }
 
     /**
-     *
+     * de methode die de ballen reset
      */
     public void reset() {
         for (int i = ballen.size() - 1; i >= 0; i--) {
@@ -55,33 +57,33 @@ public class Ballen {
     }
 
     /**
-     *
-     * @return
+     * geeft alle ballen in de ArrayList van het type bal
+     * @return ballen in de ArrayList
      */
     public ArrayList<Bal> getBallen() {
         return ballen;
     }
 
     /**
-     *
-     * @param i
-     * @return
+     * geeft een bal op positie i in de ArrayList
+     * @param i positie in de ArrayList
+     * @return bal op positie i
      */
     public Bal getBal(int i) {
         return ballen.get(i);
     }
 
     /**
-     *
-     * @return
+     * neemt de grote van de ArrayList ballen
+     * @return grote van de ArrayList
      */
     public int getHuidigAantalBallen() {
         return ballen.size();
     }
 
     /**
-     *
-     * @return
+     * geeft het aantal ballen in het begin van het spel
+     * @return aantal ballen
      */
     public int getAantalBallen() {
         return aantalBallen;

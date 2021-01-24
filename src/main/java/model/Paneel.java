@@ -6,8 +6,9 @@
 package model;
 
 /**
- *
- * @author lowie
+ * klasse Paneel
+ * 
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Paneel {
 
@@ -15,9 +16,10 @@ public class Paneel {
     private final double hoogte;
 
     /**
-     *
-     * @param breedte
-     * @param hoogte
+     * constructur voor objecten van klasse Paneel
+     * 
+     * @param breedte de breedte van het paneel
+     * @param hoogte de hoogte van het paneel
      */
     public Paneel(double breedte, double hoogte) {
         this.breedte = breedte;
@@ -25,14 +27,14 @@ public class Paneel {
     }
 
     /**
-     * @return
+     * @return de breedte van het paneel
      */
     public double getBreedte() {
         return breedte;
     }
 
     /**
-     * @return
+     * @return de hoogte van het paneel
      */
     public double getHoogte() {
         return hoogte;

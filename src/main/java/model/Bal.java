@@ -6,8 +6,9 @@
 package model;
 
 /**
- *
- * @author lowie
+ * klasse Bal
+ * 
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Bal {
 
@@ -28,7 +29,8 @@ public class Bal {
     private final double multiplier;
 
     /**
-     * constructor voor objecten van de klasse bal
+     * constructor voor objecten van de klasse Bal
+     * 
      * @param paneel is het paneel dat aangemaakt wordt
      * @param straal is de straal van de bal
      */

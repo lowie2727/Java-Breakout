@@ -11,7 +11,7 @@ import model.Spel;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class SpelView {
 

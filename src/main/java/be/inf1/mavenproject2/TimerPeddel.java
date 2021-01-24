@@ -9,7 +9,7 @@ import java.util.TimerTask;
 
 /**
  *
- * @author arnoa
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class TimerPeddel extends TimerTask {
 

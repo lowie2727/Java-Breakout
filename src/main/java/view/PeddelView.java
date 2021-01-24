@@ -12,7 +12,7 @@ import model.Peddel;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class PeddelView extends Region {
 

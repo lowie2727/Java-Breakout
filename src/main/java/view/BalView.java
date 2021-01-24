@@ -12,7 +12,7 @@ import model.Bal;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class BalView extends Region {
 

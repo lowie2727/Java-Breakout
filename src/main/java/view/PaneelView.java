@@ -13,7 +13,7 @@ import model.Paneel;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PaneelView extends Region {
 

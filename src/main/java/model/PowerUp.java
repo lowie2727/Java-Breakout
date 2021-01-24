@@ -6,8 +6,9 @@
 package model;
 
 /**
- *
- * @author jonas
+ * klasse PowerUp
+ * 
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class PowerUp {
 
@@ -18,9 +19,10 @@ public class PowerUp {
     private boolean geraakt;
 
     /**
-     *
-     * @param straal
-     * @param paneel
+     * constructor voor objecten van de klasse PowerUp
+     * 
+     * @param straal de straal van de PowerUp
+     * @param paneel 
      */
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
@@ -63,21 +65,6 @@ public class PowerUp {
         } else {
             kleur = Kleuren.PAARS;
         }
-
-        /*switch (i) {
-            case 10:
-                kleur = Kleuren.GRIJS;
-                break;
-            case 11:
-                kleur = Kleuren.ZWART;
-                break;
-            case 12:
-                kleur = Kleuren.ROZE;
-                break;
-            default:
-                kleur = Kleuren.PAARS;
-                break;
-        }*/
     }
 
     /**

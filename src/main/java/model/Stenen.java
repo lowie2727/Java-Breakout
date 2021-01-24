@@ -9,7 +9,7 @@ import be.inf1.mavenproject2.StartPaginaController;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class Stenen {
 

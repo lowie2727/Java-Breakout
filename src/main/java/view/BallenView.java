@@ -13,7 +13,7 @@ import model.Ballen;
 
 /**
  *
- * @author lowie
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
  */
 public class BallenView extends Region {
 

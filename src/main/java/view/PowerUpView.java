@@ -13,7 +13,7 @@ import model.PowerUp;
 
 /**
  *
- * @author jonas
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PowerUpView extends Region {
 
