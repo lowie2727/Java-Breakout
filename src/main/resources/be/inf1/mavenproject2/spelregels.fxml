@@ -2,10 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.SpelregelsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.SpelregelsController">
    <children>
       <Button fx:id="gaNaarStartButton" layoutX="968.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar homepage" />
       <Text fill="#010101" layoutX="91.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spelregels" wrappingWidth="387.7366943359375">
@@ -26,8 +29,25 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text layoutX="90.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roze bal: vergroot je paneel" wrappingWidth="377.3367385864258" />
-      <Text layoutX="90.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paarse bal: schiet door je blokjes" wrappingWidth="377.3367385864258" />
-      <Text layoutX="90.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zwarte bal: verkleint je paneel" wrappingWidth="377.3367385864258" />
+      <Text layoutX="91.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Roze Power-up: vergroot je peddel" wrappingWidth="377.3367385864258" />
+      <Text layoutX="91.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paarse Power-up: ballen krijgen godmode" wrappingWidth="377.3367385864258" />
+      <Text layoutX="550.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zwarte Power-up: verkleint je peddel" wrappingWidth="377.3367385864258" />
+      <Text layoutX="550.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grijze Power-up: vergroot je bal" wrappingWidth="377.3367385864258" />
+      <Circle fill="#d8298085" layoutX="449.0" layoutY="280.0" radius="30.0" stroke="#d42a8285" strokeType="INSIDE" />
+      <Circle fill="#950aa7fc" layoutX="449.0" layoutY="468.0" radius="30.0" stroke="#940aa6fc" strokeType="INSIDE" />
+      <Circle fill="#39363673" layoutX="938.0" layoutY="281.0" radius="30.0" stroke="#38353573" strokeType="INSIDE" />
+      <Circle layoutX="938.0" layoutY="468.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14862b" height="16.0" layoutX="91.0" layoutY="340.0" stroke="#14862b" strokeType="INSIDE" width="190.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#14862b" height="16.0" layoutX="620.0" layoutY="512.0" stroke="#14862b" strokeType="INSIDE" width="86.0" />
+      <Polygon layoutX="29.0" layoutY="323.0" points="50.0, 50.0, 22.0, 25.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon layoutX="244.0" layoutY="323.0" points="50.0, 50.0, 77.0, 27.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon layoutX="690.0" layoutY="493.0" points="50.0, 50.0, 22.0, 25.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon layoutX="535.0" layoutY="493.0" points="50.0, 50.0, 77.0, 27.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#481bea" layoutX="674.0" layoutY="348.0" radius="19.0" stroke="#481ce8" strokeType="INSIDE" />
+      <Polygon layoutX="590.0" layoutY="323.0" points="50.0, 50.0, 22.0, 25.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon layoutX="656.0" layoutY="323.0" points="50.0, 50.0, 77.0, 27.0, 50.0, 0.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#481bea" layoutX="199.0" layoutY="530.0" radius="13.0" stroke="#481ce8" strokeType="INSIDE" />
+      <Polygon layoutX="165.0" layoutY="492.0" points="60.0, 38.0, 60.0, 18.0, 40.0, 18.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fb0000" height="16.0" layoutX="201.0" layoutY="490.0" stroke="#fb0000" strokeType="INSIDE" width="86.0" />
    </children>
 </AnchorPane>
