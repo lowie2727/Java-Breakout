@@ -43,10 +43,13 @@ public class ModelController {
     private Button gaNaarStartButton;
 
     @FXML
-    private Label label;
+    private Label labelAantalStenen;
 
     @FXML
     private Label labelTijd;
+
+    @FXML
+    private Label labelTotaleTijd;
 
     private Spel spel;
     private SpelView spelView;
@@ -67,7 +70,7 @@ public class ModelController {
         t = new TimerPeddel();
         timerPeddel.scheduleAtFixedRate(t, 0, 1000);
 
-        paneelModel = new Paneel(1000, 500);    //breedte, hoogte
+        paneelModel = new Paneel(1000, 500);
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
         spel = new Spel(paneelModel, t);
@@ -87,10 +90,10 @@ public class ModelController {
         if (status) {
             spel.update();
             spelView.update();
-            spel.getPeddel().tick();
-            //labelTijd.setText(veldView.timerPeddel());
+            labelTijd.setText(spel.labelPowerUp());
         }
-        //label.setText(stenenView.getAantalStenen() + "");
+        labelAantalStenen.setText(spel.getStenen().getAantalStenen() + "");
+        labelTotaleTijd.setText(t.getTijdTotaal() + "");
     }
 
     private void start(ActionEvent e) {
@@ -113,10 +116,9 @@ public class ModelController {
     public void reset(ActionEvent e) {
         if (status) {
             spel.reset();
-            spelView.reset();
             spelView.update();
             timerBal.cancel();
-            timerPeddel.cancel();
+            t.setTijdTotaal();
             status = false;
         }
     }

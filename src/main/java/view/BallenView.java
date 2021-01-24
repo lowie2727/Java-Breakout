@@ -39,17 +39,16 @@ public class BallenView extends Region {
 
     public void update() {
         getChildren().clear();
-        for (int i = 0; i < ballen.getAantalBallen(); i++) {
+        for (int i = 0; i < ballen.getHuidigAantalBallen(); i++) {
             BalView bv = new BalView(ballen.getBallen().get(i));
             bv.setTranslateX(ballen.getBallen().get(i).getX());
             bv.setTranslateY(ballen.getBallen().get(i).getY());
             getChildren().add(bv);
         }
-
     }
 
     public void reset() {
-        for (int i = 0; i < ballen.getAantalBallen(); i++) {
+        for (int i = ballen.getAantalBallen() - 1; i >= 0; i--) {
             if (i != 0) {
                 getChildren().remove(i);
             }

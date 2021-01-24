@@ -83,18 +83,6 @@ public class Peddel {
         huidigeBreedte = breedte;
     }
 
-    public void setMax() {
-        if (x > paneel.getBreedte() - getHuidigeBreedte()) {
-            x = paneel.getBreedte() - getHuidigeBreedte();
-        }
-    }
-
-    public void setMin() {
-        if (x < 0) {
-            x = 0;
-        }
-    }
-
     public void setX(double x) {
         this.x = x;
     }
@@ -104,11 +92,5 @@ public class Peddel {
      */
     public void setHuidigeBreedte(double breedte) {
         this.huidigeBreedte = breedte;
-    }
-
-    public void tick() {
-        setMin();
-        setMax();
-
     }
 }

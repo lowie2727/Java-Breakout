@@ -35,7 +35,7 @@ public class Stenen {
 
     }
 
-    private void createMatrix() {
+    public void createMatrix() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
@@ -60,6 +60,18 @@ public class Stenen {
 
     public Steen getSteen(int j, int i) {
         return stenen[j][i];
+    }
+
+    public int getAantalStenen() {
+        int aantalStenen = 0;
+        for (int j = 0; j < rijen; j++) {
+            for (int i = 0; i < kolommen; i++) {
+                if (!stenen[j][i].isGeraakt()) {
+                    aantalStenen++;
+                }
+            }
+        }
+        return aantalStenen;
     }
 
     /**

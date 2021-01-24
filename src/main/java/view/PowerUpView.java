@@ -44,7 +44,7 @@ public class PowerUpView extends Region {
 
     public void update() {
         getChildren().clear();
-        if(!powerUp.isGeraakt()){
+        if (!powerUp.isGeraakt()) {
             createPowerUp();
         }
     }

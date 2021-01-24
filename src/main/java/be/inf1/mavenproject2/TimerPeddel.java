@@ -15,15 +15,13 @@ public class TimerPeddel extends TimerTask {
 
     private int tijdsintervalPowerUp;
     private int tijdsduurPowerUp;
-
-    public TimerPeddel() {
-
-    }
+    private long tijdTotaal;
 
     @Override
     public void run() {
         tijdsintervalPowerUp++;
         tijdsduurPowerUp++;
+        tijdTotaal++;
     }
 
     /**
@@ -44,10 +42,18 @@ public class TimerPeddel extends TimerTask {
         return tijdsduurPowerUp;
     }
 
+    public long getTijdTotaal() {
+        return tijdTotaal;
+    }
+
     /**
      * @param tijdPeddel the tijdsduurPowerUp to set
      */
-    public void settijdsduurPowerUp() {
+    public void setTijdsduurPowerUp() {
         tijdsduurPowerUp = 0;
+    }
+
+    public void setTijdTotaal() {
+        tijdTotaal = 0;
     }
 }

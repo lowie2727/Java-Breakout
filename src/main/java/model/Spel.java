@@ -24,6 +24,7 @@ public class Spel {
     private final TimerPeddel timerPeddel;
     private final int maxTijdsduurPowerUp;
     private final int maxTijdsduurTussenPowerUp;
+    private boolean toonLabel;
 
     public Spel(Paneel paneel, TimerPeddel timerPeddel) {
         this.paneel = paneel;
@@ -33,7 +34,7 @@ public class Spel {
         powerUp = new PowerUp(20, paneel);
 
         this.timerPeddel = timerPeddel;
-        this.maxTijdsduurTussenPowerUp = 5;
+        this.maxTijdsduurTussenPowerUp = 8;
         this.maxTijdsduurPowerUp = 5;
     }
 
@@ -49,7 +50,7 @@ public class Spel {
         ballen.reset();
         peddel.reset();
         stenen.reset();
-        powerUp.reset();
+        powerUp = new PowerUp(20, paneel);
     }
 
     public void botsingBalStenen() {
@@ -90,35 +91,33 @@ public class Spel {
                                 steen.setGeraakt();
                                 bal.setVx();
                             }
-                        } else if (Math.sqrt(Math.pow(bal.getX() - (steen.getX() + steen.getBreedte()), 2) + Math.pow(bal.getY() - (steen.getY() + steen.getHoogte()), 2)) < bal.getStraal()) {  //linksboven bal
+                        } else if (Math.sqrt(Math.pow(bal.getX() - (steen.getX() + steen.getBreedte()), 2) + Math.pow(bal.getY() - (steen.getY() + steen.getHoogte()), 2)) < bal.getStraal() && !bal.isGodMode()) {  //linksboven bal
                             steen.setGeraakt();
                             if (bal.getVx() < 0 && bal.getVy() < 0) {
                                 bal.setVx();
                                 bal.setVy();
                             }
-                        } else if (Math.sqrt(Math.pow(bal.getX() - steen.getX(), 2) + Math.pow(bal.getY() - steen.getY(), 2)) < bal.getStraal()) {  //rechtsonder bal
+                        } else if (Math.sqrt(Math.pow(bal.getX() - steen.getX(), 2) + Math.pow(bal.getY() - steen.getY(), 2)) < bal.getStraal() && !bal.isGodMode()) {  //rechtsonder bal
                             steen.setGeraakt();
                             if (bal.getVx() > 0 && bal.getVy() > 0) {
                                 bal.setVx();
                                 bal.setVy();
                             }
-                        } else if (Math.sqrt(Math.pow(bal.getX() - steen.getX(), 2) + Math.pow(bal.getY() - (steen.getY() + steen.getHoogte()), 2)) < bal.getStraal()) {  //rechtsboven bal
+                        } else if (Math.sqrt(Math.pow(bal.getX() - steen.getX(), 2) + Math.pow(bal.getY() - (steen.getY() + steen.getHoogte()), 2)) < bal.getStraal() && !bal.isGodMode()) {  //rechtsboven bal
                             steen.setGeraakt();
                             if (bal.getVx() > 0 && bal.getVy() < 0) {
                                 bal.setVx();
                                 bal.setVy();
                             }
-                        } else if (Math.sqrt(Math.pow(bal.getX() - (steen.getX() + steen.getBreedte()), 2) + Math.pow(bal.getY() - steen.getY(), 2)) < bal.getStraal()) {  //linksonder bal
+                        } else if (Math.sqrt(Math.pow(bal.getX() - (steen.getX() + steen.getBreedte()), 2) + Math.pow(bal.getY() - steen.getY(), 2)) < bal.getStraal() && !bal.isGodMode()) {  //linksonder bal
                             steen.setGeraakt();
                             if (bal.getVx() < 0 && bal.getVy() > 0) {
                                 bal.setVx();
                                 bal.setVy();
                             }
                         }
-
                     }
                 }
-
             }
         }
     }
@@ -158,6 +157,7 @@ public class Spel {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (Bal bal : ballenLijst) {
             if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
+                toonLabel = true;
                 powerUp.setGeraakt(true);
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
@@ -172,13 +172,14 @@ public class Spel {
                         b.setHuidigeStraal(b.getStraal() * b.getMutiplier());
                     }
                 }
-                timerPeddel.settijdsduurPowerUp();
+                timerPeddel.setTijdsduurPowerUp();
             }
         }
     }
 
     private void PowerUpVoorbij() {
         if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp) {
+            toonLabel = false;
             if (powerUp.getKleurBal() == Kleuren.ROZE || powerUp.getKleurBal() == Kleuren.ZWART) {
                 peddel.setHuidigeBreedte(peddel.getBreedte());
             } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -191,8 +192,15 @@ public class Spel {
                 }
             }
             timerPeddel.setTijdsintervalPowerUp();
-            timerPeddel.settijdsduurPowerUp();
+            timerPeddel.setTijdsduurPowerUp();
         }
+    }
+
+    public String labelPowerUp() {
+        if (toonLabel) {
+            return maxTijdsduurPowerUp - timerPeddel.getTijdsduurPowerUp() + "";
+        }
+        return maxTijdsduurPowerUp + "";
     }
 
     private void toonPowerUp() {

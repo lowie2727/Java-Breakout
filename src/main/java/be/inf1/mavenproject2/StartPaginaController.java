@@ -181,7 +181,6 @@ public class StartPaginaController {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
     }*/
-
     /**
      * @param aPeddelBreedte the peddelBreedte to set
      */
@@ -216,5 +215,4 @@ public class StartPaginaController {
     public static void setIntervalPowerUpDuration(int aIntervalPowerUpDuration) {
         intervalPowerUpDuration = aIntervalPowerUpDuration;
     }
-
 }
