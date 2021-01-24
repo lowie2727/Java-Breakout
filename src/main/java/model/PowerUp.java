@@ -7,8 +7,8 @@ package model;
 
 /**
  * klasse PowerUp
- * 
- * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne 
+ *
+ * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class PowerUp {
 
@@ -20,9 +20,9 @@ public class PowerUp {
 
     /**
      * constructor voor objecten van de klasse PowerUp
-     * 
+     *
      * @param straal de straal van de PowerUp
-     * @param paneel 
+     * @param paneel
      */
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
@@ -56,14 +56,19 @@ public class PowerUp {
 
     private void kleurBal() {
         int i = (int) Math.round(Math.random() * 4);
-        if (i == 1) {
-            kleur = Kleuren.GRIJS;
-        } else if (i == 2) {
-            kleur = Kleuren.ZWART;
-        } else if (i == 3) {
-            kleur = Kleuren.ROZE;
-        } else {
-            kleur = Kleuren.PAARS;
+        switch (i) {
+            case 1:
+                kleur = Kleuren.PAARS;
+                break;
+            case 2:
+                kleur = Kleuren.ZWART;
+                break;
+            case 3:
+                kleur = Kleuren.ROZE;
+                break;
+            default:
+                kleur = Kleuren.GRIJS;
+                break;
         }
     }
 

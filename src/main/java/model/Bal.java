@@ -157,6 +157,8 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
+        godMode = false;
+        huidigeStraal = straal;
     }
 
     /**

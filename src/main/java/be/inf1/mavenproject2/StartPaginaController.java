@@ -63,24 +63,24 @@ public class StartPaginaController {
             straalBal = 10;
             peddelBreedte = 500;
             aantalRijen = 2;
-            intervalPowerUp = 10;
-            intervalPowerUpDuration = 8;
+            intervalPowerUp = 20;
+            intervalPowerUpDuration = 10;
         }
         if (level2.isSelected()) {
             straalBal = 7;
             peddelBreedte = 300;
             aantalRijen = 3;
-            intervalPowerUp = 15;
-            intervalPowerUpDuration = 6;
+            intervalPowerUp = 20;
+            intervalPowerUpDuration = 5;
         }
         if (level3.isSelected()) {
             straalBal = 5;
             peddelBreedte = 150;
             aantalRijen = 4;
-            intervalPowerUp = 20;
-            intervalPowerUpDuration = 4;
+            intervalPowerUp = 30;
+            intervalPowerUpDuration = 5;
         }
-        if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected() && InstellingenController.isKlaarOmTeSpelen() == false) {
+        if (!level1.isSelected() && !level2.isSelected() && !level3.isSelected() && InstellingenController.isKlaarOmTeSpelen()) {
             errorSound();
         }
 

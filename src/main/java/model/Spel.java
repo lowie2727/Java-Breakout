@@ -8,7 +8,6 @@ package model;
 import be.inf1.mavenproject2.StartPaginaController;
 import be.inf1.mavenproject2.TimerPeddel;
 import java.util.ArrayList;
-import model.Bal;
 
 /**
  *
@@ -26,8 +25,6 @@ public class Spel {
     private final int maxTijdsduurPowerUp;
     private final int maxTijdsduurTussenPowerUp;
     private boolean toonLabel;
-    private boolean balStatus;
-    private boolean balStatusNa;
 
     /**
      *
@@ -55,6 +52,9 @@ public class Spel {
         botsingBalPowerUp();
         PowerUpVoorbij();
         toonPowerUp();
+        System.out.println(timerPeddel.getTijdsduurPowerUp());
+        System.out.println(timerPeddel.getTijdsintervalPowerUp());
+        System.out.println(toonLabel);
     }
 
     /**
@@ -64,13 +64,16 @@ public class Spel {
         ballen.reset();
         peddel.reset();
         stenen.reset();
+        toonLabel = false;
+        timerPeddel.setTijdsintervalPowerUp();
+        timerPeddel.setTijdsduurPowerUp();
         powerUp = new PowerUp(20, paneel);
     }
 
     /**
      *
      */
-    public void botsingBalStenen() {
+    private void botsingBalStenen() {
         for (Bal bal : ballen.getBallen()) {
             for (int j = 0; j < stenen.getRijen(); j++) {
                 for (int i = 0; i < stenen.getKolommen(); i++) {
@@ -142,7 +145,7 @@ public class Spel {
     /**
      *
      */
-    public void botsingBalPeddel() {
+    private void botsingBalPeddel() {
         for (Bal bal : ballen.getBallen()) {
             if (bal.getY() + bal.getStraal() >= peddel.getY() - 3
                     && bal.getY() + bal.getStraal() <= peddel.getY() + 3
@@ -176,13 +179,12 @@ public class Spel {
     /**
      *
      */
-    public void botsingBalPowerUp() {
+    private void botsingBalPowerUp() {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (Bal bal : ballenLijst) {
             if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
                 toonLabel = true;
                 powerUp.setGeraakt(true);
-                balStatus = true;
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
                 } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -197,16 +199,14 @@ public class Spel {
                     }
                 }
                 timerPeddel.setTijdsduurPowerUp();
-                
+
             }
         }
     }
 
     private void PowerUpVoorbij() {
-        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && balStatus) {
+        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && toonLabel) {
             toonLabel = false;
-            balStatus = false;
-            balStatusNa = true;
             if (powerUp.getKleurBal() == Kleuren.ROZE || powerUp.getKleurBal() == Kleuren.ZWART) {
                 peddel.setHuidigeBreedte(peddel.getBreedte());
             } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -235,11 +235,10 @@ public class Spel {
     }
 
     private void toonPowerUp() {
-        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt() && balStatusNa) {
+        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt()) {
             powerUp = new PowerUp(20, paneel);
             timerPeddel.setTijdsintervalPowerUp();
             powerUp.setGeraakt(false);
-            balStatusNa = false;
         }
     }
 
