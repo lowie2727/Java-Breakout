@@ -36,6 +36,7 @@ public class Stenen {
     private final double offsetHoogtePaneel;
     private final Paneel paneel;
     private final Steen steen;
+    private boolean gewonnen;
     
 
 
@@ -80,6 +81,16 @@ public class Stenen {
      */
     public void reset() {
         maakStenen();
+        gewonnen = false;
+    }
+    
+    /**
+     * zet de boolean gewonnen op true als er geen stenen meer zijn
+     */
+    public void gewonnen(){
+        if(getAantalStenen()==0){
+            gewonnen = true;
+        }
     }
 
     /**
@@ -182,5 +193,12 @@ public class Stenen {
      */
     public double getOffsetBreedtePaneel() {
         return offsetBreedtePaneel;
+    }
+
+    /**
+     * @return the gewonnen
+     */
+    public boolean isGewonnen() {
+        return gewonnen;
     }
 }

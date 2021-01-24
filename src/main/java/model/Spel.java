@@ -3,6 +3,7 @@ package model;
 import be.inf1.mavenproject2.StartPaginaController;
 import be.inf1.mavenproject2.TimerPeddel;
 import java.util.ArrayList;
+import javafx.scene.control.Alert;
 
 /**
  * klasse Spel
@@ -26,6 +27,7 @@ public class Spel {
      * de tijdsduur van een powerup
      */
     private final int maxTijdsduurPowerUp;
+    
     /**
      * de tijdsduur tussen powerups in
      */
@@ -70,6 +72,8 @@ public class Spel {
         botsingBalPowerUp();
         PowerUpVoorbij();
         toonPowerUp();
+        notificatie();
+        stenen.gewonnen();
     }
 
     /**
@@ -83,6 +87,27 @@ public class Spel {
         timerPeddel.setTijdsintervalPowerUp();
         timerPeddel.setTijdsduurPowerUp();
         powerUp = new PowerUp(20, paneel);
+    }
+    
+    /**
+     * deze methode zorgt voor de notificaties zoals gewonnen en verloren
+     */
+    public void notificatie(){
+        if(stenen.isGewonnen()){
+            gewonnen();
+            reset();
+        }
+    }
+    
+    
+    /**
+     * deze methode laat een bericht zien als je dood bent
+     */
+    private void gewonnen() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("game over");
+        alert.setContentText("je bent dood...druk op reset om opnieuw te beginnen");
+        alert.show();
     }
 
     /**
