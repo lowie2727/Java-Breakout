@@ -20,11 +20,18 @@ public class PowerUpView extends Region {
     private Circle c;
     private final PowerUp powerUp;
 
+    /**
+     *
+     * @param powerUp
+     */
     public PowerUpView(PowerUp powerUp) {
         this.powerUp = powerUp;
         createPowerUp();
     }
 
+    /**
+     *
+     */
     public void createPowerUp() {
         getChildren().clear();
         if (powerUp.getKleurBal() == Kleuren.ROZE) {
@@ -42,6 +49,9 @@ public class PowerUpView extends Region {
 
     }
 
+    /**
+     *
+     */
     public void update() {
         getChildren().clear();
         if (!powerUp.isGeraakt()) {
@@ -49,6 +59,9 @@ public class PowerUpView extends Region {
         }
     }
 
+    /**
+     *
+     */
     public void reset() {
         getChildren().clear();
     }

@@ -18,6 +18,11 @@ public class Ballen {
     private final Paneel paneelModel;
     private final double straal;
 
+    /**
+     *
+     * @param vensterModel
+     * @param aantalBallen
+     */
     public Ballen(Paneel vensterModel, int aantalBallen) {
         straal = 8;
         this.paneelModel = vensterModel;
@@ -26,12 +31,18 @@ public class Ballen {
         createBallen();
     }
 
+    /**
+     *
+     */
     public final void createBallen() {
         for (int i = 0; i < aantalBallen; i++) {
             ballen.add(new Bal(paneelModel, straal));
         }
     }
 
+    /**
+     *
+     */
     public void reset() {
         for (int i = ballen.size() - 1; i >= 0; i--) {
             if (i == 0) {
@@ -42,18 +53,35 @@ public class Ballen {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Bal> getBallen() {
         return ballen;
     }
 
+    /**
+     *
+     * @param i
+     * @return
+     */
     public Bal getBal(int i) {
         return ballen.get(i);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHuidigAantalBallen() {
         return ballen.size();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAantalBallen() {
         return aantalBallen;
     }

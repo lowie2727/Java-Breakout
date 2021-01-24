@@ -17,6 +17,11 @@ public class PowerUp {
     private Kleuren kleur;
     private boolean geraakt;
 
+    /**
+     *
+     * @param straal
+     * @param paneel
+     */
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;
         x = Math.random() * paneel.getBreedte();
@@ -31,10 +36,18 @@ public class PowerUp {
         return straal;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getY() {
         return y;
     }
@@ -57,14 +70,26 @@ public class PowerUp {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Kleuren getKleurBal() {
         return kleur;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isGeraakt() {
         return geraakt;
     }
 
+    /**
+     *
+     * @param stat
+     */
     public void setGeraakt(boolean stat) {
         geraakt = stat;
     }

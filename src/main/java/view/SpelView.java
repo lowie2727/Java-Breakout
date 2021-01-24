@@ -24,6 +24,12 @@ public class SpelView {
     private final Pane paneel;
     private final Spel spel;
 
+    /**
+     *
+     * @param spel
+     * @param paneel
+     * @param paneelModel
+     */
     public SpelView(Spel spel, Pane paneel, Paneel paneelModel) {
         this.spel = spel;
         ballenView = new BallenView(spel.getBallen());
@@ -35,6 +41,9 @@ public class SpelView {
         paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
     }
 
+    /**
+     *
+     */
     public void update() {
         paneel.getChildren().clear();
         ballenView.update();

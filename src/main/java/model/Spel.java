@@ -26,6 +26,11 @@ public class Spel {
     private final int maxTijdsduurTussenPowerUp;
     private boolean toonLabel;
 
+    /**
+     *
+     * @param paneel
+     * @param timerPeddel
+     */
     public Spel(Paneel paneel, TimerPeddel timerPeddel) {
         this.paneel = paneel;
         ballen = new Ballen(paneel, 1);
@@ -38,6 +43,9 @@ public class Spel {
         this.maxTijdsduurPowerUp = 5;
     }
 
+    /**
+     *
+     */
     public void update() {
         botsingBalStenen();
         botsingBalPeddel();
@@ -46,6 +54,9 @@ public class Spel {
         toonPowerUp();
     }
 
+    /**
+     *
+     */
     public void reset() {
         ballen.reset();
         peddel.reset();
@@ -53,6 +64,9 @@ public class Spel {
         powerUp = new PowerUp(20, paneel);
     }
 
+    /**
+     *
+     */
     public void botsingBalStenen() {
         for (Bal bal : ballen.getBallen()) {
             for (int j = 0; j < stenen.getRijen(); j++) {
@@ -122,6 +136,9 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     */
     public void botsingBalPeddel() {
         for (Bal bal : ballen.getBallen()) {
             if (bal.getY() + bal.getStraal() >= peddel.getY() - 3
@@ -153,6 +170,9 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     */
     public void botsingBalPowerUp() {
         ArrayList<Bal> ballenLijst = ballen.getBallen();
         for (Bal bal : ballenLijst) {
@@ -196,6 +216,10 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String labelPowerUp() {
         if (toonLabel) {
             return maxTijdsduurPowerUp - timerPeddel.getTijdsduurPowerUp() + "";
@@ -209,18 +233,34 @@ public class Spel {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Ballen getBallen() {
         return ballen;
     }
 
+    /**
+     *
+     * @return
+     */
     public Peddel getPeddel() {
         return peddel;
     }
 
+    /**
+     *
+     * @return
+     */
     public Stenen getStenen() {
         return stenen;
     }
 
+    /**
+     *
+     * @return
+     */
     public PowerUp getPowerUp() {
         return powerUp;
     }

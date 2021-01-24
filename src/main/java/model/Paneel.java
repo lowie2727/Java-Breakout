@@ -14,6 +14,11 @@ public class Paneel {
     private final double breedte;
     private final double hoogte;
 
+    /**
+     *
+     * @param breedte
+     * @param hoogte
+     */
     public Paneel(double breedte, double hoogte) {
         this.breedte = breedte;
         this.hoogte = hoogte;

@@ -17,29 +17,19 @@ public class StenenView extends Region {
 
     private final Stenen stenen;
 
+    /**
+     *
+     * @param stenen
+     */
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
         maakStenen();
     }
 
+    /**
+     *
+     */
     public final void update() {
-        checkView();
-    }
-
-    public final void maakStenen() {
-        getChildren().clear();
-        Steen s[][] = stenen.getStenen();
-        for (int j = 0; j < stenen.getRijen(); j++) {
-            for (int i = 0; i < stenen.getKolommen(); i++) {
-                SteenView sv = new SteenView(s[j][i]);
-                sv.setTranslateX(s[j][i].getX());
-                sv.setTranslateY(s[j][i].getY());
-                getChildren().add(sv);
-            }
-        }
-    }
-
-    public void checkView() {
         int n = 0;
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
@@ -51,7 +41,19 @@ public class StenenView extends Region {
         }
     }
 
-    public int getAantalStenen() {
-        return getChildren().size();
+    /**
+     *
+     */
+    public final void maakStenen() {
+        getChildren().clear();
+        Steen s[][] = stenen.getStenen();
+        for (int j = 0; j < stenen.getRijen(); j++) {
+            for (int i = 0; i < stenen.getKolommen(); i++) {
+                SteenView sv = new SteenView(s[j][i]);
+                sv.setTranslateX(s[j][i].getX());
+                sv.setTranslateY(s[j][i].getY());
+                getChildren().add(sv);
+            }
+        }
     }
 }

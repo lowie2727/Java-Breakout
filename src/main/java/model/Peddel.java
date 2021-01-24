@@ -23,6 +23,11 @@ public class Peddel {
 
     private final double multiplier;
 
+    /**
+     *
+     * @param hoogte
+     * @param paneel
+     */
     public Peddel(double hoogte, Paneel paneel) {
         this.paneel = paneel;
         this.hoogte = hoogte;
@@ -69,20 +74,35 @@ public class Peddel {
         return offset;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMultiplier() {
         return multiplier;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getHuidigeBreedte() {
         return huidigeBreedte;
     }
 
+    /**
+     *
+     */
     public void reset() {
         x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
         huidigeBreedte = breedte;
     }
 
+    /**
+     *
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }

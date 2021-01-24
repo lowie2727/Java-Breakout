@@ -19,12 +19,19 @@ public class BallenView extends Region {
 
     private final Ballen ballen;
 
+    /**
+     *
+     * @param ballen
+     */
     public BallenView(Ballen ballen) {
         this.ballen = ballen;
         maakBallen();
         update();
     }
 
+    /**
+     *
+     */
     public final void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
@@ -37,6 +44,9 @@ public class BallenView extends Region {
         }
     }
 
+    /**
+     *
+     */
     public void update() {
         getChildren().clear();
         for (int i = 0; i < ballen.getHuidigAantalBallen(); i++) {
@@ -47,6 +57,9 @@ public class BallenView extends Region {
         }
     }
 
+    /**
+     *
+     */
     public void reset() {
         for (int i = ballen.getAantalBallen() - 1; i >= 0; i--) {
             if (i != 0) {

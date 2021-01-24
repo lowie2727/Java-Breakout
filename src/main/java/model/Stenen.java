@@ -21,6 +21,11 @@ public class Stenen {
     private final Paneel paneel;
     private final Steen steen;
 
+    /**
+     *
+     * @param paneel
+     * @param kolommen
+     */
     public Stenen(Paneel paneel, int kolommen) {
         steen = new Steen(60, 20, 0, 0);
         this.paneel = paneel;
@@ -35,6 +40,9 @@ public class Stenen {
 
     }
 
+    /**
+     *
+     */
     public void createMatrix() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
@@ -47,6 +55,9 @@ public class Stenen {
         }
     }
 
+    /**
+     *
+     */
     public void reset() {
         createMatrix();
     }
@@ -58,10 +69,20 @@ public class Stenen {
         return stenen;
     }
 
+    /**
+     *
+     * @param j
+     * @param i
+     * @return
+     */
     public Steen getSteen(int j, int i) {
         return stenen[j][i];
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAantalStenen() {
         int aantalStenen = 0;
         for (int j = 0; j < rijen; j++) {

@@ -19,12 +19,19 @@ public class PeddelView extends Region {
     private final Peddel peddel;
     private Rectangle p;
 
+    /**
+     *
+     * @param peddel
+     */
     public PeddelView(Peddel peddel) {
         this.peddel = peddel;
         createPeddel();
         update();
     }
 
+    /**
+     *
+     */
     public final void update() {
         getChildren().clear();
         p.setTranslateX(peddel.getX());
@@ -32,6 +39,9 @@ public class PeddelView extends Region {
         getChildren().add(p);
     }
 
+    /**
+     *
+     */
     public final void createPeddel() {
         getChildren().clear();
         p = new Rectangle(peddel.getHuidigeBreedte(), peddel.getHoogte(), Color.GREEN);

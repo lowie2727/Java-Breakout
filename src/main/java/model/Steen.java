@@ -17,6 +17,13 @@ public class Steen {
     private final double y;
     private boolean geraakt;
 
+    /**
+     *
+     * @param breedte
+     * @param hoogte
+     * @param x
+     * @param y
+     */
     public Steen(double breedte, double hoogte, double x, double y) {
         this.hoogte = hoogte;
         this.breedte = breedte;
@@ -38,18 +45,33 @@ public class Steen {
         return hoogte;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getY() {
         return y;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isGeraakt() {
         return geraakt;
     }
 
+    /**
+     *
+     */
     public void setGeraakt() {
         geraakt = true;
     }

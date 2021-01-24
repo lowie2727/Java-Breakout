@@ -27,6 +27,11 @@ public class Bal {
     private boolean godMode;
     private final double multiplier;
 
+    /**
+     *
+     * @param paneel
+     * @param straal
+     */
     public Bal(Paneel paneel, double straal) {
         this.paneel = paneel;
         this.straal = straal;
@@ -72,14 +77,26 @@ public class Bal {
         return vy;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getHuidigeStraal() {
         return huidigeStraal;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMutiplier() {
         return multiplier;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isGodMode() {
         return godMode;
     }
@@ -91,14 +108,26 @@ public class Bal {
         return straal;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getSnelheidX() {
         return snelheidX;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getSnelheidY() {
         return snelheidY;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getSnelheid() {
         return snelheid;
     }
@@ -119,6 +148,9 @@ public class Bal {
         return x;
     }
 
+    /**
+     *
+     */
     public void reset() {
         x = paneel.getBreedte() / 2;
         y = paneel.getHoogte() - straal - 20;
@@ -126,18 +158,34 @@ public class Bal {
         vy = 0;
     }
 
+    /**
+     *
+     * @param stat
+     */
     public void setGodMode(boolean stat) {
         godMode = stat;
     }
 
+    /**
+     *
+     * @param straal
+     */
     public void setHuidigeStraal(double straal) {
         huidigeStraal = straal;
     }
 
+    /**
+     *
+     * @param vx
+     */
     public void setVx(double vx) {
         this.vx = vx;
     }
 
+    /**
+     *
+     * @param vy
+     */
     public void setVy(double vy) {
         this.vy = vy;
         if (vx < 0) {
@@ -148,22 +196,39 @@ public class Bal {
         }
     }
 
+    /**
+     *
+     */
     public void setVx() {
         vx = -vx;
     }
 
+    /**
+     *
+     */
     public void setVy() {
         vy = -vy;
     }
 
+    /**
+     *
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     *
+     * @param y
+     */
     public void setY(double y) {
         this.y = y;
     }
 
+    /**
+     *
+     */
     public void setMaxX() {
         if (x >= paneel.getBreedte() - getStraal()) {
             if (vx > 0) {
@@ -172,6 +237,9 @@ public class Bal {
         }
     }
 
+    /**
+     *
+     */
     public void setMinX() {
         if (x <= getStraal()) {
             if (vx < 0) {
@@ -180,6 +248,9 @@ public class Bal {
         }
     }
 
+    /**
+     *
+     */
     public void setMaxY() {
         if (y >= paneel.getHoogte() - straal) {
             vy = 0;
@@ -187,6 +258,9 @@ public class Bal {
         }
     }
 
+    /**
+     *
+     */
     public void setMinY() {
         if (y <= straal) {
             if (vy < 0) {
@@ -195,6 +269,9 @@ public class Bal {
         }
     }
 
+    /**
+     *
+     */
     public void tick() {
         setMaxX();
         setMinX();

@@ -20,6 +20,10 @@ public class SteenView extends Region {
     private final Steen steen;
     private Rectangle r;
 
+    /**
+     *
+     * @param steen
+     */
     public SteenView(Steen steen) {
         this.steen = steen;
         createSteen();
