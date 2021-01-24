@@ -5,8 +5,6 @@
  */
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
-
 /**
  *
  * @author lowie
@@ -23,10 +21,15 @@ public class Stenen {
     private final Paneel paneel;
     private final Steen steen;
 
-    public Stenen(Paneel paneel, Steen steen, int kolommen) {
+    /**
+     *
+     * @param paneel
+     * @param kolommen
+     */
+    public Stenen(Paneel paneel, int kolommen) {
+        steen = new Steen(60, 20, 0, 0);
         this.paneel = paneel;
-        this.steen = steen;
-        this.rijen = StartPaginaController.getAantalRijen();
+        this.rijen = 5;
         this.kolommen = kolommen;
         offsetBreedte = 5;
         offsetHoogte = 5;
@@ -34,15 +37,29 @@ public class Stenen {
         setOffsetBreedtePaneel(this.kolommen);
         offsetHoogtePaneel = 50;
         createMatrix();
+
     }
 
-    private void createMatrix() {
+    /**
+     *
+     */
+    public void createMatrix() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
-                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte());
+                double breedte = steen.getBreedte() + offsetBreedte;
+                double hoogte = steen.getHoogte() + offsetHoogte;
+                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte(),
+                        breedte * i + offsetBreedtePaneel, hoogte * j + offsetHoogtePaneel);
             }
         }
+    }
+
+    /**
+     *
+     */
+    public void reset() {
+        createMatrix();
     }
 
     /**
@@ -50,6 +67,32 @@ public class Stenen {
      */
     public Steen[][] getStenen() {
         return stenen;
+    }
+
+    /**
+     *
+     * @param j
+     * @param i
+     * @return
+     */
+    public Steen getSteen(int j, int i) {
+        return stenen[j][i];
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getAantalStenen() {
+        int aantalStenen = 0;
+        for (int j = 0; j < rijen; j++) {
+            for (int i = 0; i < kolommen; i++) {
+                if (!stenen[j][i].isGeraakt()) {
+                    aantalStenen++;
+                }
+            }
+        }
+        return aantalStenen;
     }
 
     /**

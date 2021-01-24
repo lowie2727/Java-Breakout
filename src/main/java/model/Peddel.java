@@ -5,8 +5,6 @@
  */
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
-
 /**
  *
  * @author lowie
@@ -25,10 +23,15 @@ public class Peddel {
 
     private final double multiplier;
 
+    /**
+     *
+     * @param hoogte
+     * @param paneel
+     */
     public Peddel(double hoogte, Paneel paneel) {
         this.paneel = paneel;
         this.hoogte = hoogte;
-        this.breedte = StartPaginaController.getPeddelBreedte();
+        this.breedte = 500;
         offset = 20;
         multiplier = 1.5;
         huidigeBreedte = breedte;
@@ -71,31 +74,35 @@ public class Peddel {
         return offset;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMultiplier() {
         return multiplier;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getHuidigeBreedte() {
         return huidigeBreedte;
     }
 
+    /**
+     *
+     */
     public void reset() {
-        x = (paneel.getBreedte() - getBreedte()) / 2;
+        x = (paneel.getBreedte() - breedte) / 2;
         y = paneel.getHoogte() - offset;
+        huidigeBreedte = breedte;
     }
 
-    public void setMax() {
-        if (x > paneel.getBreedte() - getHuidigeBreedte()) {
-            x = paneel.getBreedte() - getHuidigeBreedte();
-        }
-    }
-
-    public void setMin() {
-        if (x < 0) {
-            x = 0;
-        }
-    }
-
+    /**
+     *
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }

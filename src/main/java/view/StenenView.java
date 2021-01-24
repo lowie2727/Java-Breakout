@@ -17,59 +17,43 @@ public class StenenView extends Region {
 
     private final Stenen stenen;
 
+    /**
+     *
+     * @param stenen
+     */
     public StenenView(Stenen stenen) {
         this.stenen = stenen;
         maakStenen();
-        update();
     }
 
+    /**
+     *
+     */
     public final void update() {
-        checkView();
+        int n = 0;
+        for (int j = 0; j < stenen.getRijen(); j++) {
+            for (int i = 0; i < stenen.getKolommen(); i++) {
+                if (stenen.getStenen()[j][i].isGeraakt()) {
+                    getChildren().get(n).setVisible(false);
+                }
+                n++;
+            }
+        }
     }
 
+    /**
+     *
+     */
     public final void maakStenen() {
         getChildren().clear();
-        int n = 0;
-        int m = 0;
         Steen s[][] = stenen.getStenen();
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
-                double breedte = s[j][i].getBreedte() + stenen.getOffsetBreedte();
-                double hoogte = s[j][i].getHoogte() + stenen.getOffsetHoogte();
                 SteenView sv = new SteenView(s[j][i]);
-                sv.setId("nietGeraakt");
-                sv.setTranslateX(breedte * n + stenen.getOffsetBreedtePaneel());
-                sv.setTranslateY(hoogte * m + stenen.getOffsetHoogtePaneel());
-                n++;
-                if (n == stenen.getKolommen()) {
-                    n = 0;
-                }
+                sv.setTranslateX(s[j][i].getX());
+                sv.setTranslateY(s[j][i].getY());
                 getChildren().add(sv);
             }
-            m++;
         }
-    }
-
-    public void checkView() {
-        int n = 0;
-        for (int j = 0; j < stenen.getRijen(); j++) {
-            for (int i = 0; i < stenen.getKolommen(); i++) {
-                if (getChildren().isEmpty()) {
-                    break;
-                }
-                if (n >= getChildren().size()) {
-                    n = getChildren().size() - 1;
-                }
-                getChildren().get(n);
-                if (getChildren().get(n).getId().equals("geraakt")) {
-                    getChildren().remove(n);
-                }
-                n++;
-            }
-        }
-    }
-
-    public int getAantalStenen() {
-        return getChildren().size();
     }
 }

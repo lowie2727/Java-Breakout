@@ -13,41 +13,47 @@ import java.util.TimerTask;
  */
 public class TimerPeddel extends TimerTask {
 
-    private int tijdPowerUp;
-    private int tijdPeddel;
-
-    public TimerPeddel() {
-
-    }
+    private int tijdsintervalPowerUp;
+    private int tijdsduurPowerUp;
+    private long tijdTotaal;
 
     @Override
     public void run() {
-        tijdPowerUp++;
-        tijdPeddel++;
+        tijdsintervalPowerUp++;
+        tijdsduurPowerUp++;
+        tijdTotaal++;
     }
 
     /**
      * @return the t
      */
-    public int getTijdPowerUp() {
-        return tijdPowerUp;
+    public int getTijdsintervalPowerUp() {
+        return tijdsintervalPowerUp;
     }
 
-    public void setTijdPowerUp() {
-        tijdPowerUp = 0;
-    }
-
-    /**
-     * @return the tijdPeddel
-     */
-    public int getTijdPeddel() {
-        return tijdPeddel;
+    public void setTijdsintervalPowerUp() {
+        tijdsintervalPowerUp = 0;
     }
 
     /**
-     * @param tijdPeddel the tijdPeddel to set
+     * @return the tijdsduurPowerUp
      */
-    public void setTijdPeddel() {
-        tijdPeddel = 0;
+    public int getTijdsduurPowerUp() {
+        return tijdsduurPowerUp;
+    }
+
+    public long getTijdTotaal() {
+        return tijdTotaal;
+    }
+
+    /**
+     * @param tijdPeddel the tijdsduurPowerUp to set
+     */
+    public void setTijdsduurPowerUp() {
+        tijdsduurPowerUp = 0;
+    }
+
+    public void setTijdTotaal() {
+        tijdTotaal = 0;
     }
 }

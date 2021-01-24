@@ -20,6 +20,10 @@ public class PaneelView extends Region {
     private final Paneel paneel;
     private Rectangle r;
 
+    /**
+     *
+     * @param paneel
+     */
     public PaneelView(Paneel paneel) {
         this.paneel = paneel;
         createBorder();

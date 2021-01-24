@@ -35,26 +35,25 @@ public class InstellingenController {
 
     @FXML
     private Slider sliderStraalBal;
-    
+
     @FXML
     private Slider sliderPowerUpDuration;
-    
+
     @FXML
     private Slider sliderPowerUp;
-    
+
     private static int breedtePeddel;
     private static int rijenAantal;
     private static int balStraal;
     private static int durationPowerUp;
     private static int powerUpInterval;
-    
+
     private static boolean klaarOmTeSpelen;
 
     @FXML
     void initialize() {
         gaNaarStart.setOnAction(this::gaNaarStart);
         okButton.setOnAction(this::bevestigVeranderingen);
-
     }
 
     private void gaNaarStart(ActionEvent t) {
@@ -72,15 +71,15 @@ public class InstellingenController {
 
     private void bevestigVeranderingen(ActionEvent t) {
         StartPaginaController.setPeddelBreedte((int) sliderPeddel.getValue());
-        breedtePeddel = (int)sliderPeddel.getValue();
+        breedtePeddel = (int) sliderPeddel.getValue();
         StartPaginaController.setAantalRijen((int) sliderRijen.getValue());
-        rijenAantal = (int)sliderRijen.getValue();
+        rijenAantal = (int) sliderRijen.getValue();
         StartPaginaController.setStraalBal((int) sliderStraalBal.getValue());
-        balStraal = (int)sliderStraalBal.getValue();
+        balStraal = (int) sliderStraalBal.getValue();
         StartPaginaController.setIntervalPowerUpDuration((int) sliderPowerUpDuration.getValue());
-        durationPowerUp = (int)sliderPowerUpDuration.getValue();
+        durationPowerUp = (int) sliderPowerUpDuration.getValue();
         StartPaginaController.setIntervalPowerUp((int) sliderPowerUp.getValue());
-        powerUpInterval = (int)sliderPowerUp.getValue();
+        powerUpInterval = (int) sliderPowerUp.getValue();
         klaarOmTeSpelen = true;
     }
 

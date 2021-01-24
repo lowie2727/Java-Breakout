@@ -18,19 +18,9 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Bal;
-import model.Ballen;
 import model.Paneel;
-import model.Peddel;
-import model.PowerUp;
-import model.Steen;
-import model.Stenen;
-import view.BalView;
-import view.BallenView;
-import view.PaneelView;
-import view.PeddelView;
-import view.PowerUpView;
-import view.StenenView;
-import view.VeldView;
+import model.Spel;
+import view.SpelView;
 
 public class ModelController {
 
@@ -53,55 +43,42 @@ public class ModelController {
     private Button gaNaarStartButton;
 
     @FXML
-    private Label label;
+    private Label labelAantalStenen;
 
     @FXML
     private Label labelTijd;
 
-    private Peddel peddelModel;
-    private Bal balModel;
-    private Steen steenModel;
-    private Paneel paneelModel;
-    private Stenen stenenModel;
-    private Ballen ballenModel;
-    private PowerUp powerUpModel;
+    @FXML
+    private Label labelTotaleTijd;
 
-    private PeddelView peddelView;
-    private PaneelView paneelView;
-    private StenenView stenenView;
-    private VeldView veldView;
-    private BallenView ballenView;
-    private PowerUpView powerUpView;
-    private BalView balView;
+    private Spel spel;
+    private SpelView spelView;
+    private Paneel paneelModel;
 
     private boolean status;
+
+    private MediaPlayer mediaPlayer;
+
     private Timer timerBal;
     private Timer timerPeddel;
+    private TimerPeddel t;
 
     @FXML
     void initialize() {
 
-        paneelModel = new Paneel(1000, 500);    //breedte, hoogte
+        timerPeddel = new Timer(true);
+        t = new TimerPeddel();
+        timerPeddel.scheduleAtFixedRate(t, 0, 1000);
+
+        paneelModel = new Paneel(1000, 500);
         paneel.setPrefSize(paneelModel.getBreedte(), paneelModel.getHoogte());
 
-        steenModel = new Steen(60, 20);  //breedte, hoogte
-        ballenModel = new Ballen(paneelModel, 1);  //aantalBallen
-        peddelModel = new Peddel(10, paneelModel);  //breedte, hoogte
-        stenenModel = new Stenen(paneelModel, steenModel, 500);  //rijen, kolommen
-        powerUpModel = new PowerUp(30);
-
-        ballenView = new BallenView(ballenModel, peddelModel, paneelModel);
-        paneelView = new PaneelView(paneelModel);
-        peddelView = new PeddelView(peddelModel);
-        paneelView = new PaneelView(paneelModel);
-        stenenView = new StenenView(stenenModel);
-        powerUpView = new PowerUpView(powerUpModel, paneelModel);
-
-        paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
+        spel = new Spel(paneelModel, t);
+        spelView = new SpelView(spel, paneel, paneelModel);
 
         update();
 
-        startButton.setFocusTraversable(true);
+        startButton.setFocusTraversable(false);
 
         resetButton.setOnAction(this::reset);
         startButton.setOnAction(this::start);
@@ -111,30 +88,23 @@ public class ModelController {
 
     public void update() {
         if (status) {
-            veldView.update();
-            labelTijd.setText(veldView.timerPeddel());
+            spel.update();
+            spelView.update();
+            labelTijd.setText(spel.labelPowerUp());
         }
-        label.setText(stenenView.getAantalStenen() + "");
+        labelAantalStenen.setText(spel.getStenen().getAantalStenen() + "");
+        labelTotaleTijd.setText(t.getTijdTotaal() + "");
     }
 
     private void start(ActionEvent e) {
         if (!status) {
-            for (Bal b : ballenModel.getBallen()) {
-                b.setVx(b.getSnelheidX());
-                b.setVy(b.getSnelheidY());
+            for (Bal bal : spel.getBallen().getBallen()) {
+                bal.setVx(bal.getSnelheidX());
+                bal.setVy(bal.getSnelheidY());
             }
-            paneel.getChildren().clear();
-            paneel.getChildren().addAll(peddelView, paneelView, stenenView, ballenView, powerUpView);
-
-            timerPeddel = new Timer(true);
-            TimerPeddel t = new TimerPeddel();
-            timerPeddel.scheduleAtFixedRate(t, 0, 1000);
 
             timerBal = new Timer(true);
-            veldView = new VeldView(stenenView, peddelModel, ballenView, peddelView, powerUpView,
-                    powerUpModel, t, paneelModel, paneel, balModel, balView, ballenModel);
-
-            for (Bal bal : ballenModel.getBallen()) {
+            for (Bal bal : spel.getBallen().getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timerBal.scheduleAtFixedRate(b, 0, 16);
             }
@@ -145,17 +115,22 @@ public class ModelController {
 
     public void reset(ActionEvent e) {
         if (status) {
-            veldView.reset();
+            spel.reset();
+            spelView.update();
             timerBal.cancel();
-            timerPeddel.cancel();
+            t.setTijdTotaal();
             status = false;
         }
     }
 
     private void beweegPeddel(MouseEvent m) {
-        peddelModel.setX(m.getX() - (peddelModel.getHuidigeBreedte()) / 2);
-        peddelModel.setMin();
-        peddelModel.setMax();
+        if (m.getX() + spel.getPeddel().getHuidigeBreedte() / 2 > paneelModel.getBreedte()) {
+            spel.getPeddel().setX(paneelModel.getBreedte() - spel.getPeddel().getHuidigeBreedte());
+        } else if (m.getX() - spel.getPeddel().getHuidigeBreedte() / 2 < 0) {
+            spel.getPeddel().setX(0);
+        } else {
+            spel.getPeddel().setX(m.getX() - spel.getPeddel().getHuidigeBreedte() / 2);
+        }
     }
 
     private void gaNaarStart(ActionEvent t) {
@@ -173,8 +148,6 @@ public class ModelController {
         } catch (NullPointerException nu) {
         }
     }
-
-    MediaPlayer mediaPlayer;
 
     public void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();

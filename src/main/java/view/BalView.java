@@ -19,13 +19,20 @@ public class BalView extends Region {
     private final Bal bal;
     private Circle c;
 
+    /**
+     *
+     * @param bal
+     */
     public BalView(Bal bal) {
         this.bal = bal;
         createBal();
     }
 
+    /**
+     *
+     */
     public final void createBal() {
-        c = new Circle(bal.getStraal(), Color.BLUE);
+        c = new Circle(bal.getHuidigeStraal(), Color.BLUE);
         getChildren().add(c);
     }
 }
