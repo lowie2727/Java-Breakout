@@ -204,6 +204,8 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
+        godMode = false;
+        huidigeStraal = straal;
     }
 
     /**
@@ -284,7 +286,7 @@ public class Bal {
      * keert de x snelheid om als de bal zijn maximale x positie bereikt
      */
     private void setMaxX() {
-        if (x >= paneel.getBreedte() - getStraal()) {
+        if (x >= paneel.getBreedte() - huidigeStraal) {
             if (vx > 0) {
                 vx = -vx;
             }
@@ -295,7 +297,7 @@ public class Bal {
      * keert de x snelheid om als de bal zijn minimale x positie bereikt
      */
     private void setMinX() {
-        if (x <= getStraal()) {
+        if (x <= huidigeStraal) {
             if (vx < 0) {
                 vx = -vx;
             }
@@ -306,7 +308,7 @@ public class Bal {
      * keert de y snelheid om als de bal zijn maximale y positie bereikt
      */
     private void setMaxY() {
-        if (y >= paneel.getHoogte() - straal) {
+        if (y >= paneel.getHoogte() - huidigeStraal) {
             vy = 0;
             vx = 0;
         }
@@ -316,7 +318,7 @@ public class Bal {
      * keert de y snelheid om als de bal zijn minimale y positie bereikt
      */
     private void setMinY() {
-        if (y <= straal) {
+        if (y <= huidigeStraal) {
             if (vy < 0) {
                 vy = -vy;
             }
