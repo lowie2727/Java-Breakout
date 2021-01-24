@@ -26,6 +26,8 @@ public class Spel {
     private final int maxTijdsduurPowerUp;
     private final int maxTijdsduurTussenPowerUp;
     private boolean toonLabel;
+    private boolean balStatus;
+    private boolean balStatusNa;
 
     /**
      *
@@ -180,6 +182,7 @@ public class Spel {
             if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
                 toonLabel = true;
                 powerUp.setGeraakt(true);
+                balStatus = true;
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
                 } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -194,13 +197,16 @@ public class Spel {
                     }
                 }
                 timerPeddel.setTijdsduurPowerUp();
+                
             }
         }
     }
 
     private void PowerUpVoorbij() {
-        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp) {
+        if (timerPeddel.getTijdsduurPowerUp() > maxTijdsduurPowerUp && powerUp.isGeraakt() && balStatus) {
             toonLabel = false;
+            balStatus = false;
+            balStatusNa = true;
             if (powerUp.getKleurBal() == Kleuren.ROZE || powerUp.getKleurBal() == Kleuren.ZWART) {
                 peddel.setHuidigeBreedte(peddel.getBreedte());
             } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
@@ -229,8 +235,13 @@ public class Spel {
     }
 
     private void toonPowerUp() {
-        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt()) {
+        System.out.println(timerPeddel.getTijdsintervalPowerUp());
+        if (timerPeddel.getTijdsintervalPowerUp() > maxTijdsduurTussenPowerUp && powerUp.isGeraakt() && balStatusNa) {
+            System.out.println("model.Spel.toonPowerUp()");
             powerUp = new PowerUp(20, paneel);
+            timerPeddel.setTijdsintervalPowerUp();
+            powerUp.setGeraakt(false);
+            balStatusNa = false;
         }
     }
 

@@ -54,7 +54,17 @@ public class PowerUp {
 
     private void kleurBal() {
         int i = (int) Math.round(Math.random() * 4);
-        switch (i) {
+        if (i == 1) {
+            kleur = Kleuren.GRIJS;
+        } else if (i == 2) {
+            kleur = Kleuren.ZWART;
+        } else if (i == 3) {
+            kleur = Kleuren.ROZE;
+        } else {
+            kleur = Kleuren.PAARS;
+        }
+
+        /*switch (i) {
             case 10:
                 kleur = Kleuren.GRIJS;
                 break;
@@ -67,7 +77,7 @@ public class PowerUp {
             default:
                 kleur = Kleuren.PAARS;
                 break;
-        }
+        }*/
     }
 
     /**
