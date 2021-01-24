@@ -5,6 +5,8 @@
  */
 package model;
 
+import be.inf1.mavenproject2.StartPaginaController;
+
 /**
  *
  * @author lowie
@@ -31,7 +33,7 @@ public class Peddel {
     public Peddel(double hoogte, Paneel paneel) {
         this.paneel = paneel;
         this.hoogte = hoogte;
-        this.breedte = 500;
+        this.breedte = StartPaginaController.getPeddelBreedte();
         offset = 20;
         multiplier = 1.5;
         huidigeBreedte = breedte;

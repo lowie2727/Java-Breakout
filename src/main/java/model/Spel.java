@@ -5,6 +5,7 @@
  */
 package model;
 
+import be.inf1.mavenproject2.StartPaginaController;
 import be.inf1.mavenproject2.TimerPeddel;
 import java.util.ArrayList;
 import model.Bal;
@@ -39,8 +40,8 @@ public class Spel {
         powerUp = new PowerUp(20, paneel);
 
         this.timerPeddel = timerPeddel;
-        this.maxTijdsduurTussenPowerUp = 8;
-        this.maxTijdsduurPowerUp = 5;
+        this.maxTijdsduurTussenPowerUp = StartPaginaController.getIntervalPowerUp();
+        this.maxTijdsduurPowerUp = StartPaginaController.getIntervalPowerUpDuration();
     }
 
     /**

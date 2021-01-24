@@ -5,6 +5,7 @@
  */
 package model;
 
+import be.inf1.mavenproject2.StartPaginaController;
 import java.util.ArrayList;
 
 /**
@@ -24,9 +25,9 @@ public class Ballen {
      * @param aantalBallen
      */
     public Ballen(Paneel vensterModel, int aantalBallen) {
-        straal = 8;
+        straal = StartPaginaController.getStraalBal();
         this.paneelModel = vensterModel;
-        this.aantalBallen = 5;
+        this.aantalBallen = 1;
         ballen = new ArrayList<>();
         createBallen();
     }

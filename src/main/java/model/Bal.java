@@ -46,8 +46,7 @@ public class Bal {
         y = paneel.getHoogte() - straal - 20;
         vx = 0;
         vy = 0;
-
-        huidigeStraal = straal;
+        
         multiplier = 1.5;
     }
 
@@ -134,9 +133,7 @@ public class Bal {
         return snelheid;
     }
 
-    public double getHuidigeStraal() {
-        return huidigeStraal;
-    }
+   
 
     /**
      * @return
@@ -287,7 +284,6 @@ public class Bal {
         verticaal();
     }
 
-    public void setHuidigeStraal(double straal) {
-        this.huidigeStraal = straal;
-    }
+    
+    
 }
