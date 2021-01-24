@@ -32,7 +32,7 @@ public class PowerUp {
      * constructor voor objecten van de klasse PowerUp
      *
      * @param straal de straal van de PowerUp
-     * @param paneel
+     * @param paneel het speelveld van de powerUp
      */
     public PowerUp(double straal, Paneel paneel) {
         this.straal = straal;

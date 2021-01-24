@@ -30,7 +30,7 @@ public class Ballen {
     public Ballen(Paneel paneelModel, int aantalBallen) {
         straal = StartPaginaController.getStraalBal();
         this.paneelModel = paneelModel;
-        this.aantalBallen = 1;
+        this.aantalBallen = aantalBallen;
         ballen = new ArrayList<>();
         maakBallen();
     }
