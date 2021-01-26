@@ -57,7 +57,11 @@ public class StartPaginaController {
         spelregelsButton.setOnAction(this::gaNaarSpelregels);
         instellingenButton.setOnAction(this::gaNaarInstellingen);
     }
-
+    
+    /*
+    * om van scene te verwisselen hebben we gerbuik gemaakt van https://youtu.be/XCgcQTQCfJQ 
+    * in deze video komt alles wat we gebruiken aanbod (geldt ook voor anderen klassen)
+    */
     private void gaNaarGame(ActionEvent t) {
         if (level1.isSelected()) {
             straalBal = 10;

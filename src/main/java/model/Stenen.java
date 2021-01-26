@@ -61,7 +61,7 @@ public class Stenen {
     /**
      * methode om een matrix van stenen te maken
      */
-    public void maakStenen() {
+    private void maakStenen() {
         stenen = new Steen[rijen][kolommen];
         for (int j = 0; j < rijen; j++) {
             for (int i = 0; i < kolommen; i++) {
