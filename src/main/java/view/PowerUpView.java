@@ -28,7 +28,7 @@ public class PowerUpView extends Region {
     /**
      * deze methode maakt een nieuwe PowerUp
      */
-    public void maakPowerUp() {
+    private void maakPowerUp() {
         Circle c;
         getChildren().clear();
         if (powerUp.getKleurBal() == Kleuren.ROZE) {
@@ -54,12 +54,5 @@ public class PowerUpView extends Region {
         if (!powerUp.isGeraakt()) {
             maakPowerUp();
         }
-    }
-
-    /**
-     * deze methode reset PowerUpView
-     */
-    public void reset() {
-        getChildren().clear();
     }
 }

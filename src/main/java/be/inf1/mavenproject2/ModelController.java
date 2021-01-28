@@ -170,7 +170,7 @@ public class ModelController {
     /*
     * 
      */
-    public void speelMuziek() {
+    private void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("startGeluid.mp3");
         Media media = new Media(resource.toString());
@@ -178,7 +178,7 @@ public class ModelController {
         mediaPlayer.setAutoPlay(true);
     }
 
-    public void toetsGeluid2() {
+    private void toetsGeluid2() {
         ClassLoader classLoader = getClass().getClassLoader();
         URL resource = classLoader.getResource("m.mp3");
         Media media = new Media(resource.toString());

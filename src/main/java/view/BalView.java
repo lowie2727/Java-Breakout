@@ -27,7 +27,7 @@ public class BalView extends Region {
     /**
      * maakt een nieuwe cirkel
      */
-    public final void maakCirkel() {
+    private void maakCirkel() {
         Circle c = new Circle(bal.getHuidigeStraal(), Color.BLUE);
         getChildren().add(c);
     }

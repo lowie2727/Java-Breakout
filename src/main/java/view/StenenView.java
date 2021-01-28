@@ -26,7 +26,7 @@ public class StenenView extends Region {
     /**
      * deze methode update StenenView
      */
-    public final void update() {
+    public void update() {
         int n = 0;
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
@@ -41,7 +41,7 @@ public class StenenView extends Region {
     /**
      * deze methode maakt stenen aan
      */
-    public final void maakStenen() {
+    private void maakStenen() {
         getChildren().clear();
         Steen s[][] = stenen.getStenen();
         for (int j = 0; j < stenen.getRijen(); j++) {

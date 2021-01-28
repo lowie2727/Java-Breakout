@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import model.Bal;
 import model.Ballen;
@@ -28,7 +27,7 @@ public class BallenView extends Region {
     /**
      * maakt een ArrayList met ballen aan
      */
-    public final void maakBallen() {
+    private void maakBallen() {
         getChildren().clear();
         ArrayList<Bal> b = ballen.getBallen();
         for (int i = 0; i < ballen.getAantalBallen(); i++) {

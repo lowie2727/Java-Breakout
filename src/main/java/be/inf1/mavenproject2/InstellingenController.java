@@ -83,52 +83,11 @@ public class InstellingenController {
      */
     private void bevestigVeranderingen(ActionEvent t) {
         StartPaginaController.setPeddelBreedte((int) sliderPeddel.getValue());
-        breedtePeddel = (int) sliderPeddel.getValue();
         StartPaginaController.setAantalRijen((int) sliderRijen.getValue());
-        rijenAantal = (int) sliderRijen.getValue();
         StartPaginaController.setStraalBal((int) sliderStraalBal.getValue());
-        balStraal = (int) sliderStraalBal.getValue();
         StartPaginaController.setIntervalPowerUpDuration((int) sliderPowerUpDuration.getValue());
-        durationPowerUp = (int) sliderPowerUpDuration.getValue();
         StartPaginaController.setIntervalPowerUp((int) sliderPowerUp.getValue());
-        powerUpInterval = (int) sliderPowerUp.getValue();
         klaarOmTeSpelen = true;
-    }
-
-    /**
-     * @return breedtePeddel geeft de breedte van de peddel terug
-     */
-    public static int getBreedtePeddel() {
-        return breedtePeddel;
-    }
-
-    /**
-     * @return het rijenAantal geeft het aantal rijen stenen terug
-     */
-    public static int getRijenAantal() {
-        return rijenAantal;
-    }
-
-    /**
-     * @return de balStraal geeft de straal van de bal terug
-     */
-    public static int getBalStraal() {
-        return balStraal;
-    }
-
-    /**
-     * @return de durationPowerUp geeft de tijd terug hoelang een PowerUp duurt
-     */
-    public static int getDurationPowerUp() {
-        return durationPowerUp;
-    }
-
-    /**
-     * @return de powerUpInterval geeft de tijd terug wanneer een nieuwe PowerUp
-     * tevoorschijn mag komen
-     */
-    public static int getPowerUpInterval() {
-        return powerUpInterval;
     }
 
     /**
