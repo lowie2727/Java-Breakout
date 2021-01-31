@@ -51,15 +51,4 @@ public class BallenView extends Region {
             getChildren().add(bv);
         }
     }
-
-    /**
-     * de methode reset BallenView 
-     */
-    public void reset() {
-        for (int i = ballen.getAantalBallen() - 1; i >= 0; i--) {
-            if (i != 0) {
-                getChildren().remove(i);
-            }
-        }
-    }
 }
