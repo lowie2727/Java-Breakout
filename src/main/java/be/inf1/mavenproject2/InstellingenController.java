@@ -1,8 +1,6 @@
 package be.inf1.mavenproject2;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +12,6 @@ import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
 public class InstellingenController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button gaNaarStart;
@@ -42,11 +34,6 @@ public class InstellingenController {
     @FXML
     private Slider sliderPowerUp;
 
-    private static int breedtePeddel;
-    private static int rijenAantal;
-    private static int balStraal;
-    private static int durationPowerUp;
-    private static int powerUpInterval;
 
     private static boolean klaarOmTeSpelen;
 

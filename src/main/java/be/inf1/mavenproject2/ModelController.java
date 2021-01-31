@@ -2,7 +2,6 @@ package be.inf1.mavenproject2;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,12 +22,6 @@ import model.Spel;
 import view.SpelView;
 
 public class ModelController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Pane paneel;
@@ -162,8 +155,7 @@ public class ModelController {
             startScherm.show();
             timerBal.cancel();
             timerPeddel.cancel();
-        } catch (IOException io) {
-        } catch (NullPointerException nu) {
+        } catch (IOException | NullPointerException io) {
         }
     }
 

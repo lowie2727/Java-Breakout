@@ -9,7 +9,7 @@ import be.inf1.mavenproject2.StartPaginaController;
  */
 public class Stenen {
 
-    private Steen stenen[][];
+    private Steen[][] stenen;
     /**
      * het aantal rijen stenen
      */
@@ -145,24 +145,6 @@ public class Stenen {
         return kolommen;
     }
 
-    /**
-     * geeft de breedte van de witte ruimte tussen 2 stenen
-     *
-     * @return offsetBreedte
-     */
-    public double getOffsetBreedte() {
-        return offsetBreedte;
-    }
-
-    /**
-     * geeft de hoogte van de witte ruimte tussen 2 stenen
-     *
-     * @return offsetHoogte
-     */
-    public double getOffsetHoogte() {
-        return offsetHoogte;
-    }
-
     private void setMaxKolommen(int kolommen) {
         if (kolommen * (steen.getBreedte() + offsetBreedte) >= paneel.getBreedte()) {
             this.kolommen = (int) ((paneel.getBreedte() / (steen.getBreedte() + offsetBreedte))) - 1;
@@ -171,26 +153,6 @@ public class Stenen {
 
     private void setOffsetBreedtePaneel(int kolommen) {
         offsetBreedtePaneel = (paneel.getBreedte() - kolommen * (steen.getBreedte() + offsetBreedte) - offsetBreedte) / 2;
-    }
-
-    /**
-     * geeft de hoogte van de witte ruimte tussen de stenen en de rand van het
-     * paneel
-     *
-     * @return offsetHoogtePaneel
-     */
-    public double getOffsetHoogtePaneel() {
-        return offsetHoogtePaneel;
-    }
-
-    /**
-     * geeft de breedte van de witte ruimte tussen de stenen en de rand van het
-     * paneel
-     *
-     * @return offsetBreedtePaneel
-     */
-    public double getOffsetBreedtePaneel() {
-        return offsetBreedtePaneel;
     }
 
     /**

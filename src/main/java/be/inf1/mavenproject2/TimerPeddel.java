@@ -46,9 +46,6 @@ public class TimerPeddel extends TimerTask {
         return tijdTotaal;
     }
 
-    /**
-     * @param tijdPeddel the tijdsduurPowerUp to set
-     */
     public void setTijdsduurPowerUp() {
         tijdsduurPowerUp = 0;
     }

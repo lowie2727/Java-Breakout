@@ -67,16 +67,6 @@ public class Ballen {
     }
 
     /**
-     * geeft een bal op positie i in de ArrayList
-     *
-     * @param i positie i in de ArrayList
-     * @return ballen.get(i)
-     */
-    public Bal getBal(int i) {
-        return ballen.get(i);
-    }
-
-    /**
      * neemt de grote van de ArrayList ballen
      *
      * @return ballen.size()

@@ -95,15 +95,6 @@ public class Peddel {
     }
 
     /**
-     * geeft hoe ver de peddel van de onderkant van het paneel staat
-     *
-     * @return offset
-     */
-    public double getOffset() {
-        return offset;
-    }
-
-    /**
      * geeft de factor waarmee de peddel breder wordt tijdens de PowerUp
      *
      * @return multiplier

@@ -1,8 +1,6 @@
 package be.inf1.mavenproject2;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +11,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class SpelregelsController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button gaNaarStartButton;

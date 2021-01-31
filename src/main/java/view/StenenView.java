@@ -43,7 +43,7 @@ public class StenenView extends Region {
      */
     private void maakStenen() {
         getChildren().clear();
-        Steen s[][] = stenen.getStenen();
+        Steen[][] s = stenen.getStenen();
         for (int j = 0; j < stenen.getRijen(); j++) {
             for (int i = 0; i < stenen.getKolommen(); i++) {
                 SteenView sv = new SteenView(s[j][i]);

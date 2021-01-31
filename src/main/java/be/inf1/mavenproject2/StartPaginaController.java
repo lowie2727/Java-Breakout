@@ -2,7 +2,6 @@ package be.inf1.mavenproject2;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +15,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class StartPaginaController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button startButton;
@@ -177,14 +170,7 @@ public class StartPaginaController {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
     }
-
-    /*public void startSound() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("start.mp3");
-        Media media = new Media(resource.toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-    }*/
+    
     /**
      * @param aPeddelBreedte the peddelBreedte to set
      */
