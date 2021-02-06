@@ -1,21 +1,20 @@
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
-import be.inf1.mavenproject2.TimerPeddel;
+import be.inf1.atariBreakout.StartPaginaController;
+import be.inf1.atariBreakout.TimerPeddel;
 import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
 
 /**
  * klasse Spel
- * <p>
+ *
  * Lowie Van Vyve: 65% Arnaud Paquet: 10% Jonas Vandenborne: 25%
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Spel {
 
-    //private final Ballen ballen;
     private final int aantalBallen;
     private final ArrayList<Bal> ballen;
     private final Stenen stenen;

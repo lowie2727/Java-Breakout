@@ -1,4 +1,4 @@
-package be.inf1.mavenproject2;
+package be.inf1.atariBreakout;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

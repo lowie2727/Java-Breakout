@@ -42,7 +42,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>be.inf1.mavenproject2.App</mainClass>
+                    <mainClass>be.inf1.atariBreakout.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>

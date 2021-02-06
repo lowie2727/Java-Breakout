@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.InstellingenController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.atariBreakout.InstellingenController">
    <Button fx:id="gaNaarStart" layoutX="968.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar homepage"/>
    <Label layoutX="60.0" layoutY="44.0" text="aantal rijen "/>
    <Slider fx:id="sliderPeddel" layoutX="149.0" layoutY="106.0" majorTickUnit="50.0" max="500.0" min="100.0"

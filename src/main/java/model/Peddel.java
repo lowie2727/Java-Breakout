@@ -1,6 +1,6 @@
 package model;
 
-import be.inf1.mavenproject2.StartPaginaController;
+import be.inf1.atariBreakout.StartPaginaController;
 
 /**
  * klasse Peddel
