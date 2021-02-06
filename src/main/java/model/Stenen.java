@@ -41,7 +41,7 @@ public class Stenen {
     /**
      * constructur voor objecten van de klasse Stenen
      *
-     * @param paneel het paneel waar de bal op komt
+     * @param paneel   het paneel waar de bal op komt
      * @param kolommen het aantal kolommen stenen
      */
     public Stenen(Paneel paneel, int kolommen) {

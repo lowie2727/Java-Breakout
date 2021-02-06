@@ -32,9 +32,9 @@ public class Steen {
      * constructor voor objecten van de klasse Steen
      *
      * @param breedte de breedte van 1 steen
-     * @param hoogte de hoogte van 1 steen
-     * @param x de x positie van een steen
-     * @param y de y positie van een steen
+     * @param hoogte  de hoogte van 1 steen
+     * @param x       de x positie van een steen
+     * @param y       de y positie van een steen
      */
     public Steen(double breedte, double hoogte, double x, double y) {
         this.hoogte = hoogte;

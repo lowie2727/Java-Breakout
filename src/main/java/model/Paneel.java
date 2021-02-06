@@ -20,7 +20,7 @@ public class Paneel {
      * constructur voor objecten van klasse Paneel
      *
      * @param breedte de breedte
-     * @param hoogte de hoogte
+     * @param hoogte  de hoogte
      */
     public Paneel(double breedte, double hoogte) {
         this.breedte = breedte;

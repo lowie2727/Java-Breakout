@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="JavaGame2.0">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaGame2_0</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="be.inf1.mavenproject2.App" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaGame2_0.jar">
+        <element id="module-output" name="JavaGame2.0" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -268,15 +268,6 @@ public class Bal {
     }
 
     /**
-     * verandert de y positie
-     *
-     * @param y de y positie
-     */
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    /**
      * keert de x snelheid om als de bal zijn maximale x positie bereikt
      */
     private void setMaxX() {
@@ -330,5 +321,5 @@ public class Bal {
         horizontaal();
         verticaal();
     }
-
 }
+

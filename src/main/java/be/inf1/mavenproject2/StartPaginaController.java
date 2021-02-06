@@ -1,7 +1,5 @@
 package be.inf1.mavenproject2;
 
-import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +11,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class StartPaginaController {
 
@@ -50,11 +51,11 @@ public class StartPaginaController {
         spelregelsButton.setOnAction(this::gaNaarSpelregels);
         instellingenButton.setOnAction(this::gaNaarInstellingen);
     }
-    
+
     /*
-    * om van scene te verwisselen hebben we gerbuik gemaakt van https://youtu.be/XCgcQTQCfJQ 
-    * in deze video komt alles wat we gebruiken aanbod (geldt ook voor anderen klassen)
-    */
+     * om van scene te verwisselen hebben we gerbuik gemaakt van https://youtu.be/XCgcQTQCfJQ
+     * in deze video komt alles wat we gebruiken aanbod (geldt ook voor anderen klassen)
+     */
     private void gaNaarGame(ActionEvent t) {
         if (level1.isSelected()) {
             straalBal = 10;
@@ -170,7 +171,7 @@ public class StartPaginaController {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
     }
-    
+
     /**
      * @param aPeddelBreedte the peddelBreedte to set
      */

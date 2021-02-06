@@ -5,12 +5,12 @@
  */
 package be.inf1.mavenproject2;
 
-import java.util.TimerTask;
 import javafx.application.Platform;
 import model.Bal;
 
+import java.util.TimerTask;
+
 /**
- *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class UpdateBal extends TimerTask {

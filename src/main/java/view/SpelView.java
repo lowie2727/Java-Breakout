@@ -1,8 +1,11 @@
 package view;
 
 import javafx.scene.layout.Pane;
+import model.Bal;
 import model.Paneel;
 import model.Spel;
+
+import java.util.ArrayList;
 
 /**
  * klasse SpelView
@@ -14,7 +17,8 @@ public class SpelView {
     private PeddelView peddelView;
     private final PaneelView paneelView;
     private StenenView stenenView;
-    private final BallenView ballenView;
+    private BalView balView;
+    private ArrayList<BalView> ballenView;
     private PowerUpView powerUpView;
 
     private final Pane paneel;
@@ -29,13 +33,17 @@ public class SpelView {
      */
     public SpelView(Spel spel, Pane paneel, Paneel paneelModel) {
         this.spel = spel;
-        ballenView = new BallenView(spel.getBallen());
+        this.paneel = paneel;
+        for(Bal bal : spel.getBallen()){
+            balView = new BalView(bal);
+            paneel.getChildren().add(balView);
+        }
         paneelView = new PaneelView(paneelModel);
         peddelView = new PeddelView(spel.getPeddel());
         stenenView = new StenenView(spel.getStenen());
         powerUpView = new PowerUpView(spel.getPowerUp());
-        this.paneel = paneel;
-        paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
+        maakBallenView();
+        paneel.getChildren().addAll(paneelView, peddelView, stenenView, powerUpView);
     }
 
     /**
@@ -43,12 +51,19 @@ public class SpelView {
      */
     public void update() {
         paneel.getChildren().clear();
-        ballenView.update();
+        maakBallenView();
         peddelView = new PeddelView(spel.getPeddel());
         stenenView = new StenenView(spel.getStenen());
         stenenView.update();
         powerUpView = new PowerUpView(spel.getPowerUp());
         powerUpView.update();
-        paneel.getChildren().addAll(ballenView, paneelView, peddelView, stenenView, powerUpView);
+        paneel.getChildren().addAll(paneelView, peddelView, stenenView, powerUpView);
+    }
+
+    private void maakBallenView(){
+        for(Bal bal : spel.getBallen()){
+            balView = new BalView(bal);
+            paneel.getChildren().add(balView);
+        }
     }
 }

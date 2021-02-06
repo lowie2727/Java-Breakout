@@ -5,19 +5,27 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.InstellingenController">
-   <children>
-      <Button fx:id="gaNaarStart" layoutX="968.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar homepage" />
-      <Label layoutX="60.0" layoutY="44.0" text="aantal rijen " />
-      <Slider fx:id="sliderPeddel" layoutX="149.0" layoutY="106.0" majorTickUnit="50.0" max="500.0" min="100.0" minorTickCount="0" prefHeight="33.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" />
-      <Label layoutX="37.0" layoutY="106.0" text="breedte peddel" />
-      <Button fx:id="okButton" layoutX="901.0" layoutY="503.0" mnemonicParsing="false" text="ok" />
-      <Slider fx:id="sliderRijen" layoutX="149.0" layoutY="44.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Slider fx:id="sliderStraalBal" layoutX="149.0" layoutY="158.0" majorTickUnit="1.0" max="20.0" min="5.0" minorTickCount="0" prefHeight="37.0" prefWidth="267.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Slider fx:id="sliderPowerUpDuration" layoutX="149.0" layoutY="216.0" majorTickUnit="1.0" max="10.0" min="5.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Slider fx:id="sliderPowerUp" layoutX="149.0" layoutY="262.0" majorTickUnit="5.0" max="30.0" min="15.0" minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Label layoutX="63.0" layoutY="168.0" text="straal" />
-      <Label layoutX="32.0" layoutY="216.0" text="powerupduration" />
-      <Label layoutX="33.0" layoutY="262.0" text="powerup interval" />
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.inf1.mavenproject2.InstellingenController">
+   <Button fx:id="gaNaarStart" layoutX="968.0" layoutY="14.0" mnemonicParsing="false" text="Ga naar homepage"/>
+   <Label layoutX="60.0" layoutY="44.0" text="aantal rijen "/>
+   <Slider fx:id="sliderPeddel" layoutX="149.0" layoutY="106.0" majorTickUnit="50.0" max="500.0" min="100.0"
+           minorTickCount="0" prefHeight="33.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true"/>
+   <Label layoutX="37.0" layoutY="106.0" text="breedte peddel"/>
+   <Button fx:id="okButton" layoutX="901.0" layoutY="503.0" mnemonicParsing="false" text="ok"/>
+   <Slider fx:id="sliderRijen" layoutX="149.0" layoutY="44.0" majorTickUnit="1.0" max="10.0" min="1.0"
+           minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true"
+           snapToTicks="true"/>
+   <Slider fx:id="sliderStraalBal" layoutX="149.0" layoutY="158.0" majorTickUnit="1.0" max="20.0" min="5.0"
+           minorTickCount="0" prefHeight="37.0" prefWidth="267.0" showTickLabels="true" showTickMarks="true"
+           snapToTicks="true"/>
+   <Slider fx:id="sliderPowerUpDuration" layoutX="149.0" layoutY="216.0" majorTickUnit="1.0" max="10.0" min="5.0"
+           minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true"
+           snapToTicks="true"/>
+   <Slider fx:id="sliderPowerUp" layoutX="149.0" layoutY="262.0" majorTickUnit="5.0" max="30.0" min="15.0"
+           minorTickCount="0" prefHeight="14.0" prefWidth="195.0" showTickLabels="true" showTickMarks="true"
+           snapToTicks="true"/>
+   <Label layoutX="63.0" layoutY="168.0" text="straal"/>
+   <Label layoutX="32.0" layoutY="216.0" text="powerupduration"/>
+   <Label layoutX="33.0" layoutY="262.0" text="powerup interval"/>
 </AnchorPane>

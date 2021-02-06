@@ -1,6 +1,5 @@
 package be.inf1.mavenproject2;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class InstellingenController {
 
@@ -38,7 +39,7 @@ public class InstellingenController {
     private static boolean klaarOmTeSpelen;
 
     /*
-    *initialieerst de scene
+     *initialieerst de scene
      */
     @FXML
     void initialize() {
@@ -47,8 +48,8 @@ public class InstellingenController {
     }
 
     /*
-    * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan, 
-    * deze methode veranderd het scherm dat zichtbaar is
+     * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan,
+     * deze methode veranderd het scherm dat zichtbaar is
      */
     private void gaNaarStart(ActionEvent t) {
         try {
@@ -64,9 +65,9 @@ public class InstellingenController {
     }
 
     /*
-    * @param t is de ActionEvent die gekoppeld is aan de knop om de instellingen van de sliders te bevestigen
-    * in deze methode worden de instellingen van de straal, aantalrijen, .... 
-    * gestuurd naar de modellen die deze nodig hebben
+     * @param t is de ActionEvent die gekoppeld is aan de knop om de instellingen van de sliders te bevestigen
+     * in deze methode worden de instellingen van de straal, aantalrijen, ....
+     * gestuurd naar de modellen die deze nodig hebben
      */
     private void bevestigVeranderingen(ActionEvent t) {
         StartPaginaController.setPeddelBreedte((int) sliderPeddel.getValue());

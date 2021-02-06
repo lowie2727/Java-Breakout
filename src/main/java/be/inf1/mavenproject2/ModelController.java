@@ -1,8 +1,5 @@
 package be.inf1.mavenproject2;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +17,10 @@ import model.Bal;
 import model.Paneel;
 import model.Spel;
 import view.SpelView;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Timer;
 
 public class ModelController {
 
@@ -57,7 +58,7 @@ public class ModelController {
     private TimerPeddel t;
 
     /*
-    * initialeerst de scene
+     * initialeerst de scene
      */
     @FXML
     void initialize() {
@@ -83,7 +84,7 @@ public class ModelController {
     }
 
     /*
-    * deze methode update het spel aan de hand van tickmethode in UpdateBal
+     * deze methode update het spel aan de hand van tickmethode in UpdateBal
      */
     public void update() {
         if (status) {
@@ -96,17 +97,17 @@ public class ModelController {
     }
 
     /*
-    * @param e is de ActionEvent die gekoppeld is aan de knop om het spel te starten
+     * @param e is de ActionEvent die gekoppeld is aan de knop om het spel te starten
      */
     private void start(ActionEvent e) {
         if (!status) {
-            for (Bal bal : spel.getBallen().getBallen()) {
+            for (Bal bal : spel.getBallen()) {
                 bal.setVx(bal.getSnelheidX());
                 bal.setVy(bal.getSnelheidY());
             }
 
             timerBal = new Timer(true);
-            for (Bal bal : spel.getBallen().getBallen()) {
+            for (Bal bal : spel.getBallen()) {
                 UpdateBal b = new UpdateBal(bal, this);
                 timerBal.scheduleAtFixedRate(b, 0, 16);
             }
@@ -116,7 +117,7 @@ public class ModelController {
     }
 
     /*
-    *@param e is de ActionEvent die gekoppeld is aan de knop om het spel te resetten 
+     *@param e is de ActionEvent die gekoppeld is aan de knop om het spel te resetten
      */
     private void reset(ActionEvent e) {
         if (status) {
@@ -129,7 +130,7 @@ public class ModelController {
     }
 
     /*
-    * @param m is de MouseEvent die gekoppeld is aan het bewegen van de mouse om de peddel te bewegen
+     * @param m is de MouseEvent die gekoppeld is aan het bewegen van de mouse om de peddel te bewegen
      */
     private void beweegPeddel(MouseEvent m) {
         if (m.getX() + spel.getPeddel().getHuidigeBreedte() / 2 > paneelModel.getBreedte()) {
@@ -142,7 +143,7 @@ public class ModelController {
     }
 
     /*
-    * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan
+     * @param t is de ActionEvent die gekoppeld is aan de knop om naar de startpagina te gaan
      */
     private void gaNaarStart(ActionEvent t) {
         try {
@@ -160,7 +161,7 @@ public class ModelController {
     }
 
     /*
-    * 
+     *
      */
     private void speelMuziek() {
         ClassLoader classLoader = getClass().getClassLoader();

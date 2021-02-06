@@ -8,7 +8,6 @@ package be.inf1.mavenproject2;
 import java.util.TimerTask;
 
 /**
- *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class TimerPeddel extends TimerTask {

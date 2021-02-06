@@ -2,19 +2,22 @@ package model;
 
 import be.inf1.mavenproject2.StartPaginaController;
 import be.inf1.mavenproject2.TimerPeddel;
-import java.util.ArrayList;
 import javafx.scene.control.Alert;
+
+import java.util.ArrayList;
 
 /**
  * klasse Spel
- *
+ * <p>
  * Lowie Van Vyve: 65% Arnaud Paquet: 10% Jonas Vandenborne: 25%
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
  */
 public class Spel {
 
-    private final Ballen ballen;
+    //private final Ballen ballen;
+    private final int aantalBallen;
+    private final ArrayList<Bal> ballen;
     private final Stenen stenen;
     private PowerUp powerUp;
     private final Peddel peddel;
@@ -46,15 +49,19 @@ public class Spel {
     /**
      * constructor voor objecten van klasse Spel
      *
-     * @param paneel vraagt het model van Paneel op
+     * @param paneel      vraagt het model van Paneel op
      * @param timerPeddel vraagt de timerpeddel op
      */
     public Spel(Paneel paneel, TimerPeddel timerPeddel) {
         this.paneel = paneel;
-        ballen = new Ballen(paneel, 1);
+
         peddel = new Peddel(10, paneel);
         stenen = new Stenen(paneel, 500);
         powerUp = new PowerUp(20, paneel);
+
+        ballen = new ArrayList<>();
+        aantalBallen = 1;
+        maakBallen();
 
         this.timerPeddel = timerPeddel;
         this.maxTijdsduurTussenPowerUp = StartPaginaController.getIntervalPowerUp();
@@ -78,13 +85,33 @@ public class Spel {
      * de methode reset de klasse Spel
      */
     public void reset() {
-        ballen.reset();
+        resetBallen();
         peddel.reset();
         stenen.reset();
         toonLabel = false;
         timerPeddel.setTijdsintervalPowerUp();
         timerPeddel.setTijdsduurPowerUp();
         powerUp = new PowerUp(20, paneel);
+    }
+
+    private void maakBallen() {
+        for (int i = 0; i < aantalBallen; i++) {
+            ballen.add(new Bal(paneel, 8));
+        }
+    }
+
+    private void resetBallen() {
+        for (int i = ballen.size() - 1; i >= 0; i--) {
+            if (i == 0) {
+                ballen.get(i).reset();
+            } else {
+                ballen.remove(i);
+            }
+        }
+    }
+
+    public ArrayList<Bal> getBallen() {
+        return ballen;
     }
 
     /**
@@ -111,7 +138,7 @@ public class Spel {
      * deze methode regiseert de botsingen tussen de bal en de stenen
      */
     private void botsingBalStenen() {
-        for (Bal bal : ballen.getBallen()) {
+        for (Bal bal : ballen) {
             for (int j = 0; j < stenen.getRijen(); j++) {
                 for (int i = 0; i < stenen.getKolommen(); i++) {
                     Steen steen = stenen.getSteen(j, i);
@@ -183,7 +210,7 @@ public class Spel {
      * de methode registreert de botsing tussen de bal en de peddel
      */
     private void botsingBalPeddel() {
-        for (Bal bal : ballen.getBallen()) {
+        for (Bal bal : ballen) {
             if (bal.getY() + bal.getHuidigeStraal() >= peddel.getY() - 3
                     && bal.getY() + bal.getHuidigeStraal() <= peddel.getY() + 3
                     && bal.getX() >= peddel.getX()
@@ -217,8 +244,7 @@ public class Spel {
      * deze methode registreert de botsing tussen de bal en de powerup
      */
     private void botsingBalPowerUp() {
-        ArrayList<Bal> ballenLijst = ballen.getBallen();
-        for (Bal bal : ballenLijst) {
+        for (Bal bal : ballen) {
             if (Math.sqrt(Math.pow(powerUp.getX() - bal.getX(), 2) + Math.pow(powerUp.getY() - bal.getY(), 2)) < bal.getHuidigeStraal() + powerUp.getStraal() && !powerUp.isGeraakt()) {
                 toonLabel = true;
                 powerUp.setGeraakt(true);
@@ -226,13 +252,13 @@ public class Spel {
                 if (powerUp.getKleurBal() == Kleuren.ROZE) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() * peddel.getMultiplier());
                 } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
-                    for (Bal b : ballenLijst) {
+                    for (Bal b : ballen) {
                         b.setGodMode(true);
                     }
                 } else if (powerUp.getKleurBal() == Kleuren.ZWART) {
                     peddel.setHuidigeBreedte(peddel.getBreedte() / peddel.getMultiplier());
                 } else if (powerUp.getKleurBal() == Kleuren.GRIJS) {
-                    for (Bal b : ballenLijst) {
+                    for (Bal b : ballen) {
                         b.setHuidigeStraal(b.getStraal() * b.getMutiplier());
                     }
                 }
@@ -253,11 +279,11 @@ public class Spel {
             if (powerUp.getKleurBal() == Kleuren.ROZE || powerUp.getKleurBal() == Kleuren.ZWART) {
                 peddel.setHuidigeBreedte(peddel.getBreedte());
             } else if (powerUp.getKleurBal() == Kleuren.PAARS) {
-                for (Bal bal : ballen.getBallen()) {
+                for (Bal bal : ballen) {
                     bal.setGodMode(false);
                 }
             } else if (powerUp.getKleurBal() == Kleuren.GRIJS) {
-                for (Bal bal : ballen.getBallen()) {
+                for (Bal bal : ballen) {
                     bal.setHuidigeStraal(bal.getStraal());
                 }
             }
@@ -288,15 +314,6 @@ public class Spel {
             powerUp.setGeraakt(false);
             balStatusNa = false;
         }
-    }
-
-    /**
-     * geeft de ballen terug
-     *
-     * @return ballen de ballen
-     */
-    public Ballen getBallen() {
-        return ballen;
     }
 
     /**

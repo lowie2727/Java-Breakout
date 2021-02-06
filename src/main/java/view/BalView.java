@@ -13,6 +13,7 @@ import model.Bal;
 public class BalView extends Region {
 
     private final Bal bal;
+    private Circle c;
 
     /**
      * constructur voor objecten van BalView
@@ -28,7 +29,17 @@ public class BalView extends Region {
      * maakt een nieuwe cirkel
      */
     private void maakCirkel() {
-        Circle c = new Circle(bal.getHuidigeStraal(), Color.BLUE);
+        c = new Circle(bal.getHuidigeStraal(), Color.BLUE);
+        c.setTranslateX(bal.getX());
+        c.setTranslateY(bal.getY());
         getChildren().add(c);
+    }
+
+    public void update(){
+        if(bal.getStraal()!= bal.getHuidigeStraal()){
+            c = new Circle(bal.getHuidigeStraal(), Color.BLUE);
+        }
+        c.setTranslateX(bal.getX());
+        c.setTranslateY(bal.getY());
     }
 }

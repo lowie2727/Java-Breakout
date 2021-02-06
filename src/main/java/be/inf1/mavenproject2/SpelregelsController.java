@@ -1,6 +1,5 @@
 package be.inf1.mavenproject2;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SpelregelsController {
 
     @FXML
     private Button gaNaarStartButton;
 
     /*
-    * initialiseert de scene
+     * initialiseert de scene
      */
     @FXML
     void initialize() {
@@ -24,7 +25,7 @@ public class SpelregelsController {
     }
 
     /*
-    * @param t is de ActionEvent die gekoppeld is aan de knop om terug te gaan naar de startpagina
+     * @param t is de ActionEvent die gekoppeld is aan de knop om terug te gaan naar de startpagina
      */
     private void gaNaarStart(ActionEvent t) {
         try {

@@ -70,7 +70,6 @@ public class PowerUp {
 
     /**
      * methode om 1 van de 4 PowerUps willekeurig te selecteren
-     *
      */
     private void kleurBal() {
         int i = (int) Math.round(Math.random() * 4);
