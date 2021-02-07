@@ -59,6 +59,7 @@ public class StartPaginaController {
      * in deze video komt alles wat we gebruiken aanbod (geldt ook voor anderen klassen)
      */
     private void gaNaarGame(ActionEvent t) {
+        System.out.println("catch");
         if (level1.isSelected()) {
             straalBal = 10;
             peddelBreedte = 500;
@@ -93,6 +94,7 @@ public class StartPaginaController {
                 gameScherm.setScene(modelScene);
                 gameScherm.show();
             } catch (IOException io) {
+                System.out.println("catch"+io);
             }
         }
 
@@ -125,6 +127,7 @@ public class StartPaginaController {
             gameScherm.setScene(modelScene);
             gameScherm.show();
         } catch (IOException io) {
+            System.out.println("catch2");
         }
     }
 

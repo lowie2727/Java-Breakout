@@ -29,6 +29,7 @@ public class Spel {
     private final Paneel paneel;
     private final int rijen;
     private int kolommen;
+    private int i;
 
     private final TimerPeddel timerPeddel;
     /**
@@ -76,6 +77,7 @@ public class Spel {
         ballen = new ArrayList<>();
         aantalBallen = 1;
         maakBallen();
+        maakStenen();
 
         this.timerPeddel = timerPeddel;
         this.maxTijdsduurTussenPowerUp = StartPaginaController.getIntervalPowerUp();
@@ -91,8 +93,8 @@ public class Spel {
         botsingBalPowerUp();
         PowerUpVoorbij();
         toonPowerUp();
-        notificatie();
         checkGewonnen();
+        notificatie();
     }
 
     /**
@@ -109,7 +111,7 @@ public class Spel {
     }
 
     private void checkGewonnen() {
-        if (getAantalStenen() == 0) {
+        if (getAantalStenen() == 0 && i==0) {
             gewonnen = true;
         }
     }
@@ -128,6 +130,7 @@ public class Spel {
 
     private void resetStenen() {
         maakStenen();
+        i=0;
         gewonnen = false;
     }
 
@@ -185,9 +188,9 @@ public class Spel {
      * deze methode zorgt voor de notificaties zoals gewonnen en verloren
      */
     public void notificatie() {
-        if (gewonnen) {
+        if (gewonnen && i==0) {
             gewonnen();
-            reset();
+            i=1;
         }
     }
 

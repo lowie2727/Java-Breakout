@@ -15,7 +15,6 @@ public class SpelView {
 
     private PeddelView peddelView;
     private final PaneelView paneelView;
-    private StenenView stenenView;
     private BalView balView;
     private PowerUpView powerUpView;
 
@@ -40,21 +39,21 @@ public class SpelView {
         peddelView = new PeddelView(spel.getPeddel());
         powerUpView = new PowerUpView(spel.getPowerUp());
         maakBallenView();
-        paneel.getChildren().addAll(paneelView, peddelView, stenenView, powerUpView);
+        paneel.getChildren().addAll(paneelView, peddelView, powerUpView);
     }
 
     /**
      * deze methode update SpelView
      */
     public void update() {
+        System.out.println("update");
         paneel.getChildren().clear();
         maakBallenView();
         maakStenenView();
         peddelView = new PeddelView(spel.getPeddel());
-        stenenView.update();
         powerUpView = new PowerUpView(spel.getPowerUp());
         powerUpView.update();
-        paneel.getChildren().addAll(paneelView, peddelView, stenenView, powerUpView);
+        paneel.getChildren().addAll(paneelView, peddelView, powerUpView);
     }
 
     private void maakBallenView() {
@@ -68,6 +67,7 @@ public class SpelView {
         for (int j = 0; j < spel.getRijen(); j++) {
             for (int i = 0; i < spel.getKolommen(); i++) {
                 Steen s = spel.getSteen(j, i);
+
                 SteenView sv = new SteenView(s);
                 paneel.getChildren().add(sv);
             }
