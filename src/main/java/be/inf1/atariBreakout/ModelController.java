@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Bal;
@@ -19,7 +18,6 @@ import model.Spel;
 import view.SpelView;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Timer;
 
 public class ModelController {
@@ -92,7 +90,7 @@ public class ModelController {
             spelView.update();
             labelTijd.setText(spel.labelPowerUp());
         }
-        labelAantalStenen.setText(spel.getStenen().getAantalStenen() + "");
+        labelAantalStenen.setText(spel.getAantalStenen() + "");
         labelTotaleTijd.setText(t.getTijdTotaal() + "");
     }
 
@@ -158,24 +156,5 @@ public class ModelController {
             timerPeddel.cancel();
         } catch (IOException | NullPointerException io) {
         }
-    }
-
-    /*
-     *
-     */
-    private void speelMuziek() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("startGeluid.mp3");
-        Media media = new Media(resource.toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-    }
-
-    private void toetsGeluid2() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("m.mp3");
-        Media media = new Media(resource.toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
     }
 }

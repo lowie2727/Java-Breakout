@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * klasse Spel
- *
+ * <p>
  * Lowie Van Vyve: 65% Arnaud Paquet: 10% Jonas Vandenborne: 25%
  *
  * @author Lowie Van Vyve, Arnaud Paquet, Jonas Vandenborne
@@ -17,10 +17,18 @@ public class Spel {
 
     private final int aantalBallen;
     private final ArrayList<Bal> ballen;
-    private final Stenen stenen;
+    private Steen[][] stenen;
+    private final Steen steen;
+    private final double offsetBreedte;
+    private final double offsetHoogte;
+    private double offsetBreedtePaneel;
+    private final double offsetHoogtePaneel;
+    private boolean gewonnen;
     private PowerUp powerUp;
     private final Peddel peddel;
     private final Paneel paneel;
+    private final int rijen;
+    private int kolommen;
 
     private final TimerPeddel timerPeddel;
     /**
@@ -54,9 +62,16 @@ public class Spel {
     public Spel(Paneel paneel, TimerPeddel timerPeddel) {
         this.paneel = paneel;
 
+        steen = new Steen(60, 20, 0, 0);
         peddel = new Peddel(10, paneel);
-        stenen = new Stenen(paneel, 500);
         powerUp = new PowerUp(20, paneel);
+        offsetBreedte = 5;
+        offsetHoogte = 5;
+        offsetHoogtePaneel = 50;
+        rijen = StartPaginaController.getAantalRijen();
+        kolommen = 30;
+        setMaxKolommen(kolommen);
+        setOffsetBreedtePaneel(kolommen);
 
         ballen = new ArrayList<>();
         aantalBallen = 1;
@@ -77,7 +92,7 @@ public class Spel {
         PowerUpVoorbij();
         toonPowerUp();
         notificatie();
-        stenen.gewonnen();
+        checkGewonnen();
     }
 
     /**
@@ -86,16 +101,65 @@ public class Spel {
     public void reset() {
         resetBallen();
         peddel.reset();
-        stenen.reset();
+        resetStenen();
         toonLabel = false;
         timerPeddel.setTijdsintervalPowerUp();
         timerPeddel.setTijdsduurPowerUp();
         powerUp = new PowerUp(20, paneel);
     }
 
+    private void checkGewonnen() {
+        if (getAantalStenen() == 0) {
+            gewonnen = true;
+        }
+    }
+
+    public int getAantalStenen() {
+        int aantalStenen = 0;
+        for (int j = 0; j < rijen; j++) {
+            for (int i = 0; i < kolommen; i++) {
+                if (!stenen[j][i].isGeraakt()) {
+                    aantalStenen++;
+                }
+            }
+        }
+        return aantalStenen;
+    }
+
+    private void resetStenen() {
+        maakStenen();
+        gewonnen = false;
+    }
+
+    public int getRijen() {
+        return rijen;
+    }
+
+    public int getKolommen() {
+        return kolommen;
+    }
+
     private void maakBallen() {
         for (int i = 0; i < aantalBallen; i++) {
             ballen.add(new Bal(paneel, 8));
+        }
+    }
+
+    private void maakStenen() {
+        stenen = new Steen[rijen][kolommen];
+        for (int j = 0; j < rijen; j++) {
+            for (int i = 0; i < kolommen; i++) {
+                double breedte = steen.getBreedte() + offsetBreedte;
+                double hoogte = steen.getHoogte() + offsetHoogte;
+                stenen[j][i] = new Steen(steen.getBreedte(), steen.getHoogte(),
+                        breedte * i + offsetBreedtePaneel, hoogte * j + offsetHoogtePaneel);
+            }
+        }
+    }
+
+    private void setMaxKolommen(int kolommen) {
+        if (kolommen * (steen.getBreedte() + offsetBreedte) >= paneel.getBreedte()) {
+            this.kolommen = (int) ((paneel.getBreedte() / (steen.getBreedte() + offsetBreedte))) - 1;
         }
     }
 
@@ -109,6 +173,10 @@ public class Spel {
         }
     }
 
+    private void setOffsetBreedtePaneel(int kolommen) {
+        offsetBreedtePaneel = (paneel.getBreedte() - kolommen * (steen.getBreedte() + offsetBreedte) - offsetBreedte) / 2;
+    }
+
     public ArrayList<Bal> getBallen() {
         return ballen;
     }
@@ -117,7 +185,7 @@ public class Spel {
      * deze methode zorgt voor de notificaties zoals gewonnen en verloren
      */
     public void notificatie() {
-        if (stenen.isGewonnen()) {
+        if (gewonnen) {
             gewonnen();
             reset();
         }
@@ -133,14 +201,18 @@ public class Spel {
         alert.show();
     }
 
+    public Steen getSteen(int j, int i) {
+        return stenen[j][i];
+    }
+
     /**
      * deze methode regiseert de botsingen tussen de bal en de stenen
      */
     private void botsingBalStenen() {
         for (Bal bal : ballen) {
-            for (int j = 0; j < stenen.getRijen(); j++) {
-                for (int i = 0; i < stenen.getKolommen(); i++) {
-                    Steen steen = stenen.getSteen(j, i);
+            for (int j = 0; j < rijen; j++) {
+                for (int i = 0; i < kolommen; i++) {
+                    Steen steen = getSteen(j, i);
                     if (!steen.isGeraakt()) {
                         if (bal.getY() + bal.getHuidigeStraal() >= steen.getY() - 3 //onderkant bal met bovenkant steen
                                 && bal.getY() + bal.getHuidigeStraal() <= steen.getY() + 3
@@ -322,15 +394,6 @@ public class Spel {
      */
     public Peddel getPeddel() {
         return peddel;
-    }
-
-    /**
-     * geeft de stenen terug
-     *
-     * @return stenen de stenen
-     */
-    public Stenen getStenen() {
-        return stenen;
     }
 
     /**

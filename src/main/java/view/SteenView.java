@@ -33,6 +33,7 @@ public class SteenView extends Region {
         r.setStroke(Color.ORANGE);
         r.setStrokeType(StrokeType.INSIDE);
         r.setStrokeWidth(2);
-        getChildren().add(r);
+        r.setTranslateX(steen.getX());
+        r.setTranslateY(steen.getY());
     }
 }
